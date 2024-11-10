@@ -10,7 +10,7 @@ export function Sidebar({trigger}) {
       trigger={trigger}
       content={
         <div className="flex flex-col gap-10 h-full">
-          <img src={Logo} alt="GJENGE" className="w-6" />
+          <img src={Logo} alt="GJENGE" className="w-32" />
           <section className="flex flex-col gap-4 h-full">
             <p className="w-10 text-gray-400 font-normal text-xs">Home</p>
             <div className="grid gap-6">

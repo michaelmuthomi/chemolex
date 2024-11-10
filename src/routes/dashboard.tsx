@@ -15,10 +15,19 @@ import { Card } from "@/components/ui/card";
 import { TableComponent } from "@/components/tables/Users";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/assets/images";
-
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { Skeleton } from "@/components/ui";
 
 export const Route = createFileRoute("/dashboard")({
-  component: () => <AdminDashboard />,
+  component: () => (
+    <SidebarProvider>
+      <AppSidebar />
+      <main className="w-full">
+        <AdminDashboard />
+      </main>
+    </SidebarProvider>
+  ),
 });
 
 function AdminDashboard() {
@@ -29,7 +38,12 @@ function AdminDashboard() {
   });
 
   if (!isLoggedIn) {
-    return <div>Loading...</div>;
+    return (
+      <div className="px-6 pt-4 grid gap-4">
+        <Skeleton className="h-24 w-full" />
+        <Skeleton className="h-32 w-full" />
+      </div>
+    );
   }
 
   return (
@@ -73,16 +87,9 @@ function MainSection() {
     });
   }, []);
   return (
-    <div className="flex flex-col gap-4 pt-4">
+    <div className="flex flex-col gap-4 pt-4 w-full">
       <section className="flex gap-2 items-center px-6 sticky top-0 bg-background py-4 z-10 border-b-[1px]">
-        <Sidebar
-          trigger={
-            <img
-              src="https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/menu-512.png"
-              className="w-6"
-            />
-          }
-        />
+        <SidebarTrigger />
         <Header />
       </section>
       <section className="px-6">
@@ -127,7 +134,7 @@ function MainSection() {
       <section className="px-4 grid gap-6">
         <div className="flex justify-between">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-200">
               Manage Users
             </h2>
             <p className={"text-sm text-muted-foreground py-2"}>
@@ -153,11 +160,13 @@ function MainSection() {
       </div>
       <section className="px-4 pb-4 flex justify-between">
         <div className="flex items-center gap-2">
-          <img src={Logo} alt="" className="w-6" />
-          <p>&copy; 2024</p>
+          <img src={Logo} alt="" className="w-14" />
+          <p className="text-muted">&copy; 2024</p>
         </div>
         <div className="flex gap-4">
-          <p className="text-sm text-muted-foreground py-2">GJENGE LTD - Building <b>alternatively</b>, <b>affordably</b> and <b>sustainably</b>.</p>
+          <p className="text-sm text-muted py-2">
+            Refnet - More than promises delivering proven excellence
+          </p>
         </div>
       </section>
     </div>

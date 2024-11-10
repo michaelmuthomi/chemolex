@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ProductCard, ProductSkeleton } from "@/components/ui";
+import { ProductCard, ProductSkeleton,Button } from "@/components/ui";
 import {fetchProducts} from "@/api";
 import {Link} from "@tanstack/react-router"
 
@@ -12,14 +12,19 @@ export function BestSeller() {
     }
     productsFetcher();
   return (
-    <div className="bg-white">
+    <div>
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <div className="flex items-end justify-between">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-200">
             View products
           </h2>
           <Link to="/products" className="text-slate-500 text-sm font-medium">
-            View All &rarr;
+            <Button
+              className="font-medium"
+              variant="outline"
+            >
+              View All &rarr;
+            </Button>
           </Link>
         </div>
         {products.length === 0 ? (

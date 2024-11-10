@@ -21,7 +21,7 @@ export function ProductCard(product) {
                 {product.product_name}
               </a>
             </h3>
-            <p className="text-sm font-base text-gray-900">
+            <p className="text-sm font-base text-gray-200">
               {product.description}
             </p>
             <div className="py-1">
@@ -32,9 +32,9 @@ export function ProductCard(product) {
                 {product.quantity_in_stock} in stock
               </p>
               <p className="text-sm font-base text-gray-500">
-              Ksh {product.price}{" "}
+                Ksh {product.price}{" "}
                 <span className="text-gray-600 font-light">each</span>
-                </p>
+              </p>
             </section>
           </div>
         </div>

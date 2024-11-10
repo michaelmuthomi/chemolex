@@ -40,8 +40,9 @@ export function FormComponent() {
           className="w-max space-y-6"
         >
           <h1 className="text-4xl font-bold leading-10">
-            Administrator Sign-In
+            Sign-In
           </h1>
+          <p>Welcome back, fill in your details below to continue</p>
           <FormField
             control={form.control}
             name="email"
@@ -78,7 +79,7 @@ export function FormComponent() {
             )}
           />
           <Button type="submit" className="w-full h-11">
-            Submit
+            Login and continue
           </Button>
         </form>
       </Form>

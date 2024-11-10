@@ -271,15 +271,18 @@ const SidebarTrigger = React.forwardRef<
       size="icon"
       className={cn("h-7 w-7", className)}
       onClick={(event) => {
-        onClick?.(event)
-        toggleSidebar()
+        onClick?.(event);
+        toggleSidebar();
       }}
       {...props}
     >
-      <PanelLeft />
+      <img
+        src="https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/menu-512.png"
+        className="w-6"
+      />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
-  )
+  );
 })
 SidebarTrigger.displayName = "SidebarTrigger"
 

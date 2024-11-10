@@ -11,7 +11,7 @@ export const Switch = ({ onclick }) => {
 
   return (
     <>
-      <label className="themeSwitcherTwo shadow-card relative inline-flex cursor-pointer select-none items-center justify-center rounded-md bg-white p-1">
+      <label className="themeSwitcherTwo shadow-card relative inline-flex cursor-pointer select-none items-center justify-center rounded-md p-1">
         <input
           type="checkbox"
           className="sr-only w-max"
@@ -19,22 +19,22 @@ export const Switch = ({ onclick }) => {
           onChange={handleCheckboxChange}
           onClick={onclick}
         />
-        <span
-          className={`flex items-center rounded py-2 px-[18px] text-sm font-medium ${
-            !isChecked ? "text-primary bg-[#f4f7ff]" : "text-body-color"
+        <div
+          className={`flex gap-2 items-center rounded py-2 px-[18px] text-sm font-medium ${
+            !isChecked ? "text-primary bg-[#181818]" : "text-body-color"
           }`}
         >
           <img src={GridIcon} alt="" className="w-6" />
-          Grid
-        </span>
-        <span
-          className={`flex items-center rounded py-2 px-[18px] text-sm font-medium w-max  ${
-            isChecked ? "text-primary bg-[#f4f7ff]" : "text-body-color"
+          <span>Grid</span>
+        </div>
+        <div
+          className={`flex gap-2 items-center rounded py-2 px-[18px] text-sm font-medium w-max  ${
+            isChecked ? "text-primary bg-[#181818]" : "text-body-color"
           }`}
         >
           <img src={ListIcon} alt="" className="w-6" />
           List
-        </span>
+        </div>
       </label>
     </>
   );

@@ -314,9 +314,9 @@ export function UsersTable(data) {
     },
   });
   return (
-    <div className="w-full grid bg-white">
+    <div className="w-full grid">
       <Toaster />
-      <div className="flex items-center py-4 px-6 bg-gray-50 border-b-[1px]">
+      <div className="flex items-center py-4 px-6  border-b-[1px]">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
