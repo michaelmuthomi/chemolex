@@ -53,9 +53,9 @@ export type User = {
 
 export const columns: ColumnDef<User>[] = [
   {
-    accessorFn: (row) => `${row.first_name} ${row.last_name}`,
+    accessorKey: "full_name",
     header: "Full Name",
-    cell: ({ row }) => <div>{`${row.original.first_name} ${row.original.last_name}`}</div>,
+    cell: ({ row }) => <div>{row.getValue("full_name")}</div>,
   },
   {
     accessorKey: "email",
@@ -78,7 +78,7 @@ export const columns: ColumnDef<User>[] = [
   {
     accessorKey: "role",
     header: "Role",
-    cell: ({ row }) => <div>{row.getValue("role")}</div>,
+    cell: ({ row }) => <div className="capitalize">{row.getValue("role")}</div>,
   },
   {
     accessorKey: "status",
@@ -93,7 +93,7 @@ export const columns: ColumnDef<User>[] = [
             Active
           </Badge>
         )}
-        {row.getValue("status") === "deactivated" && (
+        {row.getValue("status") === "inactive" && (
           <Badge
             variant="destructive"
             className="rounded-full bg-yellow-500 text-white"
@@ -113,10 +113,10 @@ export const columns: ColumnDef<User>[] = [
     ),
   },
   {
-    accessorKey: "date_created",
+    accessorKey: "created_at",
     header: "Date Created",
     cell: ({ row }) => {
-      const date = new Date(row.getValue("date_created"));
+      const date = new Date(row.getValue("created_at"));
       const formattedDate = date.toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
@@ -159,12 +159,12 @@ export const columns: ColumnDef<User>[] = [
       };
 
       const handleDeactivate = async () => {
-        // Update the user's status to 'deactivated'
-        user.status = "deactivated";
+        // Update the user's status to 'inactive'
+        user.status = "inactive";
         // Add any additional logic to update the user's status in your backend or state management
         const { data, error } = await supabase
           .from("users")
-          .update({ status: "deactivated" })
+          .update({ status: "inactive" })
           .eq("user_id", user.user_id);
         if (error) console.error(error);
         toast({
@@ -265,19 +265,6 @@ export function UsersTable(data) {
 
   const [filterStatus, setFilterStatus] = React.useState("all");
 
-  const toggleFilterStatus = () => {
-    const nextStatus = {
-      all: "active",
-      active: "deactivated",
-      deactivated: "banned",
-      banned: "all",
-    };
-    const newStatus = nextStatus[filterStatus];
-    setFilterStatus(newStatus);
-    table
-      .getColumn("status")
-      ?.setFilterValue(newStatus === "all" ? "" : newStatus);
-  };
   const table = useReactTable({
     data: filteredData,
     columns,
@@ -309,18 +296,58 @@ export function UsersTable(data) {
           className="max-w-sm"
         />
         <section className="ml-auto flex gap-2">
-        <DropdownMenu>
+          <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">
-                Filter Status: {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)} <ChevronDown className="ml-2 h-4 w-4" />
+                Filter Role <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              {["all", "active", "deactivated", "banned"].map((status) => (
-                <DropdownMenuItem key={status} onClick={() => {
-                  setFilterStatus(status);
-                  table.getColumn("status")?.setFilterValue(status === "all" ? "" : status);
-                }}>
+              {[
+                "all",
+                "service_manager",
+                "supervisor",
+                "finance_controller",
+                "stock_manager",
+              ].map((role) => (
+                <DropdownMenuItem
+                  key={role}
+                  onClick={() => {
+                    table
+                      .getColumn("role")
+                      ?.setFilterValue(role === "all" ? "" : role);
+                  }}
+                >
+                  {role.charAt(0).toUpperCase() + role.slice(1)}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="ml-auto">
+                Filter Status:{" "}
+                {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}{" "}
+                <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+              {["all", "active / inactive", "banned"].map((status) => (
+                <DropdownMenuItem
+                  key={status}
+                  onClick={() => {
+                    setFilterStatus(status);
+                    if (status === "active / inactive") {
+                      table.getColumn("status")?.setFilterValue("active");
+                    } else {
+                      table
+                        .getColumn("status")
+                        ?.setFilterValue(status === "all" ? "" : status);
+                    }
+                    console.log("Current filter status:", status); // Debug log
+                    console.log("Table filter value:", table.getColumn("status")?.getFilterValue()); // Debug log
+                  }}
+                >
                   {status.charAt(0).toUpperCase() + status.slice(1)}
                 </DropdownMenuItem>
               ))}
@@ -449,8 +476,8 @@ export function TableComponent(data) {
   const toggleFilterStatus = () => {
     const nextStatus = {
       all: "active",
-      active: "deactivated",
-      deactivated: "banned",
+      active: "inactive",
+      inactive: "banned",
       banned: "all",
     };
     const newStatus = nextStatus[filterStatus];

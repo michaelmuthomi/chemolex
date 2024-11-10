@@ -35,6 +35,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { formatPrice } from "@/hooks/format-price";
 
 export type Product = {
     product_name: string;
@@ -47,33 +48,20 @@ export type Product = {
 
 export const columns: ColumnDef<Product>[] = [
   {
-    accessorKey: "product_name",
-    header: "Product Name",
-    cell: ({ row }) => <div>{row.getValue("product_name")}</div>,
-  },
-  {
-    accessorKey: "description",
-    header: "Description",
-    cell: ({ row }) => (
-      <a
-        href={row.getValue("description")}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {row.getValue("description")}
-      </a>
-    ),
-  },
-  {
-    accessorKey: "image",
+    accessorKey: "image_url",
     header: "Image",
     cell: ({ row }) => (
       <img
-        src={row.getValue("image")}
+        src={row.getValue("image_url")}
         alt={row.getValue("image")}
         className="w-16 h-16 object-cover rounded-lg"
       />
     ),
+  },
+  {
+    accessorKey: "name",
+    header: "Product Name",
+    cell: ({ row }) => <div>{row.getValue("name")}</div>,
   },
   {
     accessorKey: "price",
@@ -86,37 +74,42 @@ export const columns: ColumnDef<Product>[] = [
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
-    cell: ({ row }) => <div>{row.getValue("price")}</div>,
+    cell: ({ row }) => <div>{formatPrice(row.getValue("price"))}</div>,
   },
   {
-    accessorKey: "color",
-    header: "Color",
-    cell: ({ row }) => <div>{row.getValue("color")}</div>,
+    accessorKey: "category",
+    header: "Category",
+    cell: ({ row }) => <div>{row.getValue("category")}</div>,
   },
   {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const product = row.original;
+    accessorKey: "stock_quantity",
+    header: "Stock",
+    cell: ({ row }) => <div>{row.getValue("stock_quantity")}</div>,
+  },
+  // {
+  //   id: "actions",
+  //   enableHiding: false,
+  //   cell: ({ row }) => {
+  //     const product = row.original;
 
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View Details</DropdownMenuItem>
-            <DropdownMenuItem>Add to Cart</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
-  },
+  //     return (
+  //       <DropdownMenu>
+  //         <DropdownMenuTrigger asChild>
+  //           <Button variant="ghost" className="h-8 w-8 p-0">
+  //             <span className="sr-only">Open menu</span>
+  //             <MoreHorizontal className="h-4 w-4" />
+  //           </Button>
+  //         </DropdownMenuTrigger>
+  //         <DropdownMenuContent align="end">
+  //           <DropdownMenuLabel>Actions</DropdownMenuLabel>
+  //           <DropdownMenuSeparator />
+  //           <DropdownMenuItem>View Details</DropdownMenuItem>
+  //           <DropdownMenuItem>Add to Cart</DropdownMenuItem>
+  //         </DropdownMenuContent>
+  //       </DropdownMenu>
+  //     );
+  //   },
+  // },
 ];
 
 export function ProductTable(data) {
@@ -155,10 +148,10 @@ export function ProductTable(data) {
         <Input
           placeholder="Filter products..."
           value={
-            (table.getColumn("product_name")?.getFilterValue() as string) ?? ""
+            (table.getColumn("name")?.getFilterValue() as string) ?? ""
           }
           onChange={(event) =>
-            table.getColumn("product_name")?.setFilterValue(event.target.value)
+            table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

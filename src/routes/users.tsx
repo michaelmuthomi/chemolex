@@ -31,10 +31,10 @@ function ManageUsers() {
         <Header location="Users" />
       </section>
       <section className="px-6 pt-4 grid gap-10">
-        <div>          
+        <div>
           <h1 className="text-3xl font-bold text-neutral-300">Users</h1>
           <p className="font-light text-zinc-600">
-            Manage users, activate, deactivate &nbsp;and more
+            A list of all the users in the database, view and manage their status.
           </p>
         </div>
       </section>

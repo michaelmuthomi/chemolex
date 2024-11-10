@@ -124,11 +124,7 @@ function MainSection() {
           ))}
         </section>
       </section>
-      <div className="pb-16 pt-4 ">
-        <hr />
-      </div>
-      <ChartComponent />
-      <div className="pb-16 pt-4 ">
+      <div className="pb-2 pt-4 ">
         <hr />
       </div>
       <section className="px-4 grid gap-6">
@@ -152,6 +148,9 @@ function MainSection() {
         </div>
         <TableComponent data={users} />
       </section>
+      <div className="pt-6">
+        <hr />
+      </div>
       <section>
         <BestSeller />
       </section>

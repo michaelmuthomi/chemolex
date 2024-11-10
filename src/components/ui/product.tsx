@@ -1,4 +1,5 @@
 import { Skeleton } from "@/components/ui";
+import { formatPrice } from "@/hooks/format-price";
 import * as React from "react"
 export function ProductCard(product) {
     return (
@@ -6,7 +7,7 @@ export function ProductCard(product) {
         <div className="w-full overflow-hidden rounded-md bg-muted border-muted lg:aspect-none group-hover:opacity-75 lg:h-80">
           <img
             alt={product.description}
-            src={product.image}
+            src={product.image_url}
             className="h-full w-full object-cover object-center lg:h-full lg:w-full border-muted"
           />
         </div>
@@ -29,11 +30,10 @@ export function ProductCard(product) {
             </div>
             <section className="flex items-center justify-between">
               <p className="mt-1 text-sm text-gray-500">
-                {product.quantity_in_stock} in stock
+                {product.stock_quantity} in stock
               </p>
               <p className="text-sm font-base text-gray-500">
-                Ksh {product.price}{" "}
-                <span className="text-gray-600 font-light">each</span>
+                {formatPrice(product.price)}
               </p>
             </section>
           </div>
