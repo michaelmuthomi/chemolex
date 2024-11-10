@@ -35,8 +35,7 @@ export function Header({location = ""}) {
 export function AvatarDemo() {
   return (
     <Avatar className="w-8 h-8">
-      <AvatarImage src={Ceo} alt="CEO" className="object-cover" />
-      <AvatarFallback>CO</AvatarFallback>
+      <AvatarFallback>A</AvatarFallback>
     </Avatar>
   );
 }

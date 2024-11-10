@@ -71,9 +71,7 @@ export function AddUserDialog({ dialogTrigger }) {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>User Registration</DialogTitle>
-          <DialogDescription>
-            Add users to the database
-          </DialogDescription>
+          <DialogDescription>Add users to the database</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleRegisterUser} className="grid gap-2">
           <Input
@@ -118,6 +116,7 @@ export function AddUserDialog({ dialogTrigger }) {
             value={formData.role}
             onChange={handleInputChange}
             required
+            className="p-2 bg-black text-white border rounded-sm"
           >
             <option value="" disabled>
               Select Role
@@ -131,6 +130,7 @@ export function AddUserDialog({ dialogTrigger }) {
             value={formData.status}
             onChange={handleInputChange}
             required
+            className="p-2 bg-black text-white border rounded-sm"
           >
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>

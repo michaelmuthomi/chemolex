@@ -22,7 +22,7 @@ export function AppSidebar() {
         <div className="flex flex-col gap-10 h-full p-6">
           <img src={Logo} alt="GJENGE" className="w-32" />
           <section className="flex flex-col gap-4 h-full">
-            <p className="w-10 text-gray-400 font-normal text-xs">Home</p>
+            <p className="text-gray-700 font-normal text-sm uppercase">Home</p>
             <div className="grid gap-6">
               <SidebarLinks
                 linkTo="/dashboard"

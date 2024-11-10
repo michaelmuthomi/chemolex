@@ -41,9 +41,9 @@ import { ToastAction } from "@radix-ui/react-toast";
 import { AddUserDialog } from "../AddUserDialog";
 
 export type User = {
-  user_id: string;
   first_name: string;
   last_name: string;
+  full_name: string;
   email: string;
   phone_number: string;
   role: string;
@@ -53,29 +53,9 @@ export type User = {
 
 export const columns: ColumnDef<User>[] = [
   {
-    accessorKey: "user_id",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        User ID
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("user_id")}</div>
-    ),
-  },
-  {
-    accessorKey: "first_name",
-    header: "First Name",
-    cell: ({ row }) => <div>{row.getValue("first_name")}</div>,
-  },
-  {
-    accessorKey: "last_name",
-    header: "Last Name",
-    cell: ({ row }) => <div>{row.getValue("last_name")}</div>,
+    accessorFn: (row) => `${row.first_name} ${row.last_name}`,
+    header: "Full Name",
+    cell: ({ row }) => <div>{`${row.original.first_name} ${row.original.last_name}`}</div>,
   },
   {
     accessorKey: "email",
@@ -244,7 +224,10 @@ export const columns: ColumnDef<User>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleActivate}>
-              <Badge variant="default" className="rounded-full bg-green-900 text-white">
+              <Badge
+                variant="default"
+                className="rounded-full bg-green-900 text-white"
+              >
                 Activate
               </Badge>
             </DropdownMenuItem>
