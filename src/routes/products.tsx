@@ -5,9 +5,19 @@ import { ProductCard, ProductSkeleton } from "@/components/ui";
 import { ProductTable } from "@/components/tables/Product";
 import { Switch } from "@/components/ui/switch";
 import { fetchProducts } from "@/api";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { Skeleton } from "@/components/ui";
 
 export const Route = createFileRoute("/products")({
-  component: () => <ProductPage />,
+  component: () => (
+    <SidebarProvider>
+      <AppSidebar />
+      <main className="w-full">
+        <ProductPage />
+      </main>
+    </SidebarProvider>
+  ),
 });
 
 function ProductPage() {
@@ -25,24 +35,13 @@ function ProductPage() {
   return (
     <div className="flex flex-col">
       <section className="flex gap-2 items-center sticky px-4 top-0 bg-background py-4 z-10 border-b-[1px]">
-        <Sidebar
-          trigger={
-            <img
-              src="https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/menu-512.png"
-              className="w-6"
-            />
-          }
-        />
+        <SidebarTrigger />
         <Header location="Products" />
       </section>
-      <section className="px-6 pt-24 flex justify-between items-center gap-10">
+      <section className="px-6 pt-4 flex justify-between items-center gap-10">
         <div>
-          <h1 className="text-5xl font-bold text-neutral-300 leading-[2px]">
-            Products
-          </h1>
-          <p className="font-medium leading-9 w-max px-2 rounded-sm">
-            View products that are currently listed
-          </p>
+          <h1 className="text-3xl font-bold text-neutral-300">Products</h1>
+          <p className="font-light text-zinc-600">View products that are currently listed</p>
         </div>
         <div className="flex items-center">
           <Switch
@@ -53,24 +52,23 @@ function ProductPage() {
         </div>
       </section>
       <section className="px-6">
-      {isGridLayout ? (
-        products.length === 0 ? (
-          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            <ProductSkeleton />
-            <ProductSkeleton />
-            <ProductSkeleton />
-            <ProductSkeleton />
-          </div>
+        {isGridLayout ? (
+          products.length === 0 ? (
+            <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+              <ProductSkeleton />
+              <ProductSkeleton />
+              <ProductSkeleton />
+            </div>
+          ) : (
+            <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+              {products.map((product) => (
+                <ProductCard key={product.id} {...product} />
+              ))}
+            </div>
+          )
         ) : (
-          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            {products.map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))}
-          </div>
-        )
-      ) : (
-        <ProductTable data={products} />
-      )}
+          <ProductTable data={products} />
+        )}
       </section>
     </div>
   );

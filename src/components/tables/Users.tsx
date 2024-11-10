@@ -168,7 +168,7 @@ export const columns: ColumnDef<User>[] = [
             <ToastAction altText="refresh">
               <Button
                 variant="outline"
-                className="font-sm text-black"
+                className="font-sm text-black bg-white"
                 onClick={() => window.location.reload()}
               >
                 Refresh Page
@@ -195,7 +195,7 @@ export const columns: ColumnDef<User>[] = [
             <ToastAction altText="refresh">
               <Button
                 variant="outline"
-                className="font-sm text-black"
+                className="font-sm text-black bg-white"
                 onClick={() => window.location.reload()}
               >
                 Refresh Page
@@ -222,7 +222,7 @@ export const columns: ColumnDef<User>[] = [
             <ToastAction altText="refresh">
               <Button
                 variant="outline"
-                className="font-sm text-black"
+                className="font-sm text-black bg-white"
                 onClick={() => window.location.reload()}
               >
                 Refresh Page
@@ -244,7 +244,7 @@ export const columns: ColumnDef<User>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleActivate}>
-              <Badge variant="default" className="rounded-full bg-green-900">
+              <Badge variant="default" className="rounded-full bg-green-900 text-white">
                 Activate
               </Badge>
             </DropdownMenuItem>

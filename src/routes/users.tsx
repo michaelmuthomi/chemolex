@@ -30,12 +30,10 @@ function ManageUsers() {
         <SidebarTrigger />
         <Header location="Users" />
       </section>
-      <section className="px-6 pt-24 grid gap-10">
-        <div>
-          <h1 className="text-5xl font-bold text-neutral-300 leading-[2px]">
-            Users
-          </h1>
-          <p className="font-medium leading-9  w-max px-2 rounded-sm">
+      <section className="px-6 pt-4 grid gap-10">
+        <div>          
+          <h1 className="text-3xl font-bold text-neutral-300">Users</h1>
+          <p className="font-light text-zinc-600">
             Manage users, activate, deactivate &nbsp;and more
           </p>
         </div>
