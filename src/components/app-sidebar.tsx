@@ -20,7 +20,7 @@ export function AppSidebar() {
       <SidebarHeader />
       <SidebarContent>
         <div className="flex flex-col gap-10 h-full p-6">
-          <img src={Logo} alt="GJENGE" className="w-32" />
+          <img src={Logo} alt="REFNET" className="w-32" />
           <section className="flex flex-col gap-4 h-full">
             <p className="text-gray-700 font-normal text-sm uppercase">Home</p>
             <div className="grid gap-6">
