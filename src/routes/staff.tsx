@@ -32,9 +32,9 @@ function ManageUsers() {
       </section>
       <section className="px-6 pt-4 grid gap-10">
         <div>
-          <h1 className="text-3xl font-bold text-neutral-300">Staff</h1>
+          <h1 className="text-3xl font-bold text-neutral-300">Employees</h1>
           <p className="font-light text-zinc-600">
-            A list of all the staff in the database, view and manage their
+            A list of all the employees in the database, view and manage their
             status.
           </p>
         </div>

@@ -76,11 +76,6 @@ export const columns: ColumnDef<User>[] = [
     cell: ({ row }) => <div>{row.getValue("phone_number")}</div>,
   },
   {
-    accessorKey: "role",
-    header: "Role",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("role")}</div>,
-  },
-  {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => (
@@ -98,7 +93,7 @@ export const columns: ColumnDef<User>[] = [
             variant="destructive"
             className="rounded-full bg-yellow-500 text-white"
           >
-            Deactivated
+            Inactive
           </Badge>
         )}
         {row.getValue("status") === "banned" && (
@@ -379,7 +374,6 @@ export function StaffTable(data) {
                 })}
             </DropdownMenuContent>
           </DropdownMenu>
-          <AddUserDialog dialogTrigger={<Button>Add User</Button>} />
         </section>
       </div>
       <div className="rounded-md px-2">

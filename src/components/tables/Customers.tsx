@@ -355,7 +355,7 @@ export function CustomersTable(data) {
                 })}
             </DropdownMenuContent>
           </DropdownMenu>
-          <AddUserDialog dialogTrigger={<Button>Add User</Button>} />
+          
         </section>
       </div>
       <div className="rounded-md px-2">
