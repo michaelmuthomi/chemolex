@@ -299,33 +299,6 @@ export function CustomersTable(data) {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">
-                Filter Role <ChevronDown className="ml-2 h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {[
-                "all",
-                "service_manager",
-                "supervisor",
-                "finance_controller",
-                "stock_manager",
-              ].map((role) => (
-                <DropdownMenuItem
-                  key={role}
-                  onClick={() => {
-                    table
-                      .getColumn("role")
-                      ?.setFilterValue(role === "all" ? "" : role);
-                  }}
-                >
-                  {role.charAt(0).toUpperCase() + role.slice(1)}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="ml-auto">
                 Filter Status:{" "}
                 {filterStatus.charAt(0).toUpperCase() + filterStatus.slice(1)}{" "}
                 <ChevronDown className="ml-2 h-4 w-4" />
