@@ -28,7 +28,7 @@ function ManageUsers() {
     <div className="flex flex-col w-full">
       <section className="flex gap-2 items-center sticky px-4 top-0 bg-background py-4 z-10 border-b-[1px]">
         <SidebarTrigger />
-        <Header location="Staff" />
+        <Header location="Employees" />
       </section>
       <section className="px-6 pt-4 grid gap-10">
         <div>

@@ -39,7 +39,7 @@ export function AppSidebar() {
                 icon={<FaUsers />}
                 text="Customers"
               />
-              <SidebarLinks linkTo="/staff" icon={<FaUsers />} text="Staff" />
+              <SidebarLinks linkTo="/staff" icon={<FaUsers />} text="Employees" />
               <p className="text-gray-700 font-normal text-sm uppercase">
                 Others
               </p>
