@@ -18,19 +18,33 @@ import { useState } from "react";
 import { supabase } from "@/backend/client";
 import { toast, useToast } from "@/hooks/use-toast";
 
-export function AddUserDialog({ dialogTrigger }) {
-  const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone_number: "",
-    password_hash: "",
-    role: "",
-    created_at: new Date().toISOString().split("T")[0], // Default to today's date
-    status: "active", // Default status
-  });
+// Form data interface
+interface FormData {
+  username: string;
+  email: string;
+  password_hash: string;
+  full_name: string;
+  phone_number: string;
+  address: string;
+  role: string;
+  status: string;
+}
 
-  const handleInputChange = (e) => {
+// Initial form state
+const initialFormData: FormData = {
+  username: '',
+  email: '',
+  password_hash: '',
+  full_name: '',
+  phone_number: '',
+  role: 'user', // Default role
+  status: 'active' // Default status
+};
+
+export function AddUserDialog({ dialogTrigger }) {
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
@@ -51,17 +65,7 @@ export function AddUserDialog({ dialogTrigger }) {
         description: "User registered successfully.",
       });
       // setIsDialogOpen(false);
-      setFormData({
-        // Reset form data
-        first_name: "",
-        last_name: "",
-        email: "",
-        phone_number: "",
-        password_hash: "",
-        role: "",
-        created_at: new Date().toISOString().split("T")[0],
-        status: "active",
-      });
+      setFormData(initialFormData); // Reset form data
     }
   };
 
@@ -75,16 +79,16 @@ export function AddUserDialog({ dialogTrigger }) {
         </DialogHeader>
         <form onSubmit={handleRegisterUser} className="grid gap-2">
           <Input
-            placeholder="First Name"
-            name="first_name"
-            value={formData.first_name}
+            placeholder="Username"
+            name="username"
+            value={formData.username}
             onChange={handleInputChange}
             required
           />
           <Input
-            placeholder="Last Name"
-            name="last_name"
-            value={formData.last_name}
+            placeholder="Full Name"
+            name="full_name"
+            value={formData.full_name}
             onChange={handleInputChange}
             required
           />
@@ -97,19 +101,18 @@ export function AddUserDialog({ dialogTrigger }) {
             required
           />
           <Input
-            placeholder="Phone Number"
-            name="phone_number"
-            value={formData.phone_number}
-            onChange={handleInputChange}
-            required
-          />
-          <Input
             placeholder="Password"
             name="password_hash"
             type="password"
             value={formData.password_hash}
             onChange={handleInputChange}
             required
+          />
+          <Input
+            placeholder="Phone Number"
+            name="phone_number"
+            value={formData.phone_number}
+            onChange={handleInputChange}
           />
           <select
             name="role"
@@ -118,12 +121,12 @@ export function AddUserDialog({ dialogTrigger }) {
             required
             className="p-2 bg-black text-white border rounded-sm"
           >
-            <option value="" disabled>
-              Select Role
-            </option>
-            <option value="Customer">Customer</option>
-            <option value="Dispatch Manager">Dispatch Manager</option>
-            <option value="Finance Manager">Finance Manager</option>
+            <option value="customer">Customer</option>
+            <option value="service_manager">Service Manager</option>
+            <option value="stock_manager">Stock Manager</option>
+            <option value="finance_controller">Finance Controller</option>
+            <option value="supervisor">Supervisor</option>
+            <option value="technician">Technician</option>
           </select>
           <select
             name="status"
