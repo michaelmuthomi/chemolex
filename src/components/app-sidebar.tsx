@@ -13,6 +13,8 @@ import { Link } from "@tanstack/react-router";
 import { MdHomeFilled } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
 import { AiFillProduct } from "react-icons/ai";
+import { TbReportSearch } from "react-icons/tb";
+import { VscFeedback } from "react-icons/vsc";
 
 export function AppSidebar() {
   return (
@@ -34,6 +36,16 @@ export function AppSidebar() {
                 linkTo="/products"
                 icon={<AiFillProduct />}
                 text="Products"
+              />
+              <SidebarLinks
+                linkTo="/reports"
+                icon={<TbReportSearch />}
+                text="Reports"
+              />
+              <SidebarLinks
+                linkTo="/feedback"
+                icon={<VscFeedback />}
+                text="Feedback"
               />
             </div>
           </section>

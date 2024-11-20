@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as UsersImport } from './routes/users'
+import { Route as ReportsImport } from './routes/reports'
 import { Route as ProductsImport } from './routes/products'
 import { Route as OrdersImport } from './routes/orders'
 import { Route as FeedbackImport } from './routes/feedback'
@@ -22,6 +23,11 @@ import { Route as IndexImport } from './routes/index'
 
 const UsersRoute = UsersImport.update({
   path: '/users',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ReportsRoute = ReportsImport.update({
+  path: '/reports',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -89,6 +95,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsImport
       parentRoute: typeof rootRoute
     }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsImport
+      parentRoute: typeof rootRoute
+    }
     '/users': {
       id: '/users'
       path: '/users'
@@ -107,6 +120,7 @@ export interface FileRoutesByFullPath {
   '/feedback': typeof FeedbackRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
+  '/reports': typeof ReportsRoute
   '/users': typeof UsersRoute
 }
 
@@ -116,6 +130,7 @@ export interface FileRoutesByTo {
   '/feedback': typeof FeedbackRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
+  '/reports': typeof ReportsRoute
   '/users': typeof UsersRoute
 }
 
@@ -126,6 +141,7 @@ export interface FileRoutesById {
   '/feedback': typeof FeedbackRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
+  '/reports': typeof ReportsRoute
   '/users': typeof UsersRoute
 }
 
@@ -137,9 +153,17 @@ export interface FileRouteTypes {
     | '/feedback'
     | '/orders'
     | '/products'
+    | '/reports'
     | '/users'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/feedback' | '/orders' | '/products' | '/users'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/feedback'
+    | '/orders'
+    | '/products'
+    | '/reports'
+    | '/users'
   id:
     | '__root__'
     | '/'
@@ -147,6 +171,7 @@ export interface FileRouteTypes {
     | '/feedback'
     | '/orders'
     | '/products'
+    | '/reports'
     | '/users'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +182,7 @@ export interface RootRouteChildren {
   FeedbackRoute: typeof FeedbackRoute
   OrdersRoute: typeof OrdersRoute
   ProductsRoute: typeof ProductsRoute
+  ReportsRoute: typeof ReportsRoute
   UsersRoute: typeof UsersRoute
 }
 
@@ -166,6 +192,7 @@ const rootRouteChildren: RootRouteChildren = {
   FeedbackRoute: FeedbackRoute,
   OrdersRoute: OrdersRoute,
   ProductsRoute: ProductsRoute,
+  ReportsRoute: ReportsRoute,
   UsersRoute: UsersRoute,
 }
 
@@ -186,6 +213,7 @@ export const routeTree = rootRoute
         "/feedback",
         "/orders",
         "/products",
+        "/reports",
         "/users"
       ]
     },
@@ -203,6 +231,9 @@ export const routeTree = rootRoute
     },
     "/products": {
       "filePath": "products.tsx"
+    },
+    "/reports": {
+      "filePath": "reports.tsx"
     },
     "/users": {
       "filePath": "users.tsx"

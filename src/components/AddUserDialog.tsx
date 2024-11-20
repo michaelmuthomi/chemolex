@@ -80,6 +80,7 @@ export function AddUserDialog({ dialogTrigger }) {
         <form onSubmit={handleRegisterUser} className="grid gap-2">
           <Input
             placeholder="Username"
+            type="text"
             name="username"
             value={formData.username}
             onChange={handleInputChange}
@@ -87,6 +88,7 @@ export function AddUserDialog({ dialogTrigger }) {
           />
           <Input
             placeholder="Full Name"
+            type="text"
             name="full_name"
             value={formData.full_name}
             onChange={handleInputChange}

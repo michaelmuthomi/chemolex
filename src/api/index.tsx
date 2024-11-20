@@ -4,6 +4,7 @@ import { fetchFeedback } from "./fetchFeedback";
 import { fetchProducts, fetchProduct } from "./fetchProducts";
 import { fetchSales } from "./fetchSales";
 import { fetchLoginStatus } from "./fetchLoginStatus";
+import { fetchReports } from "./fetchReports";
 
 export {
   fetchUser,
@@ -14,4 +15,5 @@ export {
   fetchProducts,
   fetchSales,
   fetchLoginStatus,
+  fetchReports,
 };
