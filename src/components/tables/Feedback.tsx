@@ -15,10 +15,11 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { supabase } from "@/backend/client";
+import {useState, useEffect} from "react";
 
 import { toast, useToast } from "@/hooks/use-toast";
 import { Button, Skeleton, Badge, Toaster } from "@/components/ui";
-import { fetchUser } from "@/api";
+import { fetchServices, fetchUser } from "@/api";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
@@ -49,57 +50,77 @@ export type User = {
 };
 
 export const columns: ColumnDef<User>[] = [
-    {
-      accessorKey: "user_id",
-      header: "User ID",
-      cell: ({ row }) => (
-        <div className="font-mono">{row.getValue("user_id")}</div>
-      ),
+  {
+    accessorKey: "user_id",
+    header: "User's Email",
+    cell: ({ row }) => {
+        const userId = row.getValue("user_id");
+        console.log(userId)
+        const [email, setEmail] = useState<string>("Loading...");
+
+        useEffect(() => {
+          const email = fetchUser(userId).then((data) => { setEmail(data[0].email); });
+          console.log(email)
+        }, [userId]);
+
+        return <div className="font-mono">{email}</div>;
     },
-    {
-      accessorKey: "service_id",
-      header: "Service ID",
-      cell: ({ row }) => (
-        <div className="font-mono">{row.getValue("service_id")}</div>
-      ),
-    },
-    {
-      accessorKey: "order_id",
-      header: "Order ID",
-      cell: ({ row }) => (
-        <div className="font-mono">{row.getValue("order_id")}</div>
-      ),
-    },
-    {
-      accessorKey: "rating",
-      header: "Rating",
-      cell: ({ row }) => (
-        <div className="flex items-center">
-          <span className="font-semibold">{row.getValue("rating")}</span>
-          <span className="text-yellow-500 ml-1">★</span>
-        </div>
-      ),
-    },
-    {
-      accessorKey: "comments",
-      header: "Comments",
-      cell: ({ row }) => (
-        <div className="max-w-md truncate">{row.getValue("comments")}</div>
-      ),
-    },
-    {
-      accessorKey: "feedback_date",
-      header: "Feedback Date",
-      cell: ({ row }) => {
-        const date = new Date(row.getValue("feedback_date"));
-        const formattedDate = date.toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
+  },
+  {
+    accessorKey: "service_id",
+    header: "Service Name",
+    cell: ({ row }) => {
+      const serviceId = row.getValue("service_id");
+      console.log(serviceId);
+      const [ServiceName, setServiceName] = useState<string>("Loading...");
+
+      useEffect(() => {
+        const ServiceName = fetchServices(serviceId).then((data) => {
+          setServiceName(data[0].name);
         });
-        return <div>{formattedDate}</div>;
-      },
+        console.log(ServiceName);
+      }, [serviceId]);
+
+      return <div className="font-mono">{ServiceName}</div>;
     },
+  },
+  {
+    accessorKey: "order_id",
+    header: "Order ID",
+    cell: ({ row }) => (
+      <div className="font-mono">{row.getValue("order_id")}</div>
+    ),
+  },
+  {
+    accessorKey: "rating",
+    header: "Rating",
+    cell: ({ row }) => (
+      <div className="flex items-center">
+        <span className="font-semibold">{row.getValue("rating")}</span>
+        <span className="text-yellow-500 ml-1">★</span>
+      </div>
+    ),
+  },
+  {
+    accessorKey: "comments",
+    header: "Comments",
+    cell: ({ row }) => (
+      <div className="max-w-md truncate">{row.getValue("comments")}</div>
+    ),
+  },
+  {
+    accessorKey: "feedback_date",
+    header: "Feedback Date",
+    cell: ({ row }) => {
+      const date = new Date(row.getValue("feedback_date"));
+      const formattedDate = date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      return <div>{formattedDate}</div>;
+    },
+  },
   {
     id: "actions",
     enableHiding: false,
