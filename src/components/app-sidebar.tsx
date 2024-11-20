@@ -31,7 +31,18 @@ export function AppSidebar() {
                 icon={<MdHomeFilled />}
                 text="Dashboard"
               />
-              <SidebarLinks linkTo="/users" icon={<FaUsers />} text="Users" />
+              <p className="text-gray-700 font-normal text-sm uppercase">
+                USERS
+              </p>
+              <SidebarLinks
+                linkTo="/customers"
+                icon={<FaUsers />}
+                text="Customers"
+              />
+              <SidebarLinks linkTo="/staff" icon={<FaUsers />} text="Staff" />
+              <p className="text-gray-700 font-normal text-sm uppercase">
+                Others
+              </p>
               <SidebarLinks
                 linkTo="/products"
                 icon={<AiFillProduct />}

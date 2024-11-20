@@ -5,7 +5,9 @@ import { fetchProducts, fetchProduct } from "./fetchProducts";
 import { fetchSales } from "./fetchSales";
 import { fetchLoginStatus } from "./fetchLoginStatus";
 import { fetchReports } from "./fetchReports";
-import {fetchServices} from "./fetchService";
+import { fetchServices } from "./fetchService";
+import { fetchStaff } from "./fetchStaff";
+import {fetchCustomers} from "./fetchCustomers.tsx";
 
 export {
   fetchUser,
@@ -18,4 +20,6 @@ export {
   fetchLoginStatus,
   fetchReports,
   fetchServices,
+  fetchStaff,
+  fetchCustomers
 };

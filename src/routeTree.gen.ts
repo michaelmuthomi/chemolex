@@ -12,17 +12,24 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as UsersImport } from './routes/users'
+import { Route as StaffImport } from './routes/staff'
 import { Route as ReportsImport } from './routes/reports'
 import { Route as ProductsImport } from './routes/products'
 import { Route as OrdersImport } from './routes/orders'
 import { Route as FeedbackImport } from './routes/feedback'
 import { Route as DashboardImport } from './routes/dashboard'
+import { Route as CustomersImport } from './routes/customers'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
 const UsersRoute = UsersImport.update({
   path: '/users',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const StaffRoute = StaffImport.update({
+  path: '/staff',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -51,6 +58,11 @@ const DashboardRoute = DashboardImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const CustomersRoute = CustomersImport.update({
+  path: '/customers',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
@@ -65,6 +77,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/customers': {
+      id: '/customers'
+      path: '/customers'
+      fullPath: '/customers'
+      preLoaderRoute: typeof CustomersImport
       parentRoute: typeof rootRoute
     }
     '/dashboard': {
@@ -102,6 +121,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReportsImport
       parentRoute: typeof rootRoute
     }
+    '/staff': {
+      id: '/staff'
+      path: '/staff'
+      fullPath: '/staff'
+      preLoaderRoute: typeof StaffImport
+      parentRoute: typeof rootRoute
+    }
     '/users': {
       id: '/users'
       path: '/users'
@@ -116,32 +142,38 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
   '/feedback': typeof FeedbackRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
   '/reports': typeof ReportsRoute
+  '/staff': typeof StaffRoute
   '/users': typeof UsersRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
   '/feedback': typeof FeedbackRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
   '/reports': typeof ReportsRoute
+  '/staff': typeof StaffRoute
   '/users': typeof UsersRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
   '/feedback': typeof FeedbackRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
   '/reports': typeof ReportsRoute
+  '/staff': typeof StaffRoute
   '/users': typeof UsersRoute
 }
 
@@ -149,50 +181,60 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/customers'
     | '/dashboard'
     | '/feedback'
     | '/orders'
     | '/products'
     | '/reports'
+    | '/staff'
     | '/users'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/customers'
     | '/dashboard'
     | '/feedback'
     | '/orders'
     | '/products'
     | '/reports'
+    | '/staff'
     | '/users'
   id:
     | '__root__'
     | '/'
+    | '/customers'
     | '/dashboard'
     | '/feedback'
     | '/orders'
     | '/products'
     | '/reports'
+    | '/staff'
     | '/users'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CustomersRoute: typeof CustomersRoute
   DashboardRoute: typeof DashboardRoute
   FeedbackRoute: typeof FeedbackRoute
   OrdersRoute: typeof OrdersRoute
   ProductsRoute: typeof ProductsRoute
   ReportsRoute: typeof ReportsRoute
+  StaffRoute: typeof StaffRoute
   UsersRoute: typeof UsersRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CustomersRoute: CustomersRoute,
   DashboardRoute: DashboardRoute,
   FeedbackRoute: FeedbackRoute,
   OrdersRoute: OrdersRoute,
   ProductsRoute: ProductsRoute,
   ReportsRoute: ReportsRoute,
+  StaffRoute: StaffRoute,
   UsersRoute: UsersRoute,
 }
 
@@ -209,16 +251,21 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/customers",
         "/dashboard",
         "/feedback",
         "/orders",
         "/products",
         "/reports",
+        "/staff",
         "/users"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/customers": {
+      "filePath": "customers.tsx"
     },
     "/dashboard": {
       "filePath": "dashboard.tsx"
@@ -234,6 +281,9 @@ export const routeTree = rootRoute
     },
     "/reports": {
       "filePath": "reports.tsx"
+    },
+    "/staff": {
+      "filePath": "staff.tsx"
     },
     "/users": {
       "filePath": "users.tsx"
