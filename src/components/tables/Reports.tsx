@@ -253,9 +253,9 @@ export function ReportsTable(data) {
     },
   });
   return (
-    <div className="w-full grid">
+    <div className="w-full grid gap-4">
       <Toaster />
-      <div className="flex items-center py-4 px-6  border-b-[1px]">
+      {/* <div className="flex items-center py-4 px-6  border-b-[1px]">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
@@ -353,7 +353,7 @@ export function ReportsTable(data) {
           </DropdownMenu>
           <AddUserDialog dialogTrigger={<Button>Add User</Button>} />
         </section>
-      </div>
+      </div> */}
       <div className="rounded-md px-2">
         <Table>
           <TableHeader>
