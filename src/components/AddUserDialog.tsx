@@ -26,7 +26,7 @@ export function AddUserDialog({ dialogTrigger }) {
     phone_number: "",
     password_hash: "",
     role: "",
-    date_created: new Date().toISOString().split("T")[0], // Default to today's date
+    created_at: new Date().toISOString().split("T")[0], // Default to today's date
     status: "active", // Default status
   });
 
@@ -59,7 +59,7 @@ export function AddUserDialog({ dialogTrigger }) {
         phone_number: "",
         password_hash: "",
         role: "",
-        date_created: new Date().toISOString().split("T")[0],
+        created_at: new Date().toISOString().split("T")[0],
         status: "active",
       });
     }
