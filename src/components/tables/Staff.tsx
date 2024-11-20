@@ -231,7 +231,7 @@ export const columns: ColumnDef<User>[] = [
                 variant="destructive"
                 className="rounded-full bg-yellow-500 text-white"
               >
-                Deactivate
+                Inactivate
               </Badge>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -291,33 +291,6 @@ export function StaffTable(data) {
           className="max-w-sm"
         />
         <section className="ml-auto flex gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="ml-auto">
-                Filter Role <ChevronDown className="ml-2 h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {[
-                "all",
-                "service_manager",
-                "supervisor",
-                "finance_controller",
-                "stock_manager",
-              ].map((role) => (
-                <DropdownMenuItem
-                  key={role}
-                  onClick={() => {
-                    table
-                      .getColumn("role")
-                      ?.setFilterValue(role === "all" ? "" : role);
-                  }}
-                >
-                  {role.charAt(0).toUpperCase() + role.slice(1)}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">
