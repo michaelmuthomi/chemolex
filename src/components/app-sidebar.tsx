@@ -1,79 +1,105 @@
+import * as React from "react";
+import { GalleryVerticalEnd } from "lucide-react";
+import { Logo } from "@/assets/images";
+
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarRail,
 } from "@/components/ui/sidebar";
-import * as React from "react";
-import { Logo } from "@/assets/images";
-import { Button } from "@/components/ui";
-import { sidebarIconsData } from "@/data";
-import { Link } from "@tanstack/react-router";
-import { MdHomeFilled } from "react-icons/md";
-import { FaUsers } from "react-icons/fa";
-import { AiFillProduct } from "react-icons/ai";
-import { TbReportSearch } from "react-icons/tb";
-import { VscFeedback } from "react-icons/vsc";
 
-export function AppSidebar() {
+const data = {
+  navMain: [
+    {
+      title: "Dashboard",
+      url: "#",
+      items: [
+        {
+          title: "Home",
+          url: "/dashboard",
+        },
+      ],
+    },
+    {
+      title: "Users",
+      url: "#",
+      items: [
+        {
+          title: "Customers",
+          url: "/customers",
+        },
+        {
+          title: "Employees",
+          url: "/staff",
+        },
+      ],
+    },
+    {
+      title: "Others",
+      url: "#",
+      items: [
+        {
+          title: "Products",
+          url: "/products",
+        },
+        {
+          title: "Reports",
+          url: "/reports",
+        },
+        {
+          title: "Feedback",
+          url: "/feedback",
+        },
+      ],
+    },
+  ],
+};
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar>
-      <SidebarHeader />
-      <SidebarContent>
-        <div className="flex flex-col gap-10 h-full p-6">
+    <Sidebar {...props} className="px-2 py-4">
+      <SidebarHeader>
+        <SidebarMenu>
           <img src={Logo} alt="REFNET" className="w-32" />
-          <section className="flex flex-col gap-4 h-full">
-            <p className="text-gray-700 font-normal text-sm uppercase">Home</p>
-            <div className="grid gap-6">
-              <SidebarLinks
-                linkTo="/dashboard"
-                icon={<MdHomeFilled />}
-                text="Dashboard"
-              />
-              <p className="text-gray-700 font-normal text-sm uppercase">
-                USERS
-              </p>
-              <SidebarLinks
-                linkTo="/customers"
-                icon={<FaUsers />}
-                text="Customers"
-              />
-              <SidebarLinks linkTo="/staff" icon={<FaUsers />} text="Employees" />
-              <p className="text-gray-700 font-normal text-sm uppercase">
-                Others
-              </p>
-              <SidebarLinks
-                linkTo="/products"
-                icon={<AiFillProduct />}
-                text="Products"
-              />
-              <SidebarLinks
-                linkTo="/reports"
-                icon={<TbReportSearch />}
-                text="Reports"
-              />
-              <SidebarLinks
-                linkTo="/feedback"
-                icon={<VscFeedback />}
-                text="Feedback"
-              />
-            </div>
-          </section>
-        </div>
+        </SidebarMenu>
+      </SidebarHeader>
+      <SidebarContent className="pt-8">
+        <SidebarGroup>
+          <SidebarMenu className="grid gap-6">
+            {data.navMain.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild>
+                  <a href={item.url} className="font-medium text-base">
+                    {item.title}
+                  </a>
+                </SidebarMenuButton>
+                {item.items?.length ? (
+                  <SidebarMenuSub className="gap-2">
+                    {item.items.map((item) => (
+                      <SidebarMenuSubItem key={item.title}>
+                        <SidebarMenuSubButton asChild isActive={item.isActive}>
+                          <a href={item.url} className=" text-base">
+                            {item.title}
+                          </a>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </SidebarMenuSub>
+                ) : null}
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+        </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter />
+      <SidebarRail />
     </Sidebar>
-  );
-}
-
-export function SidebarLinks({ linkTo, icon, text }) {
-  return (
-    <Link to={`/${linkTo}`} className="flex items-center gap-2">
-      <div className="w-5 flex">
-        {icon}
-      </div>
-      <p className="font-normal">{text}</p>
-    </Link>
   );
 }
