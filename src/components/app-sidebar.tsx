@@ -89,9 +89,16 @@ const data = {
   ],
 };
 
+import { supabase } from "@/backend/client";
+async function handle_logout() {
+  const { error } = await supabase.auth.signOut();
+  if (error) console.error("Error logging out:", error.message);
+  window.location.href = "/";
+}
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar {...props} >
+    <Sidebar {...props}>
       <SidebarHeader className="px-2 pt-4">
         <SidebarMenu>
           <img src={Logo} alt="REFNET" className="w-32" />
@@ -120,6 +127,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarGroup>
       </SidebarContent>
       <SidebarRail />
+      <button className="flex p-6 gap-2" onClick={handle_logout}>
+        <p className="text-sm">Log out</p>
+      </button>
     </Sidebar>
   );
 }
