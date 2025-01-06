@@ -17,6 +17,7 @@ import { Route as ReportsImport } from './routes/reports'
 import { Route as ProductsImport } from './routes/products'
 import { Route as OrdersImport } from './routes/orders'
 import { Route as FeedbackImport } from './routes/feedback'
+import { Route as EmployeeReportsImport } from './routes/employeeReports'
 import { Route as EmployeeFeedbackImport } from './routes/employeeFeedback'
 import { Route as DashboardImport } from './routes/dashboard'
 import { Route as CustomersImport } from './routes/customers'
@@ -52,6 +53,11 @@ const OrdersRoute = OrdersImport.update({
 
 const FeedbackRoute = FeedbackImport.update({
   path: '/feedback',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const EmployeeReportsRoute = EmployeeReportsImport.update({
+  path: '/employeeReports',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -119,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmployeeFeedbackImport
       parentRoute: typeof rootRoute
     }
+    '/employeeReports': {
+      id: '/employeeReports'
+      path: '/employeeReports'
+      fullPath: '/employeeReports'
+      preLoaderRoute: typeof EmployeeReportsImport
+      parentRoute: typeof rootRoute
+    }
     '/feedback': {
       id: '/feedback'
       path: '/feedback'
@@ -172,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
   '/employeeFeedback': typeof EmployeeFeedbackRoute
+  '/employeeReports': typeof EmployeeReportsRoute
   '/feedback': typeof FeedbackRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
@@ -186,6 +200,7 @@ export interface FileRoutesByTo {
   '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
   '/employeeFeedback': typeof EmployeeFeedbackRoute
+  '/employeeReports': typeof EmployeeReportsRoute
   '/feedback': typeof FeedbackRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
@@ -201,6 +216,7 @@ export interface FileRoutesById {
   '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
   '/employeeFeedback': typeof EmployeeFeedbackRoute
+  '/employeeReports': typeof EmployeeReportsRoute
   '/feedback': typeof FeedbackRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
@@ -217,6 +233,7 @@ export interface FileRouteTypes {
     | '/customers'
     | '/dashboard'
     | '/employeeFeedback'
+    | '/employeeReports'
     | '/feedback'
     | '/orders'
     | '/products'
@@ -230,6 +247,7 @@ export interface FileRouteTypes {
     | '/customers'
     | '/dashboard'
     | '/employeeFeedback'
+    | '/employeeReports'
     | '/feedback'
     | '/orders'
     | '/products'
@@ -243,6 +261,7 @@ export interface FileRouteTypes {
     | '/customers'
     | '/dashboard'
     | '/employeeFeedback'
+    | '/employeeReports'
     | '/feedback'
     | '/orders'
     | '/products'
@@ -258,6 +277,7 @@ export interface RootRouteChildren {
   CustomersRoute: typeof CustomersRoute
   DashboardRoute: typeof DashboardRoute
   EmployeeFeedbackRoute: typeof EmployeeFeedbackRoute
+  EmployeeReportsRoute: typeof EmployeeReportsRoute
   FeedbackRoute: typeof FeedbackRoute
   OrdersRoute: typeof OrdersRoute
   ProductsRoute: typeof ProductsRoute
@@ -272,6 +292,7 @@ const rootRouteChildren: RootRouteChildren = {
   CustomersRoute: CustomersRoute,
   DashboardRoute: DashboardRoute,
   EmployeeFeedbackRoute: EmployeeFeedbackRoute,
+  EmployeeReportsRoute: EmployeeReportsRoute,
   FeedbackRoute: FeedbackRoute,
   OrdersRoute: OrdersRoute,
   ProductsRoute: ProductsRoute,
@@ -297,6 +318,7 @@ export const routeTree = rootRoute
         "/customers",
         "/dashboard",
         "/employeeFeedback",
+        "/employeeReports",
         "/feedback",
         "/orders",
         "/products",
@@ -319,6 +341,9 @@ export const routeTree = rootRoute
     },
     "/employeeFeedback": {
       "filePath": "employeeFeedback.tsx"
+    },
+    "/employeeReports": {
+      "filePath": "employeeReports.tsx"
     },
     "/feedback": {
       "filePath": "feedback.tsx"

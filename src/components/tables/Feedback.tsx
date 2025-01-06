@@ -51,13 +51,6 @@ export type User = {
 
 export const columns: ColumnDef<User>[] = [
   {
-    accessorKey: "order_id",
-    header: "Order ID",
-    cell: ({ row }) => (
-      <div className="font-mono">#{row.getValue("order_id")}</div>
-    ),
-  },
-  {
     accessorKey: "user_id",
     header: "Email",
     cell: ({ row }) => {

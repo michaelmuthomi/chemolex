@@ -7,8 +7,9 @@ import { useEffect, useState } from 'react'
 import { ReportsTable } from '@/components/tables/Reports'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/app-sidebar'
+import { fetchEmployeeReports } from '@/api/fetchEmployeeReports'
 
-export const Route = createFileRoute('/reports')({
+export const Route = createFileRoute('/employeeReports')({
   component: () => (
     <SidebarProvider>
       <AppSidebar />
@@ -22,11 +23,11 @@ export const Route = createFileRoute('/reports')({
 function ManageReports() {
   const [Reports, setReports] = useState([])
   useEffect(() => {
-    fetchReports().then((data) => {
-      const filteredFeedback = data.filter(
-        (item) => item.users.role === "customer"
-      );
-      setReports(filteredFeedback);
+      fetchEmployeeReports().then((data) => {
+        const filteredFeedback = data.filter(
+          (item) => item.users.role !== "customer"
+        );
+        setReports(filteredFeedback);
     })
   }, [])
   return (
@@ -37,20 +38,21 @@ function ManageReports() {
       </section>
       <section className="px-6 pt-4 grid gap-10">
         <div>
-          <h1 className="text-3xl font-bold text-neutral-300">Reports</h1>
+          <h1 className="text-3xl font-bold text-neutral-300">
+            Employee Reports
+          </h1>
           <p className="font-light text-zinc-600">
-            View reports of all the Customers in the database.
+            View reports of all the Employees in the database.
           </p>
         </div>
       </section>
       {Reports.length === 0 ? (
         <section className="px-6 pt-4 grid gap-10">
-          <h1>No Customer reports yet</h1>
+          <h1>No Employee reports yet</h1>
         </section>
       ) : (
         <ReportsTable data={Reports} />
-      )
-      }
+      )}
     </div>
-  )
+  );
 }

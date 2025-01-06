@@ -64,7 +64,7 @@ const data = {
       items: [
         {
           title: "Customer",
-          url: "/customerReports",
+          url: "/reports",
         },
         {
           title: "Employees",
