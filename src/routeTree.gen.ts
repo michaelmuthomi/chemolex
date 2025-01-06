@@ -19,6 +19,7 @@ import { Route as OrdersImport } from './routes/orders'
 import { Route as FeedbackImport } from './routes/feedback'
 import { Route as DashboardImport } from './routes/dashboard'
 import { Route as CustomersImport } from './routes/customers'
+import { Route as AboutusImport } from './routes/aboutus'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -63,6 +64,11 @@ const CustomersRoute = CustomersImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AboutusRoute = AboutusImport.update({
+  path: '/aboutus',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
@@ -77,6 +83,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/aboutus': {
+      id: '/aboutus'
+      path: '/aboutus'
+      fullPath: '/aboutus'
+      preLoaderRoute: typeof AboutusImport
       parentRoute: typeof rootRoute
     }
     '/customers': {
@@ -142,6 +155,7 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aboutus': typeof AboutusRoute
   '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
   '/feedback': typeof FeedbackRoute
@@ -154,6 +168,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aboutus': typeof AboutusRoute
   '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
   '/feedback': typeof FeedbackRoute
@@ -167,6 +182,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/aboutus': typeof AboutusRoute
   '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
   '/feedback': typeof FeedbackRoute
@@ -181,6 +197,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/aboutus'
     | '/customers'
     | '/dashboard'
     | '/feedback'
@@ -192,6 +209,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/aboutus'
     | '/customers'
     | '/dashboard'
     | '/feedback'
@@ -203,6 +221,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/aboutus'
     | '/customers'
     | '/dashboard'
     | '/feedback'
@@ -216,6 +235,7 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutusRoute: typeof AboutusRoute
   CustomersRoute: typeof CustomersRoute
   DashboardRoute: typeof DashboardRoute
   FeedbackRoute: typeof FeedbackRoute
@@ -228,6 +248,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutusRoute: AboutusRoute,
   CustomersRoute: CustomersRoute,
   DashboardRoute: DashboardRoute,
   FeedbackRoute: FeedbackRoute,
@@ -251,6 +272,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/aboutus",
         "/customers",
         "/dashboard",
         "/feedback",
@@ -263,6 +285,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/aboutus": {
+      "filePath": "aboutus.tsx"
     },
     "/customers": {
       "filePath": "customers.tsx"

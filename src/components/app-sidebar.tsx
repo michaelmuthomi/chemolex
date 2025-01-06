@@ -77,15 +77,15 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar {...props} className="px-2 py-4">
-      <SidebarHeader>
+    <Sidebar {...props} >
+      <SidebarHeader className="px-2 pt-4">
         <SidebarMenu>
           <img src={Logo} alt="REFNET" className="w-32" />
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="pt-8">
         <SidebarGroup>
-          <SidebarMenu className="grid gap-6">
+          <SidebarMenu className="grid gap-4">
             {data.navMain.map((item) => (
               <SidebarGroup key={item.title}>
                 <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
