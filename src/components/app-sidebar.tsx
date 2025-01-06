@@ -45,20 +45,30 @@ const data = {
       ],
     },
     {
-      title: "Analytics",
+      title: "Feedback",
       url: "#",
       items: [
         {
-          title: "Products",
-          url: "/products",
-        },
-        {
-          title: "Reports",
-          url: "/reports",
-        },
-        {
-          title: "Feedback",
+          title: "Customer",
           url: "/feedback",
+        },
+        {
+          title: "Employees",
+          url: "/employeeFeedback",
+        },
+      ],
+    },
+    {
+      title: "Reports",
+      url: "#",
+      items: [
+        {
+          title: "Customer",
+          url: "/customerReports",
+        },
+        {
+          title: "Employees",
+          url: "/employeeReports",
         },
       ],
     },
@@ -69,6 +79,10 @@ const data = {
         {
           title: "About Us",
           url: "/aboutus",
+        },
+        {
+          title: "Products",
+          url: "/products",
         },
       ],
     },
@@ -85,7 +99,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent className="pt-8">
         <SidebarGroup>
-          <SidebarMenu className="grid gap-4">
+          <SidebarMenu className="grid gap-2">
             {data.navMain.map((item) => (
               <SidebarGroup key={item.title}>
                 <SidebarGroupLabel>{item.title}</SidebarGroupLabel>

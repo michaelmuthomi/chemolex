@@ -51,19 +51,28 @@ export type User = {
 
 export const columns: ColumnDef<User>[] = [
   {
+    accessorKey: "order_id",
+    header: "Order ID",
+    cell: ({ row }) => (
+      <div className="font-mono">#{row.getValue("order_id")}</div>
+    ),
+  },
+  {
     accessorKey: "user_id",
-    header: "User's Email",
+    header: "Email",
     cell: ({ row }) => {
-        const userId = row.getValue("user_id");
-        console.log(userId)
-        const [email, setEmail] = useState<string>("Loading...");
+      const userId = row.getValue("user_id");
+      console.log(userId);
+      const [email, setEmail] = useState<string>("Loading...");
 
-        useEffect(() => {
-          const email = fetchUser(userId).then((data) => { setEmail(data[0].email); });
-          console.log(email)
-        }, [userId]);
+      useEffect(() => {
+        const email = fetchUser(userId).then((data) => {
+          setEmail(data[0].email);
+        });
+        console.log(email);
+      }, [userId]);
 
-        return <div className="font-mono">{email}</div>;
+      return <div className="font-mono">{email}</div>;
     },
   },
   {
@@ -85,21 +94,33 @@ export const columns: ColumnDef<User>[] = [
     },
   },
   {
-    accessorKey: "order_id",
-    header: "Order ID",
-    cell: ({ row }) => (
-      <div className="font-mono">{row.getValue("order_id")}</div>
-    ),
-  },
-  {
     accessorKey: "rating",
     header: "Rating",
-    cell: ({ row }) => (
-      <div className="flex items-center">
-        <span className="font-semibold">{row.getValue("rating")}</span>
-        <span className="text-yellow-500 ml-1">★</span>
-      </div>
-    ),
+    cell: ({ row }) => {
+      const rating = row.getValue("rating");
+      const getEmoji = (rating: number) => {
+        switch (rating) {
+          case 5:
+            return "I love it 😁"; // Grinning face
+          case 4:
+            return "I like it 🙂"; // Slightly smiling face
+          case 3:
+            return "It's okay 😐"; // Neutral face
+          case 2:
+            return "I don't like it 😟"; // Worried face
+          case 1:
+            return "I hate it 😡"; // Angry face
+          default:
+            return "No rating 🤷‍♂️"; // For ratings not in 1-5
+        }
+      };
+
+      return (
+        <div className="flex items-center">
+          <span className="ml-1">{getEmoji(rating)}</span>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "comments",

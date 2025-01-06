@@ -20,10 +20,16 @@ export const Route = createFileRoute('/feedback')({
 })
 
 function ManageFeedback() {
-  const [Feedback, setFeedback] = useState([])
+  const [Feedback, setFeedback] = useState([]);
+
   useEffect(() => {
-    fetchFeedback().then((data) => setFeedback(data))
-  }, [])
+    fetchFeedback().then((data) => {      
+      const filteredFeedback = data.filter(
+        (item) => item.users.role === "customer"
+      );
+      setFeedback(filteredFeedback);
+    });
+  }, []);
   return (
     <div className="flex flex-col w-full">
       <section className="flex gap-2 items-center sticky px-4 top-0 bg-background py-4 z-10 border-b-[1px]">
@@ -34,7 +40,7 @@ function ManageFeedback() {
         <div>
           <h1 className="text-3xl font-bold text-neutral-300">Feedback</h1>
           <p className="font-light text-zinc-600">
-            View Feedback of all the Feedback in the database.
+            View Feedback of all the Customers in the database.
           </p>
         </div>
       </section>

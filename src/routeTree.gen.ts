@@ -17,6 +17,7 @@ import { Route as ReportsImport } from './routes/reports'
 import { Route as ProductsImport } from './routes/products'
 import { Route as OrdersImport } from './routes/orders'
 import { Route as FeedbackImport } from './routes/feedback'
+import { Route as EmployeeFeedbackImport } from './routes/employeeFeedback'
 import { Route as DashboardImport } from './routes/dashboard'
 import { Route as CustomersImport } from './routes/customers'
 import { Route as AboutusImport } from './routes/aboutus'
@@ -51,6 +52,11 @@ const OrdersRoute = OrdersImport.update({
 
 const FeedbackRoute = FeedbackImport.update({
   path: '/feedback',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const EmployeeFeedbackRoute = EmployeeFeedbackImport.update({
+  path: '/employeeFeedback',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -106,6 +112,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardImport
       parentRoute: typeof rootRoute
     }
+    '/employeeFeedback': {
+      id: '/employeeFeedback'
+      path: '/employeeFeedback'
+      fullPath: '/employeeFeedback'
+      preLoaderRoute: typeof EmployeeFeedbackImport
+      parentRoute: typeof rootRoute
+    }
     '/feedback': {
       id: '/feedback'
       path: '/feedback'
@@ -158,6 +171,7 @@ export interface FileRoutesByFullPath {
   '/aboutus': typeof AboutusRoute
   '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
+  '/employeeFeedback': typeof EmployeeFeedbackRoute
   '/feedback': typeof FeedbackRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
@@ -171,6 +185,7 @@ export interface FileRoutesByTo {
   '/aboutus': typeof AboutusRoute
   '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
+  '/employeeFeedback': typeof EmployeeFeedbackRoute
   '/feedback': typeof FeedbackRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
@@ -185,6 +200,7 @@ export interface FileRoutesById {
   '/aboutus': typeof AboutusRoute
   '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
+  '/employeeFeedback': typeof EmployeeFeedbackRoute
   '/feedback': typeof FeedbackRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
@@ -200,6 +216,7 @@ export interface FileRouteTypes {
     | '/aboutus'
     | '/customers'
     | '/dashboard'
+    | '/employeeFeedback'
     | '/feedback'
     | '/orders'
     | '/products'
@@ -212,6 +229,7 @@ export interface FileRouteTypes {
     | '/aboutus'
     | '/customers'
     | '/dashboard'
+    | '/employeeFeedback'
     | '/feedback'
     | '/orders'
     | '/products'
@@ -224,6 +242,7 @@ export interface FileRouteTypes {
     | '/aboutus'
     | '/customers'
     | '/dashboard'
+    | '/employeeFeedback'
     | '/feedback'
     | '/orders'
     | '/products'
@@ -238,6 +257,7 @@ export interface RootRouteChildren {
   AboutusRoute: typeof AboutusRoute
   CustomersRoute: typeof CustomersRoute
   DashboardRoute: typeof DashboardRoute
+  EmployeeFeedbackRoute: typeof EmployeeFeedbackRoute
   FeedbackRoute: typeof FeedbackRoute
   OrdersRoute: typeof OrdersRoute
   ProductsRoute: typeof ProductsRoute
@@ -251,6 +271,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutusRoute: AboutusRoute,
   CustomersRoute: CustomersRoute,
   DashboardRoute: DashboardRoute,
+  EmployeeFeedbackRoute: EmployeeFeedbackRoute,
   FeedbackRoute: FeedbackRoute,
   OrdersRoute: OrdersRoute,
   ProductsRoute: ProductsRoute,
@@ -275,6 +296,7 @@ export const routeTree = rootRoute
         "/aboutus",
         "/customers",
         "/dashboard",
+        "/employeeFeedback",
         "/feedback",
         "/orders",
         "/products",
@@ -294,6 +316,9 @@ export const routeTree = rootRoute
     },
     "/dashboard": {
       "filePath": "dashboard.tsx"
+    },
+    "/employeeFeedback": {
+      "filePath": "employeeFeedback.tsx"
     },
     "/feedback": {
       "filePath": "feedback.tsx"
