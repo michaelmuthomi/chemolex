@@ -62,6 +62,16 @@ const data = {
         },
       ],
     },
+    {
+      title: "Company",
+      url: "#",
+      items: [
+        {
+          title: "About Us",
+          url: "/aboutus",
+        },
+      ],
+    },
   ],
 };
 
