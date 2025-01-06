@@ -6,16 +6,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { User2Icon } from "lucide-react";
 
-export function CardComponent({ iconSrc, title, statistic, moreDetails, percentage = 0 }) {
+export function CardComponent({ icon, title, statistic, moreDetails, percentage = 0 }) {
   return (
     <Card className="shadow-none border-none">
-      <CardHeader className="divide-y">
-        <CardTitle className="text-2xl">{statistic === 0 ? <Skeleton className="w-2/4 h-10" /> : statistic}</CardTitle>
-        <div className="flex justify-between items-center py-2 font-medium text-sm">
-          <p className="text-gray-500">{title}</p>
-          <p className="text-green-600 flex items-center gap-2">&uarr;{percentage === 0 ? <Skeleton className="w-4 h-4" /> : percentage }% </p>
-        </div>
+      <CardHeader className="flex flex-row gap-4">
+        <section className="bg-blue-100 w-max h-max p-2 mt-[6px] rounded-full">
+          {icon}
+        </section>
+        <section>
+          <CardTitle className="text-4xl leading-none">
+            {statistic === 0 ? <Skeleton className="w-2/4 h-10" /> : statistic}
+          </CardTitle>
+          <div className="flex justify-between items-center py-2 font-medium text-sm">
+            <p className="text-gray-500 ">{title}</p>
+          </div>
+        </section>
       </CardHeader>
     </Card>
   );

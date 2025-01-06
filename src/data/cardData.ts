@@ -1,6 +1,6 @@
 export const CardData = [
   {
-    src: "https://cdn4.iconfinder.com/data/icons/basic-ui-glyph-free/24/User-256.png",
+    icon: "https://cdn4.iconfinder.com/data/icons/basic-ui-glyph-free/24/User-256.png",
     title: "Total Users",
     statistic: 0,
     moreDetails: "Detailed user statistics can be found here.",

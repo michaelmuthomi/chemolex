@@ -9,8 +9,13 @@ import {
 } from "@/components";
 import { CardComponent } from "@/components";
 import { Button } from "@/components/ui";
-import { CardData } from "@/data";
-import { fetchUsers, fetchOrders, fetchLoginStatus } from "@/api";
+import {
+  fetchUsers,
+  fetchOrders,
+  fetchLoginStatus,
+  fetchFeedback,
+  fetchReports,
+} from "@/api";
 import { Card } from "@/components/ui/card";
 import { TableComponent } from "@/components/tables/Users";
 import { cn } from "@/lib/utils";
@@ -18,6 +23,14 @@ import { Logo } from "@/assets/images";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Skeleton } from "@/components/ui";
+import {
+  Flag,
+  icons,
+  MessageCircleDashed,
+  User2Icon,
+  Users,
+} from "lucide-react";
+import { description } from "@/components/ChartComponent";
 
 export const Route = createFileRoute("/dashboard")({
   component: () => (
@@ -65,9 +78,48 @@ async function updateTotalOrders() {
   return user_count.length;
 }
 
+async function updateTotalFeedback() {
+  const feedback_count = await fetchFeedback();
+  console.log(feedback_count.length);
+  return feedback_count.length;
+}
+
+async function updateTotalReports() {
+  const report_count = await fetchReports();
+  console.log(report_count.length);
+  return report_count.length;
+}
+
 async function fetchUsersWithLimit() {
   return fetchUsers().then((users) => users.slice(0, 4));
 }
+
+const CardData = [
+  {
+    icon: <User2Icon size={20} color="black" />,
+    title: "Total Customer",
+    statistic: 0,
+    moreDetails: "Detailed user statistics can be found here.",
+  },
+  {
+    icon: <Users size={20} color="black" />,
+    title: "Total Employees",
+    statistic: 0,
+    moreDetails: "Detailed performance metrics are available here.",
+  },
+  {
+    icon: <MessageCircleDashed size={20} color="black" />,
+    title: "Total Feedback",
+    statistic: 0,
+    moreDetails: "Detailed performance metrics are available here.",
+  },
+  {
+    icon: <Flag size={20} color="black" />,
+    title: "Total Reports",
+    statistic: 0,
+    moreDetails: "Detailed performance metrics are available here.",
+  },
+];
 
 function MainSection() {
   const [cardData, setCardData] = React.useState([]);
@@ -80,6 +132,14 @@ function MainSection() {
     });
     updateTotalOrders().then((totalOrders) => {
       CardData[1].statistic = totalOrders;
+      setCardData([...CardData]);
+    });
+    updateTotalFeedback().then((totalFeedback) => {
+      CardData[2].statistic = totalFeedback;
+      setCardData([...CardData]);
+    });
+    updateTotalReports().then((totalReports) => {
+      CardData[3].statistic = totalReports;
       setCardData([...CardData]);
     });
     fetchUsersWithLimit().then((limitedUsers) => {
@@ -102,7 +162,7 @@ function MainSection() {
               {cardData.length > 0 ? (
                 <CardComponent
                   key={index}
-                  iconSrc={card.src}
+                  icon={card.icon}
                   title={card.title}
                   statistic={card.statistic}
                   moreDetails={card.moreDetails}
