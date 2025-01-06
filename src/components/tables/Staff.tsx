@@ -76,6 +76,15 @@ export const columns: ColumnDef<User>[] = [
     cell: ({ row }) => <div>{row.getValue("phone_number")}</div>,
   },
   {
+    accessorKey: "role",
+    header: "Role",
+    cell: ({ row }) => (
+      <div className="capitalize">
+        {row.getValue("role").replace(/_/g, " ")}
+      </div>
+    ),
+  },
+  {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => (

@@ -45,7 +45,7 @@ const data = {
       ],
     },
     {
-      title: "Others",
+      title: "Analytics",
       url: "#",
       items: [
         {
