@@ -63,12 +63,20 @@ const data = {
       url: "#",
       items: [
         {
-          title: "Customer",
-          url: "/reports",
+          title: "Finance",
+          url: "/financerecords",
         },
         {
-          title: "Employees",
-          url: "/employeeReports",
+          title: "Orders",
+          url: "/orders",
+        },
+        {
+          title: "Dispatches",
+          url: "/dispatches",
+        },
+        {
+          title: "Repairs",
+          url: "/repairs",
         },
       ],
     },
