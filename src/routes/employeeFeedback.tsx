@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
-import { Sidebar, Header } from "@/components";
+import { Sidebar, Header, CardComponent } from "@/components";
 import { Button } from "@/components/ui";
 import { fetchFeedback } from "@/api";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import { FeedbackTable } from "@/components/tables/Feedback";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { fetchEmployeeFeedback } from "@/api/fetchEmployeeFeedback";
+import { Frown, MessageCircle, Smile } from "lucide-react";
 
 export const Route = createFileRoute("/employeeFeedback")({
   component: () => (
@@ -22,6 +23,7 @@ export const Route = createFileRoute("/employeeFeedback")({
 
 function ManageEmployeeFeedback() {
   const [Feedback, setFeedback] = useState([]);
+  const [cardData, setCardData] = useState([]);
 
   useEffect(() => {
     fetchEmployeeFeedback().then((data) => {
@@ -30,6 +32,26 @@ function ManageEmployeeFeedback() {
         (item) => item.users.role !== "customer"
       );
       setFeedback(filteredFeedback);
+      setCardData([
+        {
+          icon: <MessageCircle size={20} color="black" />,
+          title: "Total Feedback Submissions",
+          statistic: filteredFeedback.length,
+          moreDetails: "The total amount of all orders.",
+        },
+        {
+          icon: <Smile size={20} color="black" />,
+          title: "Good Ratings",
+          statistic: filteredFeedback.filter((user) => user.rating > 3).length,
+          moreDetails: "Ratings above 3",
+        },
+        {
+          icon: <Frown size={20} color="black" />,
+          title: "Bad Ratings",
+          statistic: filteredFeedback.filter((user) => user.rating < 3).length,
+          moreDetails: "Ratings below 3",
+        },
+      ]);
     });
   }, []);
 
@@ -49,7 +71,22 @@ function ManageEmployeeFeedback() {
           </p>
         </div>
       </section>
-      <FeedbackTable data={Feedback} />
+      <section className="flex pb-6 pt-4">
+        {cardData.map((card, index) => (
+          <div className="w-1/3" key={index}>
+            <CardComponent
+              icon={card.icon}
+              title={card.title}
+              statistic={card.statistic}
+              moreDetails={card.moreDetails}
+              percentage={10}
+            />
+          </div>
+        ))}
+      </section>
+      <section className="border-t-[1px] pt-4">
+        <FeedbackTable data={Feedback} />
+      </section>
     </div>
   );
 }

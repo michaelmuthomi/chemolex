@@ -52,7 +52,7 @@ export type User = {
 export const columns: ColumnDef<User>[] = [
   {
     accessorKey: "user_id",
-    header: "Email",
+    header: "Reviewer's Email",
     cell: ({ row }) => {
       const userId = row.getValue("user_id");
       console.log(userId);
