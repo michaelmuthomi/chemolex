@@ -172,7 +172,7 @@ export function OrdersTable(data) {
 
   return (
     <div className="w-full grid gap-10 overflow-auto">
-      <div className="flex items-center py-4 px-6 border-b-[1px]">
+      <div className="flex items-center pt-4 px-6 border-t-[1px]">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">

@@ -108,8 +108,7 @@ function ViewFinancialRecords() {
             Financial Records
           </h1>
           <p className="font-medium text-zinc-600">
-            A list of all the purchases in the database, view and manage their
-            status.
+            A list of all the purchases in the database.
           </p>
         </div>
       </section>
