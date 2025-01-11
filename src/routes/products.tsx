@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
-import { Sidebar, Header, DialogComponent } from "@/components";
+import { Sidebar, Header, DialogComponent, CardComponent } from "@/components";
 import { ProductCard, ProductSkeleton } from "@/components/ui";
 import { ProductTable } from "@/components/tables/Product";
 import { Switch } from "@/components/ui/switch";
@@ -23,25 +23,54 @@ export const Route = createFileRoute("/products")({
 function ProductPage() {
   const [isGridLayout, setIsGridLayout] = React.useState(true);
   const [products, setProducts] = React.useState([]);
-  
+  const [cardData, setCardData] = React.useState([]);
+
   // fetch products
   async function productsFetcher() {
-    setProducts(await fetchAllProducts()); 
+    setProducts(await fetchAllProducts());
   }
   React.useEffect(() => {
     productsFetcher();
-  }, []);
-  
+    setCardData([
+      {
+        icon: <SquareStack size={20} color="black" />,
+        title: "Total Products",
+        statistic: products.length,
+        moreDetails: "The total amount of all orders.",
+      },
+      {
+        icon: <SquareStack size={20} color="black" />,
+        title: "Most Expensive",
+        statistic:
+          products.length > 0
+            ? Math.max(...products.map((product) => product.price))
+            : 0,
+        moreDetails: "The most expensive item.",
+      },
+      {
+        icon: <SquareStack size={20} color="black" />,
+        title: "Most Affordable",
+        statistic:
+          products.length > 0
+            ? Math.min(...products.map((product) => product.price))
+            : 0,
+        moreDetails: "The most affordable item.",
+      },
+    ]);
+  }, [products]);
+
   return (
     <div className="flex flex-col">
       <section className="flex gap-2 items-center sticky px-4 top-0 bg-background py-4 z-10 border-b-[1px]">
         <SidebarTrigger />
         <Header location="Products" />
       </section>
-      <section className="px-6 pt-4 flex justify-between items-center gap-10">
+      <section className="px-6 pt-10 flex justify-between items-center gap-10">
         <div>
           <h1 className="text-3xl font-bold text-neutral-300">Products</h1>
-          <p className="font-light text-zinc-600">View products that are currently listed</p>
+          <p className="font-medium text-zinc-600">
+            View products that are currently listed
+          </p>
         </div>
         <div className="flex items-center">
           <Switch
@@ -51,12 +80,25 @@ function ProductPage() {
           />
         </div>
       </section>
+      <section className="flex pb-6 pt-4 border-b-[1px]">
+        {cardData.map((card, index) => (
+          <div className="w-1/3" key={index}>
+            <CardComponent
+              icon={card.icon}
+              title={card.title}
+              statistic={card.statistic}
+              moreDetails={card.moreDetails}
+              percentage={10}
+            />
+          </div>
+        ))}
+      </section>
       <section className="px-6">
         {isGridLayout ? (
           products.length === 0 ? (
             <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
               {Array.from({ length: 6 }).map((_, index) => (
-              <ProductSkeleton key={index} />
+                <ProductSkeleton key={index} />
               ))}
             </div>
           ) : (
@@ -87,6 +129,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { fetchAllProducts } from "@/api/fetchProducts";
+import { SquareStack } from "lucide-react";
 
 export function DialogDemo() {
   return (

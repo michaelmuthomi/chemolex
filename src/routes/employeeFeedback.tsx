@@ -32,26 +32,26 @@ function ManageEmployeeFeedback() {
         (item) => item.users.role !== "customer"
       );
       setFeedback(filteredFeedback);
-      setCardData([
-        {
-          icon: <MessageCircle size={20} color="black" />,
-          title: "Total Feedback Submissions",
-          statistic: filteredFeedback.length,
-          moreDetails: "The total amount of all orders.",
-        },
-        {
-          icon: <Smile size={20} color="black" />,
-          title: "Good Ratings",
-          statistic: filteredFeedback.filter((user) => user.rating > 3).length,
-          moreDetails: "Ratings above 3",
-        },
-        {
-          icon: <Frown size={20} color="black" />,
-          title: "Bad Ratings",
-          statistic: filteredFeedback.filter((user) => user.rating < 3).length,
-          moreDetails: "Ratings below 3",
-        },
-      ]);
+        setCardData([
+          {
+            icon: <MessageCircle size={20} color="black" />,
+            title: "Total Feedback Submissions",
+            statistic: filteredFeedback.length,
+            moreDetails: "The total amount of all orders.",
+          },
+          {
+            icon: <Smile size={20} color="black" />,
+            title: "Good Ratings",
+            statistic: filteredFeedback.filter((user) => user.rating > 3).length,
+            moreDetails: "Ratings above 3",
+          },
+          {
+            icon: <Frown size={20} color="black" />,
+            title: "Bad Ratings",
+            statistic: filteredFeedback.filter((user) => user.rating < 3).length,
+            moreDetails: "Ratings below 3",
+          },
+        ]);
     });
   }, []);
 
