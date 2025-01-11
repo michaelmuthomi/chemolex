@@ -31,6 +31,7 @@ import {
   Users,
 } from "lucide-react";
 import { description } from "@/components/ChartComponent";
+import { fetchAllProducts } from "@/api/fetchProducts";
 
 export const Route = createFileRoute("/dashboard")({
   component: () => (
@@ -84,10 +85,10 @@ async function updateTotalFeedback() {
   return feedback_count.length;
 }
 
-async function updateTotalReports() {
-  const report_count = await fetchReports();
-  console.log(report_count.length);
-  return report_count.length;
+async function updateTotalProducts() {
+  const product_count = await fetchAllProducts();
+  console.log(product_count.length);
+  return product_count.length;
 }
 
 async function fetchUsersWithLimit() {
@@ -97,7 +98,7 @@ async function fetchUsersWithLimit() {
 const CardData = [
   {
     icon: <User2Icon size={20} color="black" />,
-    title: "Total Customer",
+    title: "Total Customers",
     statistic: 0,
     moreDetails: "Detailed user statistics can be found here.",
   },
@@ -115,7 +116,7 @@ const CardData = [
   },
   {
     icon: <Flag size={20} color="black" />,
-    title: "Total Reports",
+    title: "Total Products for Sale",
     statistic: 0,
     moreDetails: "Detailed performance metrics are available here.",
   },
@@ -138,8 +139,8 @@ function MainSection() {
       CardData[2].statistic = totalFeedback;
       setCardData([...CardData]);
     });
-    updateTotalReports().then((totalReports) => {
-      CardData[3].statistic = totalReports;
+    updateTotalProducts().then((totalProducts) => {
+      CardData[3].statistic = totalProducts;
       setCardData([...CardData]);
     });
     fetchUsersWithLimit().then((limitedUsers) => {
@@ -194,7 +195,7 @@ function MainSection() {
               Manage Users
             </h2>
             <p className={"text-sm text-muted-foreground py-2"}>
-              To perform more funtions, head to the users page
+              To perform more functions, head to the users page
             </p>
           </div>
           <Link to="/users">
