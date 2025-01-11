@@ -20,6 +20,7 @@ import { Route as FinancerecordsImport } from './routes/financerecords'
 import { Route as FeedbackImport } from './routes/feedback'
 import { Route as EmployeeReportsImport } from './routes/employeeReports'
 import { Route as EmployeeFeedbackImport } from './routes/employeeFeedback'
+import { Route as DispatchesImport } from './routes/dispatches'
 import { Route as DashboardImport } from './routes/dashboard'
 import { Route as CustomersImport } from './routes/customers'
 import { Route as AboutusImport } from './routes/aboutus'
@@ -69,6 +70,11 @@ const EmployeeReportsRoute = EmployeeReportsImport.update({
 
 const EmployeeFeedbackRoute = EmployeeFeedbackImport.update({
   path: '/employeeFeedback',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DispatchesRoute = DispatchesImport.update({
+  path: '/dispatches',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -122,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardImport
+      parentRoute: typeof rootRoute
+    }
+    '/dispatches': {
+      id: '/dispatches'
+      path: '/dispatches'
+      fullPath: '/dispatches'
+      preLoaderRoute: typeof DispatchesImport
       parentRoute: typeof rootRoute
     }
     '/employeeFeedback': {
@@ -197,6 +210,7 @@ export interface FileRoutesByFullPath {
   '/aboutus': typeof AboutusRoute
   '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
+  '/dispatches': typeof DispatchesRoute
   '/employeeFeedback': typeof EmployeeFeedbackRoute
   '/employeeReports': typeof EmployeeReportsRoute
   '/feedback': typeof FeedbackRoute
@@ -213,6 +227,7 @@ export interface FileRoutesByTo {
   '/aboutus': typeof AboutusRoute
   '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
+  '/dispatches': typeof DispatchesRoute
   '/employeeFeedback': typeof EmployeeFeedbackRoute
   '/employeeReports': typeof EmployeeReportsRoute
   '/feedback': typeof FeedbackRoute
@@ -230,6 +245,7 @@ export interface FileRoutesById {
   '/aboutus': typeof AboutusRoute
   '/customers': typeof CustomersRoute
   '/dashboard': typeof DashboardRoute
+  '/dispatches': typeof DispatchesRoute
   '/employeeFeedback': typeof EmployeeFeedbackRoute
   '/employeeReports': typeof EmployeeReportsRoute
   '/feedback': typeof FeedbackRoute
@@ -248,6 +264,7 @@ export interface FileRouteTypes {
     | '/aboutus'
     | '/customers'
     | '/dashboard'
+    | '/dispatches'
     | '/employeeFeedback'
     | '/employeeReports'
     | '/feedback'
@@ -263,6 +280,7 @@ export interface FileRouteTypes {
     | '/aboutus'
     | '/customers'
     | '/dashboard'
+    | '/dispatches'
     | '/employeeFeedback'
     | '/employeeReports'
     | '/feedback'
@@ -278,6 +296,7 @@ export interface FileRouteTypes {
     | '/aboutus'
     | '/customers'
     | '/dashboard'
+    | '/dispatches'
     | '/employeeFeedback'
     | '/employeeReports'
     | '/feedback'
@@ -295,6 +314,7 @@ export interface RootRouteChildren {
   AboutusRoute: typeof AboutusRoute
   CustomersRoute: typeof CustomersRoute
   DashboardRoute: typeof DashboardRoute
+  DispatchesRoute: typeof DispatchesRoute
   EmployeeFeedbackRoute: typeof EmployeeFeedbackRoute
   EmployeeReportsRoute: typeof EmployeeReportsRoute
   FeedbackRoute: typeof FeedbackRoute
@@ -311,6 +331,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutusRoute: AboutusRoute,
   CustomersRoute: CustomersRoute,
   DashboardRoute: DashboardRoute,
+  DispatchesRoute: DispatchesRoute,
   EmployeeFeedbackRoute: EmployeeFeedbackRoute,
   EmployeeReportsRoute: EmployeeReportsRoute,
   FeedbackRoute: FeedbackRoute,
@@ -338,6 +359,7 @@ export const routeTree = rootRoute
         "/aboutus",
         "/customers",
         "/dashboard",
+        "/dispatches",
         "/employeeFeedback",
         "/employeeReports",
         "/feedback",
@@ -360,6 +382,9 @@ export const routeTree = rootRoute
     },
     "/dashboard": {
       "filePath": "dashboard.tsx"
+    },
+    "/dispatches": {
+      "filePath": "dispatches.tsx"
     },
     "/employeeFeedback": {
       "filePath": "employeeFeedback.tsx"
