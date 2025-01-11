@@ -26,7 +26,7 @@ function ProductPage() {
   
   // fetch products
   async function productsFetcher() {
-    setProducts(await fetchProducts(10)); // Adjust the count as needed
+    setProducts(await fetchAllProducts()); 
   }
   React.useEffect(() => {
     productsFetcher();
@@ -86,6 +86,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { fetchAllProducts } from "@/api/fetchProducts";
 
 export function DialogDemo() {
   return (

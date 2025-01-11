@@ -156,7 +156,7 @@ function MainSection() {
         <div className="mt-8">
           <h1 className="text-xl font-bold leading-9">Dashboard</h1>
         </div>
-        <section className="flex gap-10 divide-x">
+        <section className="flex gap-10">
           {CardData.map((card, index) => (
             <div className="w-1/3">
               {cardData.length > 0 ? (
