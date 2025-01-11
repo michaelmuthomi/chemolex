@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as UsersImport } from './routes/users'
 import { Route as StaffImport } from './routes/staff'
 import { Route as ReportsImport } from './routes/reports'
+import { Route as RepairsImport } from './routes/repairs'
 import { Route as ProductsImport } from './routes/products'
 import { Route as OrdersImport } from './routes/orders'
 import { Route as FinancerecordsImport } from './routes/financerecords'
@@ -40,6 +41,11 @@ const StaffRoute = StaffImport.update({
 
 const ReportsRoute = ReportsImport.update({
   path: '/reports',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const RepairsRoute = RepairsImport.update({
+  path: '/repairs',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -179,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsImport
       parentRoute: typeof rootRoute
     }
+    '/repairs': {
+      id: '/repairs'
+      path: '/repairs'
+      fullPath: '/repairs'
+      preLoaderRoute: typeof RepairsImport
+      parentRoute: typeof rootRoute
+    }
     '/reports': {
       id: '/reports'
       path: '/reports'
@@ -217,6 +230,7 @@ export interface FileRoutesByFullPath {
   '/financerecords': typeof FinancerecordsRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
+  '/repairs': typeof RepairsRoute
   '/reports': typeof ReportsRoute
   '/staff': typeof StaffRoute
   '/users': typeof UsersRoute
@@ -234,6 +248,7 @@ export interface FileRoutesByTo {
   '/financerecords': typeof FinancerecordsRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
+  '/repairs': typeof RepairsRoute
   '/reports': typeof ReportsRoute
   '/staff': typeof StaffRoute
   '/users': typeof UsersRoute
@@ -252,6 +267,7 @@ export interface FileRoutesById {
   '/financerecords': typeof FinancerecordsRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
+  '/repairs': typeof RepairsRoute
   '/reports': typeof ReportsRoute
   '/staff': typeof StaffRoute
   '/users': typeof UsersRoute
@@ -271,6 +287,7 @@ export interface FileRouteTypes {
     | '/financerecords'
     | '/orders'
     | '/products'
+    | '/repairs'
     | '/reports'
     | '/staff'
     | '/users'
@@ -287,6 +304,7 @@ export interface FileRouteTypes {
     | '/financerecords'
     | '/orders'
     | '/products'
+    | '/repairs'
     | '/reports'
     | '/staff'
     | '/users'
@@ -303,6 +321,7 @@ export interface FileRouteTypes {
     | '/financerecords'
     | '/orders'
     | '/products'
+    | '/repairs'
     | '/reports'
     | '/staff'
     | '/users'
@@ -321,6 +340,7 @@ export interface RootRouteChildren {
   FinancerecordsRoute: typeof FinancerecordsRoute
   OrdersRoute: typeof OrdersRoute
   ProductsRoute: typeof ProductsRoute
+  RepairsRoute: typeof RepairsRoute
   ReportsRoute: typeof ReportsRoute
   StaffRoute: typeof StaffRoute
   UsersRoute: typeof UsersRoute
@@ -338,6 +358,7 @@ const rootRouteChildren: RootRouteChildren = {
   FinancerecordsRoute: FinancerecordsRoute,
   OrdersRoute: OrdersRoute,
   ProductsRoute: ProductsRoute,
+  RepairsRoute: RepairsRoute,
   ReportsRoute: ReportsRoute,
   StaffRoute: StaffRoute,
   UsersRoute: UsersRoute,
@@ -366,6 +387,7 @@ export const routeTree = rootRoute
         "/financerecords",
         "/orders",
         "/products",
+        "/repairs",
         "/reports",
         "/staff",
         "/users"
@@ -403,6 +425,9 @@ export const routeTree = rootRoute
     },
     "/products": {
       "filePath": "products.tsx"
+    },
+    "/repairs": {
+      "filePath": "repairs.tsx"
     },
     "/reports": {
       "filePath": "reports.tsx"
