@@ -4,39 +4,22 @@ import * as React from "react"
 export function ProductCard(product) {
     return (
       <div key={product.id} className="group relative">
-        <div className="w-full overflow-hidden rounded-md bg-muted border-muted lg:aspect-none group-hover:opacity-75 lg:h-80">
+        <div className="flex gap-4">
+          <div className="w-full">
+            <h3 className="text-base font-semibold">
+              {product.name}
+            </h3>
+            <p className="text-sm font-base text-zinc-400">
+              {product.description}
+            </p>
+          </div>
+        </div>
+        <div className="aspect-video rounded-md overflow-clip bg-white mt-4">
           <img
             alt={product.description}
             src={product.image_url}
-            className="h-full w-full object-cover object-center lg:h-full lg:w-full border-muted"
+            className="h-full w-full object-contain"
           />
-        </div>
-        <div className="mt-4 flex justify-between">
-          <div className="w-full">
-            <p className="text-green-600 text-sm font-medium leading-5">
-              &#9733; 5.0
-            </p>
-            <h3 className="text-xl font-semibold">
-              <a href={product.href}>
-                <span aria-hidden="true" className="absolute inset-0" />
-                {product.product_name}
-              </a>
-            </h3>
-            <p className="text-sm font-base text-gray-200">
-              {product.description}
-            </p>
-            <div className="py-1">
-              <hr />
-            </div>
-            <section className="flex items-center justify-between">
-              <p className="mt-1 text-sm text-gray-500">
-                {product.stock_quantity} in stock
-              </p>
-              <p className="text-sm font-base text-gray-500">
-                {formatPrice(product.price)}
-              </p>
-            </section>
-          </div>
         </div>
       </div>
     );
