@@ -35,6 +35,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import formatDate from "@/lib/formatDate";
+import { formatPrice } from "@/hooks/format-price";
 
 export type User = {
   user_id: string;
@@ -48,140 +50,92 @@ export type User = {
 
 export const columns: ColumnDef<User>[] = [
   {
-    accessorKey: "user_id",
-    header: "User ID",
-    cell: ({ row }) => <div>{row.getValue("user_id")}</div>,
+    accessorKey: "total_amount",
+    header: "Total Amount",
+    cell: ({ row }) => <div>{formatPrice(row.getValue("total_amount"))}</div>,
   },
   {
-    accessorKey: "first_name",
-    header: "First Name",
-    cell: ({ row }) => {
-      const [firstName, setFirstName] = React.useState<string | null>(null);
-
-      React.useEffect(() => {
-        const fetchFirstName = async () => {
-          const user = await fetchUser(row.getValue("user_id"));
-          setFirstName(user[0].first_name);
-          console.log(`user: ${user}`);
-        };
-        fetchFirstName();
-      }, [row]);
-
-      return <div>{firstName}</div>;
-    },
-  },
-  {
-    accessorKey: "last_name",
-    header: "Last Name",
-    cell: ({ row }) => {
-      const [lastName, setLastname] = React.useState<string | null>(null);
-
-      React.useEffect(() => {
-        const fetchLastname = async () => {
-          const user = await fetchUser(row.getValue("user_id"));
-          setLastname(user[0].last_name);
-          console.log(`user: ${user}`);
-        };
-        fetchLastname();
-      }, [row]);
-
-      return <div>{lastName}</div>;
-    },
-  },
-  {
-    accessorKey: "email",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Email
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
+    accessorKey: "payment_method",
+    header: "Payment Method",
+    cell: ({ row }) => (
+      <div className="capitalize">
+        {row.getValue("payment_method").replace("_", " ")}
+      </div>
     ),
-    cell: ({ row }) => {
-      const [email, setEmail] = React.useState<string | null>(null);
-
-      React.useEffect(() => {
-        const fetchEmail = async () => {
-          const user = await fetchUser(row.getValue("user_id"));
-          setEmail(user[0].email);
-        };
-        fetchEmail();
-      }, [row]);
-
-      return <div>{email}</div>;
-    },
   },
   {
-    accessorKey: "phone_number",
-    header: "Phone Number",
-    cell: ({ row }) => {
-      const [phoneNumber, setPhoneNumber] = React.useState<string | null>(null);
-
-      React.useEffect(() => {
-        const fetchPhoneNumber = async () => {
-          const user = await fetchUser(row.getValue("user_id"));
-          setPhoneNumber(user[0].phone_number);
-        };
-        fetchPhoneNumber();
-      }, [row]);
-
-      return <div>{phoneNumber}</div>;
-    },
+    accessorKey: "payment_status",
+    header: "Payment Status",
+    cell: ({ row }) => (
+      <div>
+        {row.getValue("payment_status") === "completed" ? (
+          <p className="px-6 p-2 rounded-full bg-green-200/5 text-green-300 w-max capitalize font-semibold">
+            {row.getValue("payment_status")}
+          </p>
+        ) : (
+          <p className="px-6 p-2 rounded-full bg-orange-200/5 text-orange-300 w-max capitalize font-semibold">
+            {row.getValue("payment_status")}
+          </p>
+        )}
+      </div>
+    ),
   },
   {
-    accessorKey: "product",
-    header: "Product",
-    cell: ({ row }) => {
-      const [image, setImage] = React.useState<string | null>(null);
-
-      React.useEffect(() => {
-        const fetchImage = async () => {
-          try {
-            const user = await fetchUser(row.getValue("user_id"));
-            if (user && user.length > 0) {
-              setImage(user[0].image);
-            }
-          } catch (error) {
-            console.error("Error fetching user image:", error);
-          }
-        };
-        fetchImage();
-      }, [row]);
-
-      return <div>{image}</div>;
-    },
+    accessorKey: "status",
+    header: "Order Status",
+    cell: ({ row }) => (
+      <div>
+        {row.getValue("status") === "completed" ? (
+          <p className="px-6 p-2 rounded-full bg-green-200/5 text-green-300 w-max capitalize font-semibold">
+            {row.getValue("status")}
+          </p>
+        ) : (
+          <p className="px-6 p-2 rounded-full bg-orange-200/5 text-orange-300 w-max capitalize font-semibold">
+            {row.getValue("status")}
+          </p>
+        )}
+      </div>
+    ),
   },
   {
-    accessorKey: "date_created",
-    header: "Date Created",
-    cell: ({ row }) => {
-      return <div>{row.getValue("order_date")}</div>;
-    },
+    accessorKey: "dispatch_status",
+    header: "Dispatch Status",
+    cell: ({ row }) => (
+      <div>
+        {row.getValue("dispatch_status") === "dispatched" ? (
+          <p className="px-6 p-2 rounded-full bg-green-200/5 text-green-300 w-max capitalize font-semibold">
+            {row.getValue("dispatch_status")}
+          </p>
+        ) : (
+          <p className="px-6 p-2 rounded-full bg-orange-200/5 text-orange-300 w-max capitalize font-semibold">
+            {row.getValue("dispatch_status")}
+          </p>
+        )}
+      </div>
+    ),
   },
   {
-    id: "actions",
-    enableHiding: false,
+    accessorKey: "finance_approval",
+    header: "Finance Approval",
+    cell: ({ row }) => (
+      <div>
+        {row.getValue("finance_approval") === "approved" ? (
+          <p className="px-6 p-2 rounded-full bg-green-200/5 text-green-300 w-max capitalize font-semibold">
+            {row.getValue("finance_approval")}
+          </p>
+        ) : (
+          <p className="px-6 p-2 rounded-full bg-orange-200/5 text-orange-300 w-max capitalize font-semibold">
+            {row.getValue("finance_approval")}
+          </p>
+        )}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "order_date",
+    header: "Order Created",
     cell: ({ row }) => {
-      const user = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Activate</DropdownMenuItem>
-            <DropdownMenuItem>Ban User</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+      return <div>{formatDate(row.getValue("order_date"))}</div>;
     },
   },
 ];
@@ -217,16 +171,8 @@ export function OrdersTable(data) {
   });
 
   return (
-    <div className="w-full grid gap-10 bg-white">
-      <div className="flex items-center py-4 px-6 bg-gray-50 border-b-[1px]">
-        <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
+    <div className="w-full grid gap-10 overflow-auto">
+      <div className="flex items-center py-4 px-6 border-b-[1px]">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
