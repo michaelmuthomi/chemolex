@@ -290,7 +290,7 @@ export function CustomersTable(data) {
   return (
     <div className="w-full grid">
       <Toaster />
-      <div className="flex items-center py-4 px-6  border-b-[1px]">
+      <div className="flex items-center py-4 px-6  border-t-[1px]">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}

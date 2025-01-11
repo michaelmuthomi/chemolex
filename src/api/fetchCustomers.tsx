@@ -4,5 +4,6 @@ export async function fetchCustomers() {
     .from("users")
     .select("*")
     .eq("role", "customer");
+  console.log('Customer Data:', data)
   return data;
 }
