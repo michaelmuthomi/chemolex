@@ -7,6 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { User2Icon } from "lucide-react";
+import { formatBalance } from "@/lib/formatBalance";
 
 export function CardComponent({ icon, title, statistic, moreDetails, percentage = 0 }) {
   return (
@@ -17,7 +18,11 @@ export function CardComponent({ icon, title, statistic, moreDetails, percentage 
         </section>
         <section>
           <CardTitle className="text-4xl leading-none">
-            {statistic === 0 ? <Skeleton className="w-2/4 h-10" /> : statistic}
+            {statistic === 0 ? (
+              <Skeleton className="w-2/4 h-10" />
+            ) : (
+              formatBalance(statistic)
+            )}
           </CardTitle>
           <div className="flex justify-between items-center py-2 font-medium text-sm">
             <p className="text-gray-500 ">{title}</p>

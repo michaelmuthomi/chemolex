@@ -16,6 +16,7 @@ import { Route as StaffImport } from './routes/staff'
 import { Route as ReportsImport } from './routes/reports'
 import { Route as ProductsImport } from './routes/products'
 import { Route as OrdersImport } from './routes/orders'
+import { Route as FinancerecordsImport } from './routes/financerecords'
 import { Route as FeedbackImport } from './routes/feedback'
 import { Route as EmployeeReportsImport } from './routes/employeeReports'
 import { Route as EmployeeFeedbackImport } from './routes/employeeFeedback'
@@ -48,6 +49,11 @@ const ProductsRoute = ProductsImport.update({
 
 const OrdersRoute = OrdersImport.update({
   path: '/orders',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FinancerecordsRoute = FinancerecordsImport.update({
+  path: '/financerecords',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -139,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FeedbackImport
       parentRoute: typeof rootRoute
     }
+    '/financerecords': {
+      id: '/financerecords'
+      path: '/financerecords'
+      fullPath: '/financerecords'
+      preLoaderRoute: typeof FinancerecordsImport
+      parentRoute: typeof rootRoute
+    }
     '/orders': {
       id: '/orders'
       path: '/orders'
@@ -187,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/employeeFeedback': typeof EmployeeFeedbackRoute
   '/employeeReports': typeof EmployeeReportsRoute
   '/feedback': typeof FeedbackRoute
+  '/financerecords': typeof FinancerecordsRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
   '/reports': typeof ReportsRoute
@@ -202,6 +216,7 @@ export interface FileRoutesByTo {
   '/employeeFeedback': typeof EmployeeFeedbackRoute
   '/employeeReports': typeof EmployeeReportsRoute
   '/feedback': typeof FeedbackRoute
+  '/financerecords': typeof FinancerecordsRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
   '/reports': typeof ReportsRoute
@@ -218,6 +233,7 @@ export interface FileRoutesById {
   '/employeeFeedback': typeof EmployeeFeedbackRoute
   '/employeeReports': typeof EmployeeReportsRoute
   '/feedback': typeof FeedbackRoute
+  '/financerecords': typeof FinancerecordsRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
   '/reports': typeof ReportsRoute
@@ -235,6 +251,7 @@ export interface FileRouteTypes {
     | '/employeeFeedback'
     | '/employeeReports'
     | '/feedback'
+    | '/financerecords'
     | '/orders'
     | '/products'
     | '/reports'
@@ -249,6 +266,7 @@ export interface FileRouteTypes {
     | '/employeeFeedback'
     | '/employeeReports'
     | '/feedback'
+    | '/financerecords'
     | '/orders'
     | '/products'
     | '/reports'
@@ -263,6 +281,7 @@ export interface FileRouteTypes {
     | '/employeeFeedback'
     | '/employeeReports'
     | '/feedback'
+    | '/financerecords'
     | '/orders'
     | '/products'
     | '/reports'
@@ -279,6 +298,7 @@ export interface RootRouteChildren {
   EmployeeFeedbackRoute: typeof EmployeeFeedbackRoute
   EmployeeReportsRoute: typeof EmployeeReportsRoute
   FeedbackRoute: typeof FeedbackRoute
+  FinancerecordsRoute: typeof FinancerecordsRoute
   OrdersRoute: typeof OrdersRoute
   ProductsRoute: typeof ProductsRoute
   ReportsRoute: typeof ReportsRoute
@@ -294,6 +314,7 @@ const rootRouteChildren: RootRouteChildren = {
   EmployeeFeedbackRoute: EmployeeFeedbackRoute,
   EmployeeReportsRoute: EmployeeReportsRoute,
   FeedbackRoute: FeedbackRoute,
+  FinancerecordsRoute: FinancerecordsRoute,
   OrdersRoute: OrdersRoute,
   ProductsRoute: ProductsRoute,
   ReportsRoute: ReportsRoute,
@@ -320,6 +341,7 @@ export const routeTree = rootRoute
         "/employeeFeedback",
         "/employeeReports",
         "/feedback",
+        "/financerecords",
         "/orders",
         "/products",
         "/reports",
@@ -347,6 +369,9 @@ export const routeTree = rootRoute
     },
     "/feedback": {
       "filePath": "feedback.tsx"
+    },
+    "/financerecords": {
+      "filePath": "financerecords.tsx"
     },
     "/orders": {
       "filePath": "orders.tsx"
