@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { StaffTable } from "@/components/tables/Staff";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import {Banner} from '@/assets/images'
 
 export const Route = createFileRoute("/aboutus")({
   component: () => (
@@ -48,6 +49,7 @@ function AboutUs() {
             </p>
           </div>
         </div>
+        <img src={Banner} alt="" className="w-full h-full object-cover rounded-md" />
         <div className="grid gap-2">
           <h2 className="text-2xl font-bold text-neutral-300">Trusted by</h2>
           <p className="font-light text-zinc-400">
