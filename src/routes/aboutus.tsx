@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 import { StaffTable } from "@/components/tables/Staff";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
-import {Banner} from '@/assets/images'
+import {Banner, Logo} from '@/assets/images'
+import { CogIcon, Dam, LoaderPinwheel } from "lucide-react";
 
 export const Route = createFileRoute("/aboutus")({
   component: () => (
@@ -49,28 +50,71 @@ function AboutUs() {
             </p>
           </div>
         </div>
-        <img src={Banner} alt="" className="w-full h-full object-cover rounded-md" />
+
         <div className="grid gap-2">
-          <h2 className="text-2xl font-bold text-neutral-300">Trusted by</h2>
-          <p className="font-light text-zinc-400">
-            To work closely with clients while emphasizing time and quality of
-            service delivery.
-          </p>
+          <h1 className="text-4xl font-bold w-2/3 pt-10 text-neutral-300">
+            Comprehensive Solutions for Your Comfort Needs
+          </h1>
         </div>
-        <div className="grid gap-2">
-          <h2 className="text-2xl font-bold text-neutral-300">Our Services</h2>
-          <ul className="list-disc pl-5 font-light text-zinc-400">
-            <li>Installation Services</li>
-            <li>Repair and Maintenance Services</li>
-            <li>Mechanical Ventilation</li>
-            <li>Cold Room Services</li>
-          </ul>
-          <p className="font-light text-zinc-400">
-            A list of all the employees in the database, view and manage their
-            status.
-          </p>
-        </div>
+        <img
+          src={Banner}
+          alt=""
+          className="w-full h-full object-cover rounded-md"
+        />
+        <section className="grid grid-cols-3 gap-2">
+          <div className="flex gap-4">
+            <section className="bg-blue-100 w-max h-max p-2 mt-[6px] rounded-full">
+              <Dam size={30} color={"#000"} />
+            </section>
+            <div>
+              <h3 className="text-xl font-medium text-neutral-300">
+                Installation
+              </h3>
+              <h3 className="text-xl font-light  text-neutral-400">
+                Our installation process is thorough and efficient, minimizing
+                disruption to your daily routine.
+              </h3>
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <section className="bg-blue-100 w-max h-max p-2 mt-[6px] rounded-full">
+              <CogIcon size={30} color={"#000"} />
+            </section>
+            <div>
+              <h3 className="text-xl font-medium text-neutral-300">Repair</h3>
+              <h3 className="text-xl font-light text-neutral-400">
+                We provide comprehensive repair services to ensure your systems
+                are running smoothly.
+              </h3>
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <section className="bg-blue-100 w-max h-max p-2 mt-[6px] rounded-full">
+              <LoaderPinwheel size={30} color={"#000"} />
+            </section>
+            <div>
+              <h3 className="text-xl font-medium text-neutral-300">
+                Mechanical Ventilation
+              </h3>
+              <h3 className="text-xl font-light text-neutral-400">
+                Our mechanical ventilation solutions enhance air quality and
+                comfort in your space.
+              </h3>
+            </div>
+          </div>
+        </section>
       </section>
+      <footer className="px-4 py-4 mt-20 border-t-[1px] flex justify-between">
+        <div className="flex items-center gap-2">
+          <img src={Logo} alt="" className="w-14" />
+          <p className="text-muted">&copy; 2024</p>
+        </div>
+        <div className="flex gap-4">
+          <p className="text-sm text-muted py-2">
+            Refnet - More than promises delivering proven excellence
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
