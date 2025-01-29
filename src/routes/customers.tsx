@@ -9,16 +9,16 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { BoxIcon, CheckCheck, PenBox, UserRoundCheck, UserRoundCog, Users, UserX, Wallet } from "lucide-react";
 
-export const Route = createFileRoute('/customers')({
+export const Route = createFileRoute("/customers")({
   component: () => (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar />
       <main className="w-full">
         <ManageUsers />
       </main>
     </SidebarProvider>
   ),
-})
+});
 
 function ManageUsers() {
   const [users, setUsers] = useState([]);

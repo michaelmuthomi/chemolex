@@ -52,7 +52,7 @@ export function FormComponent() {
           onSubmit={form.handleSubmit(handleSubmit)}
           className="w-max space-y-6"
         >
-          <h1 className="text-4xl font-bold leading-10">Sign-In</h1>
+          <h1 className="text-4xl font-bold leading-none py-0">Administrator Sign-In</h1>
           <p>Welcome back, fill in your details below to continue</p>
           <FormField
             control={form.control}

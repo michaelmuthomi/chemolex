@@ -8,16 +8,16 @@ import { ReportsTable } from '@/components/tables/Reports'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/app-sidebar'
 
-export const Route = createFileRoute('/reports')({
+export const Route = createFileRoute("/reports")({
   component: () => (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar />
       <main className="w-full">
         <ManageReports />
       </main>
     </SidebarProvider>
   ),
-})
+});
 
 function ManageReports() {
   const [Reports, setReports] = useState([])

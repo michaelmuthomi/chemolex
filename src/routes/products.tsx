@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui";
 
 export const Route = createFileRoute("/products")({
   component: () => (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar />
       <main className="w-full">
         <ProductPage />

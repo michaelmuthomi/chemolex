@@ -35,7 +35,7 @@ import { fetchAllProducts } from "@/api/fetchProducts";
 
 export const Route = createFileRoute("/dashboard")({
   component: () => (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar />
       <main className="w-full">
         <AdminDashboard />
@@ -148,7 +148,7 @@ function MainSection() {
     });
   }, []);
   return (
-    <div className="flex flex-col gap-4 pt-4 w-full">
+    <div className="flex flex-col gap-4 w-full">
       <section className="flex gap-2 items-center px-6 sticky top-0 bg-background py-4 z-10 border-b-[1px]">
         <SidebarTrigger />
         <Header />
@@ -185,9 +185,6 @@ function MainSection() {
           ))}
         </section>
       </section>
-      <div className="pb-2 pt-4 ">
-        <hr />
-      </div>
       <section className="px-4 grid gap-6">
         <div className="flex justify-between">
           <div>
@@ -209,12 +206,6 @@ function MainSection() {
         </div>
         <TableComponent data={users} />
       </section>
-      <div className="pt-6">
-        <hr />
-      </div>
-      <section>
-        <BestSeller />
-      </section>
       <div className="pt-4">
         <hr />
       </div>
@@ -225,7 +216,7 @@ function MainSection() {
         </div>
         <div className="flex gap-4">
           <p className="text-sm text-muted py-2">
-            Refnet - More than promises delivering proven excellence
+            Ayiera Initiative - More than promises delivering proven excellence
           </p>
         </div>
       </section>

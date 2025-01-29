@@ -9,16 +9,16 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/app-sidebar'
 import { Frown, MessageCircle, Smile, Users } from "lucide-react";
 
-export const Route = createFileRoute('/feedback')({
+export const Route = createFileRoute("/feedback")({
   component: () => (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar />
       <main className="w-full">
         <ManageFeedback />
       </main>
     </SidebarProvider>
   ),
-})
+});
 
 function ManageFeedback() {
   const [Feedback, setFeedback] = useState([]);

@@ -1,10 +1,25 @@
 import * as React from "react"
 import { BreadcrumbComponent } from "@/components"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { AlignVerticalDistributeStart } from "lucide-react";
+import {
+  AlignVerticalDistributeStart,
+  HomeIcon,
+  SearchIcon,
+} from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Ceo } from "@/assets/images"
 import { Button } from "./ui";
+import {
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "@/components/ui/command";
 
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import {
@@ -18,18 +33,139 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 
+const data = {
+  navMain: [
+    {
+      title: "Dashboard",
+      url: "#",
+      items: [
+        {
+          title: "Home",
+          url: "/dashboard",
+        },
+      ],
+    },
+    {
+      title: "Users",
+      url: "#",
+      items: [
+        {
+          title: "Customers",
+          url: "/customers",
+        },
+        {
+          title: "Employees",
+          url: "/staff",
+        },
+      ],
+    },
+    {
+      title: "Feedback",
+      url: "#",
+      items: [
+        {
+          title: "Customer",
+          url: "/feedback",
+        },
+        {
+          title: "Employees",
+          url: "/employeeFeedback",
+        },
+      ],
+    },
+    {
+      title: "Reports",
+      url: "#",
+      items: [
+        {
+          title: "Finance",
+          url: "/financerecords",
+        },
+        {
+          title: "Orders",
+          url: "/orders",
+        },
+        {
+          title: "Dispatches",
+          url: "/dispatches",
+        },
+        {
+          title: "Repairs",
+          url: "/repairs",
+        },
+      ],
+    },
+    {
+      title: "Company",
+      url: "#",
+      items: [
+        {
+          title: "About Us",
+          url: "/aboutus",
+        },
+      ],
+    },
+  ],
+};
 
+export function Header({ location = "" }) {
+  const [open, setOpen] = React.useState(false);
 
-export function Header({location = ""}) {
-    return (
-      <div className="flex justify-between items-center w-full">
-        <BreadcrumbComponent location={location} />
-        <section className="flex items-center gap-2">
-          <NavigationMenuComponent />
-          <AvatarDemo />
-        </section>
+  React.useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((open) => !open);
+      }
+    };
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
+  return (
+    <div className="flex justify-between items-center w-full">
+      <BreadcrumbComponent location={location} />
+      <div className="flex gap-2">
+        <div
+          className="w-14 h-14 p-2 rounded-full bg-neutral-900 dark:bg-zinc-200 flex items-center justify-center"
+          onClick={() => window.location.replace('dashboard')}
+        >
+          <HomeIcon size={24} color={"#000000"} />
+        </div>
+        <div className="flex items-center gap-4 h-14 px-4 bg-neutral-900 dark:bg-zinc-200 rounded-full">
+          <div
+            className="flex gap-2 items-center w-72 pr-4"
+            onClick={() => setOpen((open) => !open)}
+          >
+            <SearchIcon size={18} color={"#000000"} />
+            <p className="text-base text-muted-foreground">Search</p>
+            <span className="text-xs ml-auto">⌘ K</span>
+          </div>
+          <CommandDialog open={open} onOpenChange={setOpen}>
+            <CommandInput placeholder="Type a command or search..." />
+            <CommandList>
+              <CommandEmpty>No results found.</CommandEmpty>
+              {data.navMain.map((group) => (
+                <CommandGroup key={group.title} heading={group.title}>
+                  {group.items.map((item) => (
+                    <CommandItem key={item.title}>
+                      <Link to={item.url} className="flex-1">
+                        {item.title}
+                      </Link>
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              ))}
+              <CommandSeparator />
+            </CommandList>
+          </CommandDialog>
+        </div>
       </div>
-    );
+      <section className="flex items-center gap-2">
+        <NavigationMenuComponent />
+        <AvatarDemo />
+      </section>
+    </div>
+  );
 }
 
 export function AvatarDemo() {

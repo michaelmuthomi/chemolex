@@ -28,7 +28,7 @@ import { fetchRepairs } from "@/api/fetchRepairs";
 
 export const Route = createFileRoute("/repairs")({
   component: () => (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar />
       <main className="w-full">
         <RepairRecords />

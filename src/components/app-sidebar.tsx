@@ -88,10 +88,6 @@ const data = {
           title: "About Us",
           url: "/aboutus",
         },
-        {
-          title: "Products",
-          url: "/products",
-        },
       ],
     },
   ],
@@ -106,10 +102,10 @@ async function handle_logout() {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar {...props}>
-      <SidebarHeader className="px-2 pt-4">
+    <Sidebar {...props} >
+      <SidebarHeader className="px-4 pt-4">
         <SidebarMenu>
-          <img src={Logo} alt="REFNET" className="w-32" />
+          <img src={Logo} alt="Ayiera Initiative" className="w-20" />
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="pt-8">

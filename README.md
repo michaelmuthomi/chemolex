@@ -1,8 +1,8 @@
-# REFNET AIR CONDITIONING 
+# Ayiera Initiative AIR CONDITIONING 
 
 ## Overview
 
-REFNET AIR CONDITIONING (E.A) LTD has been involved in Air conditioning works in Kenya and its neighboring countries like Tanzania, Uganda & Rwanda. Be it domestic or commercial, we have engineers and Technicians  to meet all your needs.We do quality and timely works. That's why we are relied upon by so many of the East Africa big names.The leading Air conditioning contractor in Kenya. Mainly dealers of LG, Samsung and Carrier Air conditioners. Top in the list of air conditioning suppliers in Kenya
+Ayiera Initiative AIR CONDITIONING (E.A) LTD has been involved in Air conditioning works in Kenya and its neighboring countries like Tanzania, Uganda & Rwanda. Be it domestic or commercial, we have engineers and Technicians  to meet all your needs.We do quality and timely works. That's why we are relied upon by so many of the East Africa big names.The leading Air conditioning contractor in Kenya. Mainly dealers of LG, Samsung and Carrier Air conditioners. Top in the list of air conditioning suppliers in Kenya
 
 ## Installation Instructions
 
@@ -16,8 +16,8 @@ REFNET AIR CONDITIONING (E.A) LTD has been involved in Air conditioning works in
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/<your-repo>/REFNET.git
-    cd REFNET
+    git clone https://github.com/<your-repo>/Ayiera Initiative.git
+    cd Ayiera Initiative
     ```
 
 2. **Install dependencies**:

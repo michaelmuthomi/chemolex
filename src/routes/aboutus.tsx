@@ -12,7 +12,7 @@ import { CogIcon, Dam, LoaderPinwheel } from "lucide-react";
 
 export const Route = createFileRoute("/aboutus")({
   component: () => (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar />
       <main className="w-full">
         <AboutUs />
@@ -41,12 +41,12 @@ function AboutUs() {
           <div className="flex gap-4 px-4 py-6">
             <div className="w-14 h-[2px] bg-neutral-600 mt-2"> </div>
             <p className="font-light leading-loose text-xl text-neutral-500 w-3/4">
-              At RefNet Air Conditioning, we pride ourselves on being a leading
-              provider of innovative refrigeration and air conditioning
-              solutions in East Africa. With years of industry experience, our
-              dedicated team of professionals is committed to delivering
-              high-quality services tailored to meet the unique needs of our
-              clients.
+              At Ayiera Initiative Air Conditioning, we pride ourselves on being
+              a leading provider of innovative refrigeration and air
+              conditioning solutions in East Africa. With years of industry
+              experience, our dedicated team of professionals is committed to
+              delivering high-quality services tailored to meet the unique needs
+              of our clients.
             </p>
           </div>
         </div>
@@ -111,7 +111,7 @@ function AboutUs() {
         </div>
         <div className="flex gap-4">
           <p className="text-sm text-muted py-2">
-            Refnet - More than promises delivering proven excellence
+            Ayiera Initiative - More than promises delivering proven excellence
           </p>
         </div>
       </footer>

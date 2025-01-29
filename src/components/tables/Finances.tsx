@@ -163,7 +163,7 @@ export function FinancesTable(data) {
   return (
     <div className="w-full grid">
       <Toaster />
-      <div className="flex items-center py-4 px-6  border-t-[1px]">
+      <div className="flex items-center py-4 px-6 ">
         <section className="ml-auto flex gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

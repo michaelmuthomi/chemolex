@@ -9,16 +9,16 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/app-sidebar'
 import { fetchEmployeeReports } from '@/api/fetchEmployeeReports'
 
-export const Route = createFileRoute('/employeeReports')({
+export const Route = createFileRoute("/employeeReports")({
   component: () => (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar />
       <main className="w-full">
         <ManageReports />
       </main>
     </SidebarProvider>
   ),
-})
+});
 
 function ManageReports() {
   const [Reports, setReports] = useState([])

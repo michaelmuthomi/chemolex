@@ -13,7 +13,7 @@ import { Flag, HandCoins, MessageCircleDashed, PiggyBank, SwatchBook, User2Icon,
 
 export const Route = createFileRoute("/financerecords")({
   component: () => (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar />
       <main className="w-full">
         <ViewFinancialRecords />

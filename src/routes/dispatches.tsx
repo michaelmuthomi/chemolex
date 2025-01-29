@@ -30,7 +30,7 @@ import { fetchDispatches } from "@/api/fetchDispatches";
 
 export const Route = createFileRoute("/dispatches")({
   component: () => (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar />
       <main className="w-full">
         <ViewDispatchRecords />

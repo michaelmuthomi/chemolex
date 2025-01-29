@@ -10,7 +10,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 
 export const Route = createFileRoute("/users")({
   component: () => (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar />
       <main className="w-full">
         <ManageUsers />
