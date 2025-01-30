@@ -8,6 +8,7 @@ import { CustomersTable } from "@/components/tables/Customers";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { BoxIcon, CheckCheck, PenBox, UserRoundCheck, UserRoundCog, Users, UserX, Wallet } from "lucide-react";
+import { fetchMentees } from '@/api/fetchCustomers';
 
 export const Route = createFileRoute("/customers")({
   component: () => (
@@ -25,7 +26,8 @@ function ManageUsers() {
   const [cardData, setCardData] = useState([]);
 
   useEffect(() => {
-    fetchCustomers().then((data) => {
+    fetchMentees().then((data) => {
+      console.log('Fetched mentee details: ', data)
       setUsers(data);
       setCardData([
         {
@@ -37,19 +39,29 @@ function ManageUsers() {
         {
           icon: <UserRoundCheck size={20} color="black" />,
           title: "Active users",
-          statistic: data.filter((user) => user.status === "active").length,
+          statistic: data.filter(
+            (user) => user.status === "active" || user.status === "Active"
+          ).length,
           moreDetails: "The total number of completed orders.",
         },
         {
           icon: <UserRoundCog size={20} color="black" />,
           title: "Pending approvals",
-          statistic: data.filter((user) => user.status === "inactive").length,
+          statistic: data.filter(
+            (user) => user.status === "inactive" || user.status === "Inactive"
+          ).length,
           moreDetails: "The total number of orders that have been delivered.",
         },
         {
           icon: <UserX size={20} color="black" />,
           title: "Banned users",
-          statistic: data.filter((user) => user.status === "banned").length === 0 ? 'N/A' : data.filter((user) => user.status === "banned").length,
+          statistic:
+            data.filter(
+              (user) =>
+                user.status === "Deleted"
+            ).length === 0
+              ? "N/A"
+              : data.filter((user) => user.status === "banned").length,
           moreDetails: "The total number of orders that are still pending.",
         },
       ]);

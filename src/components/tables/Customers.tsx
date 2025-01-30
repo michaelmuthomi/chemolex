@@ -78,25 +78,22 @@ export const columns: ColumnDef<User>[] = [
   {
     accessorKey: "role",
     header: "Role",
-    cell: ({ row }) => (
-      <div className="capitalize">
-        {row.getValue("role").replace(/_/g, " ")}
-      </div>
-    ),
+    cell: ({ row }) => <div className="capitalize">{row.getValue("role")}</div>,
   },
   {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => (
       <div>
-        {row.getValue("status") === "active" && (
-          <Badge
-            variant="default"
-            className="rounded-full bg-green-500 text-white"
-          >
-            Active
-          </Badge>
-        )}
+        {row.getValue("status") === "active" ||
+          (row.getValue("status") === "Active" && (
+            <Badge
+              variant="default"
+              className="rounded-full bg-green-500 text-white"
+            >
+              Active
+            </Badge>
+          ))}
         {row.getValue("status") === "inactive" && (
           <Badge
             variant="destructive"
