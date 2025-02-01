@@ -183,7 +183,7 @@ function MainSection() {
         <div className="flex justify-between">
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-gray-200">
-              Manage Users
+              Manage Mentees
             </h2>
             <p className={"text-sm text-muted-foreground py-2"}>
               To perform more functions, head to the users page
@@ -194,7 +194,7 @@ function MainSection() {
               className="text-slate-500 text-sm font-medium"
               variant="outline"
             >
-              Users Page &rarr;
+              Mentees Page &rarr;
             </Button>
           </Link>
         </div>
