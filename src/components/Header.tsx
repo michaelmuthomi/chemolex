@@ -126,7 +126,7 @@ export function Header({ location = "" }) {
       <BreadcrumbComponent location={location} />
       <div className="flex gap-2">
         <div
-          className="w-14 h-14 p-2 rounded-full bg-neutral-900 dark:bg-zinc-200 flex items-center justify-center"
+          className="w-14 h-14 p-2 rounded-full bg-neutral-900 hover:bg-zinc-100 dark:bg-zinc-200 flex items-center justify-center"
           onClick={() => window.location.replace('dashboard')}
         >
           <HomeIcon size={24} color={"#000000"} />

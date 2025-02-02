@@ -35,11 +35,11 @@ const data = {
       url: "#",
       items: [
         {
-          title: "Customers",
+          title: "Mentees",
           url: "/customers",
         },
         {
-          title: "Employees",
+          title: "User Profiles",
           url: "/staff",
         },
       ],
@@ -53,7 +53,7 @@ const data = {
           url: "/feedback",
         },
         {
-          title: "Employees",
+          title: "User Profiles",
           url: "/employeeFeedback",
         },
       ],
@@ -65,18 +65,6 @@ const data = {
         {
           title: "Finance",
           url: "/financerecords",
-        },
-        {
-          title: "Orders",
-          url: "/orders",
-        },
-        {
-          title: "Dispatches",
-          url: "/dispatches",
-        },
-        {
-          title: "Repairs",
-          url: "/repairs",
         },
       ],
     },

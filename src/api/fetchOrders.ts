@@ -1,6 +1,6 @@
 import { supabase } from '@/backend/client';
 export async function fetchOrders() {
-    const { data, error } = await supabase.from('orders').select('*');
+    const { data, error } = await supabase.from('mentees').select('*');
     if (error) {
         throw error;
     }

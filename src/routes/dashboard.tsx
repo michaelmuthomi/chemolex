@@ -98,7 +98,7 @@ async function fetchUsersWithLimit() {
 const CardData = [
   {
     icon: <User2Icon size={20} color="black" />,
-    title: "Total Customers",
+    title: "Total Mentees",
     statistic: 0,
     moreDetails: "Detailed user statistics can be found here.",
   },
@@ -111,12 +111,6 @@ const CardData = [
   {
     icon: <MessageCircleDashed size={20} color="black" />,
     title: "Total Feedback",
-    statistic: 0,
-    moreDetails: "Detailed performance metrics are available here.",
-  },
-  {
-    icon: <Flag size={20} color="black" />,
-    title: "Total Products for Sale",
     statistic: 0,
     moreDetails: "Detailed performance metrics are available here.",
   },

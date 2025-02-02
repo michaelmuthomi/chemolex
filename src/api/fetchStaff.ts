@@ -1,8 +1,7 @@
 import { supabase } from "@/backend/client";
 export async function fetchStaff() {
   const { data } = await supabase
-    .from("users")
+    .from("guardian")
     .select("*")
-    .neq("role", "customer");
   return data;
 }

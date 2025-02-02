@@ -1,9 +1,8 @@
 import { supabase } from "@/backend/client";
 export async function fetchCustomers() {
   const { data } = await supabase
-    .from("users")
-    .select("*")
-    .eq("role", "customer");
-  console.log('Customer Data:', data)
+    .from("mentees")
+    .select("*, guardian:guardian_id(*)")
+  console.log('Mentees Data:', data)
   return data;
 }

@@ -46,39 +46,51 @@ export type User = {
   full_name: string;
   email: string;
   phone_number: string;
-  role: string;
   status: string;
   date_created: string;
 };
 
 export const columns: ColumnDef<User>[] = [
   {
-    accessorKey: "full_name",
-    header: "Full Name",
-    cell: ({ row }) => <div>{row.getValue("full_name")}</div>,
+    accessorKey: "first_name",
+    header: "Mentee Name",
+    cell: ({ row }) => (
+      <div>{(row.getValue("first_name"), row.getValue("last_name"))}</div>
+    ),
   },
   {
-    accessorKey: "email",
+    accessorKey: "last_name",
+    header: "Mentor Name",
+    cell: ({ row }) => (
+      <div>
+        {(row.original.guardian.first_name, row.original.guardian.last_name)}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "gender",
+    header: "Gender",
+    cell: ({ row }) => <div>{row.getValue("gender")}</div>,
+  },
+  {
+    accessorKey: "guardian.email",
     header: ({ column }) => (
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Email
+        Guardian Email
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    cell: ({ row }) => (
+      <div className="lowercase">{row.original.guardian.email}</div>
+    ),
   },
   {
     accessorKey: "phone_number",
     header: "Phone Number",
-    cell: ({ row }) => <div>{row.getValue("phone_number")}</div>,
-  },
-  {
-    accessorKey: "role",
-    header: "Role",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("role").replace('_', ' ')}</div>,
+    cell: ({ row }) => <div>{row.original.guardian.phone_number}</div>,
   },
   {
     accessorKey: "status",
@@ -113,10 +125,10 @@ export const columns: ColumnDef<User>[] = [
     ),
   },
   {
-    accessorKey: "created_at",
+    accessorKey: "date_added",
     header: "Date Created",
     cell: ({ row }) => {
-      const date = new Date(row.getValue("created_at"));
+      const date = new Date(row.getValue("date_added"));
       const formattedDate = date.toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
@@ -296,33 +308,6 @@ export function UsersTable(data) {
           className="max-w-sm"
         />
         <section className="ml-auto flex gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="ml-auto">
-                Filter Role <ChevronDown className="ml-2 h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {[
-                "all",
-                "service_manager",
-                "supervisor",
-                "finance_controller",
-                "stock_manager",
-              ].map((role) => (
-                <DropdownMenuItem
-                  key={role}
-                  onClick={() => {
-                    table
-                      .getColumn("role")
-                      ?.setFilterValue(role === "all" ? "" : role);
-                  }}
-                >
-                  {role.charAt(0).toUpperCase() + role.slice(1)}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">
