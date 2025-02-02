@@ -82,7 +82,7 @@ async function updateTotalOrders() {
 async function updateTotalFeedback() {
   const feedback_count = await fetchFeedback();
   console.log(feedback_count.length);
-  return feedback_count.length;
+  return feedback_count.length === 0 ? "N/A" : feedback_count.length;
 }
 
 async function updateTotalProducts() {
@@ -133,10 +133,10 @@ function MainSection() {
       CardData[2].statistic = totalFeedback;
       setCardData([...CardData]);
     });
-    updateTotalProducts().then((totalProducts) => {
-      CardData[3].statistic = totalProducts;
-      setCardData([...CardData]);
-    });
+    // updateTotalProducts().then((totalProducts) => {
+    //   CardData[3].statistic = totalProducts;
+    //   setCardData([...CardData]);
+    // });
     fetchUsersWithLimit().then((limitedUsers) => {
       setUsers(limitedUsers);
     });
