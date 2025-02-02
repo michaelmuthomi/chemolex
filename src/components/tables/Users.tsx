@@ -97,21 +97,27 @@ export const columns: ColumnDef<User>[] = [
     header: "Status",
     cell: ({ row }) => (
       <div>
-        {row.getValue("status") === "active" && (
+        {row.getValue("status") === "active" ||
+        row.getValue("status") === "Active" ? (
           <Badge
             variant="default"
             className="rounded-full bg-green-500 text-white"
           >
             Active
           </Badge>
+        ) : (
+          ""
         )}
-        {row.getValue("status") === "inactive" && (
+        {row.getValue("status") === "inactive" ||
+        row.getValue("status") === "Inactive" ? (
           <Badge
             variant="destructive"
             className="rounded-full bg-yellow-500 text-white"
           >
             Deactivated
           </Badge>
+        ) : (
+          ""
         )}
         {row.getValue("status") === "banned" && (
           <Badge
@@ -120,6 +126,19 @@ export const columns: ColumnDef<User>[] = [
           >
             Banned
           </Badge>
+        )}
+        {row.getValue("status") !== "active" &&
+        row.getValue("status") !== "Active" &&
+        row.getValue("status") !== "Inactive" &&
+        row.getValue("status") !== "inactive" ? (
+          <Badge
+            variant="destructive"
+            className="rounded-full bg-red-500 text-white"
+          >
+            {row.getValue("status")}
+          </Badge>
+        ) : (
+          ""
         )}
       </div>
     ),
