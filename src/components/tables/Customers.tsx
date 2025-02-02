@@ -53,12 +53,17 @@ export type User = {
 
 export const columns: ColumnDef<User>[] = [
   {
-    accessorKey: "full_name",
-    header: "Full Name",
-    cell: ({ row }) => <div>{row.getValue("full_name")}</div>,
+    accessorKey: "first_name",
+    header: "First Name",
+    cell: ({ row }) => <div>{row.getValue("first_name")}</div>,
   },
   {
-    accessorKey: "email",
+    accessorKey: "last_name",
+    header: "Last Name",
+    cell: ({ row }) => <div>{row.getValue("last_name")}</div>,
+  },
+  {
+    accessorKey: "guardian.email",
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -68,7 +73,9 @@ export const columns: ColumnDef<User>[] = [
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    cell: ({ row }) => (
+      <div className="lowercase">{row.original.guardian.email}</div>
+    ),
   },
   {
     accessorKey: "phone_number",
@@ -290,9 +297,9 @@ export function CustomersTable(data) {
       <div className="flex items-center py-4 px-6 ">
         <Input
           placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("guarding.email")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("guarding.email")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

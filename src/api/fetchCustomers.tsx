@@ -10,7 +10,7 @@ export async function fetchCustomers() {
 export async function fetchMentees() {
   const { data } = await supabase
     .from("mentees")
-    .select("*");
+    .select("*, guardian:guardian_id(*)");
   console.log("Mentees Data:", data);
   return data;
 }
