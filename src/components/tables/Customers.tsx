@@ -94,7 +94,7 @@ export const columns: ColumnDef<User>[] = [
         ) : (
           ""
         )}
-        {row.getValue("status") === "banned" && (
+        {row.getValue("status").lowercase === "banned" && (
           <Badge
             variant="destructive"
             className="rounded-full bg-red-500 text-white"
@@ -142,9 +142,9 @@ export const columns: ColumnDef<User>[] = [
         user.status = "active";
         // Add any additional logic to update the user's status in your backend or state management
         const { data, error } = await supabase
-          .from("users")
+          .from("mentees")
           .update({ status: "active" })
-          .eq("user_id", user.user_id);
+          .eq("mentee_id", user.mentee_id);
         if (error) console.error(error);
         toast({
           style: { backgroundColor: "#005a00", color: "#fff" },
@@ -169,9 +169,9 @@ export const columns: ColumnDef<User>[] = [
         user.status = "inactive";
         // Add any additional logic to update the user's status in your backend or state management
         const { data, error } = await supabase
-          .from("users")
+          .from("mentees")
           .update({ status: "inactive" })
-          .eq("user_id", user.user_id);
+          .eq("mentee_id", user.mentee_id);
         if (error) console.error(error);
         toast({
           style: { backgroundColor: "#005a00", color: "#fff" },
@@ -196,9 +196,9 @@ export const columns: ColumnDef<User>[] = [
         user.status = "banned";
         // Add any additional logic to update the user's status in your backend or state management
         const { data, error } = await supabase
-          .from("users")
+          .from("mentees")
           .update({ status: "banned" })
-          .eq("user_id", user.user_id);
+          .eq("mentee_id", user.mentee_id);
         if (error) console.error(error);
         toast({
           style: { backgroundColor: "#005a00", color: "#fff" },
@@ -294,10 +294,10 @@ export function CustomersTable(data) {
       <Toaster />
       <div className="flex items-center py-4 px-6 ">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter first name..."
+          value={(table.getColumn("first_name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("first_name")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
