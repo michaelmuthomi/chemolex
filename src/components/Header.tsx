@@ -50,11 +50,11 @@ const data = {
       url: "#",
       items: [
         {
-          title: "Customers",
+          title: "Mentees",
           url: "/customers",
         },
         {
-          title: "Employees",
+          title: "Staff",
           url: "/staff",
         },
       ],
@@ -64,11 +64,11 @@ const data = {
       url: "#",
       items: [
         {
-          title: "Customer",
+          title: "Mentees",
           url: "/feedback",
         },
         {
-          title: "Employees",
+          title: "Staff",
           url: "/employeeFeedback",
         },
       ],
