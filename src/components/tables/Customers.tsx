@@ -63,29 +63,9 @@ export const columns: ColumnDef<User>[] = [
     cell: ({ row }) => <div>{row.getValue("last_name")}</div>,
   },
   {
-    accessorKey: "guardian.email",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Email
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    cell: ({ row }) => (
-      <div className="lowercase">{row.original.guardian.email}</div>
-    ),
-  },
-  {
-    accessorKey: "phone_number",
-    header: "Phone Number",
-    cell: ({ row }) => <div>{row.getValue("phone_number")}</div>,
-  },
-  {
-    accessorKey: "role",
-    header: "Role",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("role")}</div>,
+    accessorKey: "gender",
+    header: "Gender",
+    cell: ({ row }) => <div>{row.getValue("gender")}</div>,
   },
   {
     accessorKey: "status",
@@ -93,21 +73,26 @@ export const columns: ColumnDef<User>[] = [
     cell: ({ row }) => (
       <div>
         {row.getValue("status") === "active" ||
-          (row.getValue("status") === "Active" && (
-            <Badge
-              variant="default"
-              className="rounded-full bg-green-500 text-white"
-            >
-              Active
-            </Badge>
-          ))}
-        {row.getValue("status") === "inactive" && (
+        row.getValue("status") === "Active" ? (
+          <Badge
+            variant="default"
+            className="rounded-full bg-green-500 text-white"
+          >
+            Active
+          </Badge>
+        ) : (
+          ""
+        )}
+        {row.getValue("status") === "inactive" ||
+        row.getValue("status") === "Inactive" ? (
           <Badge
             variant="destructive"
             className="rounded-full bg-yellow-500 text-white"
           >
             Deactivated
           </Badge>
+        ) : (
+          ""
         )}
         {row.getValue("status") === "banned" && (
           <Badge
@@ -117,14 +102,27 @@ export const columns: ColumnDef<User>[] = [
             Banned
           </Badge>
         )}
+        {row.getValue("status") !== "active" &&
+        row.getValue("status") !== "Active" &&
+        row.getValue("status") !== "Inactive" &&
+        row.getValue("status") !== "inactive" ? (
+          <Badge
+            variant="destructive"
+            className="rounded-full bg-red-500 text-white"
+          >
+            {row.getValue("status")}
+          </Badge>
+        ) : (
+          ""
+        )}
       </div>
     ),
   },
   {
-    accessorKey: "created_at",
+    accessorKey: "date_added",
     header: "Date Created",
     cell: ({ row }) => {
-      const date = new Date(row.getValue("created_at"));
+      const date = new Date(row.getValue("date_added"));
       const formattedDate = date.toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
@@ -297,9 +295,9 @@ export function CustomersTable(data) {
       <div className="flex items-center py-4 px-6 ">
         <Input
           placeholder="Filter emails..."
-          value={(table.getColumn("guarding.email")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("guarding.email")?.setFilterValue(event.target.value)
+            table.getColumn("email")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
