@@ -26,27 +26,24 @@ function ManageFeedback() {
 
   useEffect(() => {
     fetchFeedback().then((data) => {
-      const filteredFeedback = data.filter(
-        (item) => item.users.role === "customer"
-      );
-      setFeedback(filteredFeedback);
+      setFeedback(data);
       setCardData([
         {
           icon: <MessageCircle size={20} color="black" />,
           title: "Total Feedback Submissions",
-          statistic: filteredFeedback.length,
+          statistic: data.length,
           moreDetails: "The total amount of all orders.",
         },
         {
           icon: <Smile size={20} color="black" />,
           title: "Good Ratings",
-          statistic: filteredFeedback.filter((user) => user.rating > 3).length,
+          statistic: data.filter((user) => user.rating > 3).length,
           moreDetails: "Ratings above 3",
         },
         {
           icon: <Frown size={20} color="black" />,
           title: "Bad Ratings",
-          statistic: filteredFeedback.filter((user) => user.rating < 3).length,
+          statistic: data.filter((user) => user.rating < 3).length,
           moreDetails: "Ratings below 3",
         },
       ]);
@@ -79,7 +76,7 @@ function ManageFeedback() {
           </div>
         ))}
       </section>
-      <section className='border-t-[1px] pt-4'>
+      <section className='pt-4'>
         <FeedbackTable data={Feedback} />
       </section>
     </div>

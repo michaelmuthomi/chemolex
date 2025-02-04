@@ -51,42 +51,6 @@ export type User = {
 
 export const columns: ColumnDef<User>[] = [
   {
-    accessorKey: "user_id",
-    header: "Reviewer's Email",
-    cell: ({ row }) => {
-      const userId = row.getValue("user_id");
-      console.log(userId);
-      const [email, setEmail] = useState<string>("Loading...");
-
-      useEffect(() => {
-        const email = fetchUser(userId).then((data) => {
-          setEmail(data[0].email);
-        });
-        console.log(email);
-      }, [userId]);
-
-      return <div className="font-mono">{email}</div>;
-    },
-  },
-  {
-    accessorKey: "service_id",
-    header: "Service Name",
-    cell: ({ row }) => {
-      const serviceId = row.getValue("service_id");
-      console.log(serviceId);
-      const [ServiceName, setServiceName] = useState<string>("Loading...");
-
-      useEffect(() => {
-        const ServiceName = fetchServices(serviceId).then((data) => {
-          setServiceName(data[0].name);
-        });
-        console.log(ServiceName);
-      }, [serviceId]);
-
-      return <div className="font-mono">{ServiceName}</div>;
-    },
-  },
-  {
     accessorKey: "rating",
     header: "Rating",
     cell: ({ row }) => {

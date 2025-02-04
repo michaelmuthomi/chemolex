@@ -49,32 +49,8 @@ const data = {
       url: "#",
       items: [
         {
-          title: "Customer",
+          title: "Users",
           url: "/feedback",
-        },
-        {
-          title: "User Profiles",
-          url: "/employeeFeedback",
-        },
-      ],
-    },
-    {
-      title: "Reports",
-      url: "#",
-      items: [
-        {
-          title: "Finance",
-          url: "/financerecords",
-        },
-      ],
-    },
-    {
-      title: "Company",
-      url: "#",
-      items: [
-        {
-          title: "About Us",
-          url: "/aboutus",
         },
       ],
     },
