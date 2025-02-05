@@ -55,15 +55,15 @@ export const columns: ColumnDef<User>[] = [
     accessorKey: "first_name",
     header: "Mentee Name",
     cell: ({ row }) => (
-      <div>{(row.getValue("first_name"), row.getValue("last_name"))}</div>
+      <div>{row.getValue("first_name")}</div>
     ),
   },
   {
-    accessorKey: "last_name",
-    header: "Mentor Name",
+    accessorKey: "skill_group",
+    header: "Skills Group",
     cell: ({ row }) => (
-      <div>
-        {(row.original.guardian.first_name, row.original.guardian.last_name)}
+      <div className='capitalize'>
+        {(row.original.skill_group)}
       </div>
     ),
   },
