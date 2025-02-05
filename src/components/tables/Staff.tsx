@@ -53,9 +53,14 @@ export type User = {
 
 export const columns: ColumnDef<User>[] = [
   {
-    accessorKey: "full_name",
-    header: "Full Name",
-    cell: ({ row }) => <div>{row.getValue("full_name")}</div>,
+    accessorKey: "first_name",
+    header: "First Name",
+    cell: ({ row }) => <div>{row.getValue("first_name")}</div>,
+  },
+  {
+    accessorKey: "last_name",
+    header: "Last Name",
+    cell: ({ row }) => <div>{row.getValue("last_name")}</div>,
   },
   {
     accessorKey: "email",
@@ -75,15 +80,7 @@ export const columns: ColumnDef<User>[] = [
     header: "Phone Number",
     cell: ({ row }) => <div>{row.getValue("phone_number")}</div>,
   },
-  {
-    accessorKey: "role",
-    header: "Role",
-    cell: ({ row }) => (
-      <div className="capitalize">
-        {row.getValue("role").replace(/_/g, " ")}
-      </div>
-    ),
-  },
+
   {
     accessorKey: "status",
     header: "Status",
@@ -117,10 +114,10 @@ export const columns: ColumnDef<User>[] = [
     ),
   },
   {
-    accessorKey: "created_at",
+    accessorKey: "date_added",
     header: "Date Created",
     cell: ({ row }) => {
-      const date = new Date(row.getValue("created_at"));
+      const date = new Date(row.getValue("date_added"));
       const formattedDate = date.toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",

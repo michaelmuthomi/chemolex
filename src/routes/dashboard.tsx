@@ -189,7 +189,7 @@ function MainSection() {
               To perform more functions, head to the users page
             </p>
           </div>
-          <Link to="/users">
+          <Link to="/customers">
             <Button
               className="text-slate-500 text-sm font-medium"
               variant="outline"
