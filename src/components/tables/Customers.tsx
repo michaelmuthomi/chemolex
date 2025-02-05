@@ -89,7 +89,7 @@ export const columns: ColumnDef<User>[] = [
             variant="destructive"
             className="rounded-full bg-yellow-500 text-white"
           >
-            Deactivated
+            Pending
           </Badge>
         ) : (
           ""
