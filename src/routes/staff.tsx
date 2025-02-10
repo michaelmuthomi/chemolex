@@ -27,6 +27,7 @@ function ManageUsers() {
   useEffect(() => {
     fetchStaff().then((data) => {
       setUsers(data);
+      console.log('Fetched Staff:', data)
       setCardData([
         {
           icon: <Users size={20} color="black" />,

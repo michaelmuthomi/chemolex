@@ -137,9 +137,9 @@ export const columns: ColumnDef<User>[] = [
         user.status = "active";
         // Add any additional logic to update the user's status in your backend or state management
         const { data, error } = await supabase
-          .from("users")
+          .from("guardian")
           .update({ status: "active" })
-          .eq("user_id", user.user_id);
+          .eq("guardian_id", user.guardian_id);
         if (error) console.error(error);
         toast({
           style: { backgroundColor: "#005a00", color: "#fff" },
@@ -164,9 +164,9 @@ export const columns: ColumnDef<User>[] = [
         user.status = "inactive";
         // Add any additional logic to update the user's status in your backend or state management
         const { data, error } = await supabase
-          .from("users")
+          .from("guardian")
           .update({ status: "inactive" })
-          .eq("user_id", user.user_id);
+          .eq("guardian_id", user.guardian_id);
         if (error) console.error(error);
         toast({
           style: { backgroundColor: "#005a00", color: "#fff" },
@@ -191,9 +191,9 @@ export const columns: ColumnDef<User>[] = [
         user.status = "banned";
         // Add any additional logic to update the user's status in your backend or state management
         const { data, error } = await supabase
-          .from("users")
+          .from("guardian")
           .update({ status: "banned" })
-          .eq("user_id", user.user_id);
+          .eq("guardian_id", user.guardian_id);
         if (error) console.error(error);
         toast({
           style: { backgroundColor: "#005a00", color: "#fff" },
