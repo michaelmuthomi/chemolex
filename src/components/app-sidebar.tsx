@@ -35,11 +35,11 @@ const data = {
       url: "#",
       items: [
         {
-          title: "Mentees",
+          title: "Customers",
           url: "/customers",
         },
         {
-          title: "User Profiles",
+          title: "Employees",
           url: "/staff",
         },
       ],
