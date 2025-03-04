@@ -52,45 +52,30 @@ export type User = {
 
 export const columns: ColumnDef<User>[] = [
   {
-    accessorKey: "first_name",
-    header: "Mentee Name",
+    accessorKey: "name",
+    header: "User Name",
     cell: ({ row }) => (
-      <div>{row.getValue("first_name")}</div>
+      <div>{row.getValue("name")}</div>
     ),
   },
   {
-    accessorKey: "skill_group",
-    header: "Skills Group",
+    accessorKey: "role",
+    header: "Role",
     cell: ({ row }) => (
       <div className='capitalize'>
-        {(row.original.skill_group)}
+        {(row.original.role)}
       </div>
     ),
   },
   {
-    accessorKey: "gender",
-    header: "Gender",
-    cell: ({ row }) => <div>{row.getValue("gender")}</div>,
+    accessorKey: "address",
+    header: "Address",
+    cell: ({ row }) => <div>{row.getValue("address")}</div>,
   },
   {
-    accessorKey: "guardian.email",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Guardian Email
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    cell: ({ row }) => (
-      <div className="lowercase">{row.original.guardian.email}</div>
-    ),
-  },
-  {
-    accessorKey: "phone_number",
+    accessorKey: "phonenumber",
     header: "Phone Number",
-    cell: ({ row }) => <div>{row.original.guardian.phone_number}</div>,
+    cell: ({ row }) => <div>{row.original.phonenumber}</div>,
   },
   {
     accessorKey: "status",
