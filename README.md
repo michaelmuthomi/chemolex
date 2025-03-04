@@ -1,8 +1,8 @@
-# Chemolex AIR CONDITIONING 
+# Chemolex
 
 ## Overview
 
-Chemolex AIR CONDITIONING (E.A) LTD has been involved in Air conditioning works in Kenya and its neighboring countries like Tanzania, Uganda & Rwanda. Be it domestic or commercial, we have engineers and Technicians  to meet all your needs.We do quality and timely works. That's why we are relied upon by so many of the East Africa big names.The leading Air conditioning contractor in Kenya. Mainly dealers of LG, Samsung and Carrier Air conditioners. Top in the list of air conditioning suppliers in Kenya
+Our goal is to provide impactful solutions and services for the management of plastic waste, safeguarding millions of individuals and critical resources essential to life. Leveraging a decade of innovation, we deliver comprehensive, science-based solutions, data-driven insights, and state-of-the-art technologies and products aimed at advancing the transition to a clean, sustainable, and circular planet.
 
 ## Installation Instructions
 
