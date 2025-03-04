@@ -56,7 +56,7 @@ export function FormComponent() {
             <h1 className="text-4xl font-bold leading-none py-0">
               Chemolex Admin
             </h1>
-            <p className="text-[#909090]">
+            <p className="text-[#737373]">
               Welcome back, fill in your details below to continue
             </p>
           </div>
