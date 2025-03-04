@@ -1,8 +1,8 @@
-# Ayiera Initiative AIR CONDITIONING 
+# Chemolex AIR CONDITIONING 
 
 ## Overview
 
-Ayiera Initiative AIR CONDITIONING (E.A) LTD has been involved in Air conditioning works in Kenya and its neighboring countries like Tanzania, Uganda & Rwanda. Be it domestic or commercial, we have engineers and Technicians  to meet all your needs.We do quality and timely works. That's why we are relied upon by so many of the East Africa big names.The leading Air conditioning contractor in Kenya. Mainly dealers of LG, Samsung and Carrier Air conditioners. Top in the list of air conditioning suppliers in Kenya
+Chemolex AIR CONDITIONING (E.A) LTD has been involved in Air conditioning works in Kenya and its neighboring countries like Tanzania, Uganda & Rwanda. Be it domestic or commercial, we have engineers and Technicians  to meet all your needs.We do quality and timely works. That's why we are relied upon by so many of the East Africa big names.The leading Air conditioning contractor in Kenya. Mainly dealers of LG, Samsung and Carrier Air conditioners. Top in the list of air conditioning suppliers in Kenya
 
 ## Installation Instructions
 
@@ -16,8 +16,8 @@ Ayiera Initiative AIR CONDITIONING (E.A) LTD has been involved in Air conditioni
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/<your-repo>/Ayiera Initiative.git
-    cd Ayiera Initiative
+    git clone https://github.com/<your-repo>/Chemolex.git
+    cd Chemolex
     ```
 
 2. **Install dependencies**:

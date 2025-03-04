@@ -66,10 +66,10 @@ async function handle_logout() {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar {...props} >
+    <Sidebar {...props}>
       <SidebarHeader className="px-4 pt-4">
         <SidebarMenu>
-          <img src={Logo} alt="Ayiera Initiative" className="w-20" />
+          <img src={Logo} alt="Chemolex" className="w-20" />
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="pt-8">

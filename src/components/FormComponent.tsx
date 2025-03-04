@@ -45,53 +45,65 @@ export function FormComponent() {
   };
 
   return (
-    <div className="w-max h-full grid justify-center ">
+    <div className="w-max h-full grid justify-center text-white">
       <Toaster />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
-          className="w-max space-y-6"
+          className="w-max space-y-10"
         >
-          <h1 className="text-4xl font-bold leading-none py-0">Administrator Sign-In</h1>
-          <p>Welcome back, fill in your details below to continue</p>
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="you@example.com"
-                    {...field}
-                    className="h-11 px-5"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div>
+            <h1 className="text-4xl font-bold leading-none py-0">
+              Chemolex Admin
+            </h1>
+            <p className="text-[#909090]">
+              Welcome back, fill in your details below to continue
+            </p>
+          </div>
+          <section className="space-y-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="you@example.com"
+                      {...field}
+                      className="h-11 px-5 !border-zinc-500"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input
-                    type="password"
-                    placeholder="Your password"
-                    {...field}
-                    className="h-11 px-5"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit" className="w-full h-11" disabled={loading}>
-            {loading ? "Logging In" : "Login and continue"}
-          </Button>
+            <FormField
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="Your password"
+                      {...field}
+                      className="h-11 px-5  !border-zinc-500"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button
+              type="submit"
+              className="w-full h-11 bg-[#1f8e36] hover:bg-white text-black"
+              disabled={loading}
+            >
+              {loading ? "Logging In" : "Login and continue"}
+            </Button>
+          </section>
         </form>
       </Form>
     </div>

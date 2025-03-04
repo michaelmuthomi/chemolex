@@ -210,7 +210,7 @@ function MainSection() {
         </div>
         <div className="flex gap-4">
           <p className="text-sm text-muted py-2">
-            Ayiera Initiative - More than promises delivering proven excellence
+            Chemolex - More than promises delivering proven excellence
           </p>
         </div>
       </section>
