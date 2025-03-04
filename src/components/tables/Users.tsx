@@ -93,23 +93,28 @@ export const columns: ColumnDef<User>[] = [
             variant="destructive"
             className="rounded-full bg-yellow-500 text-white"
           >
-            Deactivated
+            Pending
           </Badge>
         ) : (
           ""
         )}
-        {row.getValue("status") === "banned" && (
+        {row.getValue("status") === "banned" ||
+        row.getValue("status") === "Banned" ? (
           <Badge
             variant="destructive"
             className="rounded-full bg-red-500 text-white"
           >
             Banned
           </Badge>
+        ) : (
+          ""
         )}
         {row.getValue("status") !== "active" &&
         row.getValue("status") !== "Active" &&
         row.getValue("status") !== "pending" &&
-        row.getValue("status") !== "pending" ? (
+        row.getValue("status") !== "Pending" &&
+        row.getValue("status") !== "banned" &&
+        row.getValue("status") !== "Banned" ? (
           <Badge
             variant="destructive"
             className="rounded-full bg-red-500 text-white"
