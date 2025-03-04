@@ -133,12 +133,12 @@ export const columns: ColumnDef<User>[] = [
       };
 
       const handleDeactivate = async () => {
-        // Update the user's status to 'inactive'
-        user.status = "inactive";
+        // Update the user's status to 'pending'
+        user.status = "pending";
         // Add any additional logic to update the user's status in your backend or state management
         const { data, error } = await supabase
           .from("users")
-          .update({ status: "inactive" })
+          .update({ status: "pending" })
           .eq("user_id", user.user_id);
         if (error) console.error(error);
         toast({
@@ -354,8 +354,8 @@ export function TableComponent(data) {
   const toggleFilterStatus = () => {
     const nextStatus = {
       all: "active",
-      active: "inactive",
-      inactive: "banned",
+      active: "pending",
+      pending: "banned",
       banned: "all",
     };
     const newStatus = nextStatus[filterStatus];

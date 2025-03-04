@@ -54,18 +54,12 @@ export const columns: ColumnDef<User>[] = [
   {
     accessorKey: "name",
     header: "User Name",
-    cell: ({ row }) => (
-      <div>{row.getValue("name")}</div>
-    ),
+    cell: ({ row }) => <div>{row.getValue("name")}</div>,
   },
   {
     accessorKey: "role",
     header: "Role",
-    cell: ({ row }) => (
-      <div className='capitalize'>
-        {(row.original.role)}
-      </div>
-    ),
+    cell: ({ row }) => <div className="capitalize">{row.original.role}</div>,
   },
   {
     accessorKey: "address",
@@ -93,8 +87,8 @@ export const columns: ColumnDef<User>[] = [
         ) : (
           ""
         )}
-        {row.getValue("status") === "inactive" ||
-        row.getValue("status") === "Inactive" ? (
+        {row.getValue("status") === "pending" ||
+        row.getValue("status") === "pending" ? (
           <Badge
             variant="destructive"
             className="rounded-full bg-yellow-500 text-white"
@@ -114,8 +108,8 @@ export const columns: ColumnDef<User>[] = [
         )}
         {row.getValue("status") !== "active" &&
         row.getValue("status") !== "Active" &&
-        row.getValue("status") !== "Inactive" &&
-        row.getValue("status") !== "inactive" ? (
+        row.getValue("status") !== "pending" &&
+        row.getValue("status") !== "pending" ? (
           <Badge
             variant="destructive"
             className="rounded-full bg-red-500 text-white"
@@ -175,12 +169,12 @@ export const columns: ColumnDef<User>[] = [
       };
 
       const handleDeactivate = async () => {
-        // Update the user's status to 'inactive'
-        user.status = "inactive";
+        // Update the user's status to 'pending'
+        user.status = "pending";
         // Add any additional logic to update the user's status in your backend or state management
         const { data, error } = await supabase
           .from("users")
-          .update({ status: "inactive" })
+          .update({ status: "pending" })
           .eq("user_id", user.user_id);
         if (error) console.error(error);
         toast({
@@ -320,13 +314,13 @@ export function UsersTable(data) {
                 <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-              {["all", "active / inactive", "banned"].map((status) => (
+            <DropdownMenuContent align="end">
+              {["all", "active / pending", "banned"].map((status) => (
                 <DropdownMenuItem
                   key={status}
                   onClick={() => {
                     setFilterStatus(status);
-                    if (status === "active / inactive") {
+                    if (status === "active / pending") {
                       table.getColumn("status")?.setFilterValue("active");
                     } else {
                       table
@@ -334,7 +328,10 @@ export function UsersTable(data) {
                         ?.setFilterValue(status === "all" ? "" : status);
                     }
                     console.log("Current filter status:", status); // Debug log
-                    console.log("Table filter value:", table.getColumn("status")?.getFilterValue()); // Debug log
+                    console.log(
+                      "Table filter value:",
+                      table.getColumn("status")?.getFilterValue()
+                    ); // Debug log
                   }}
                 >
                   {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -465,8 +462,8 @@ export function TableComponent(data) {
   const toggleFilterStatus = () => {
     const nextStatus = {
       all: "active",
-      active: "inactive",
-      inactive: "banned",
+      active: "pending",
+      pending: "banned",
       banned: "all",
     };
     const newStatus = nextStatus[filterStatus];

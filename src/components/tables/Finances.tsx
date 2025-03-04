@@ -316,8 +316,8 @@ export function TableComponent(data) {
   const toggleFilterStatus = () => {
     const nextStatus = {
       all: "active",
-      active: "inactive",
-      inactive: "banned",
+      active: "pending",
+      pending: "banned",
       banned: "all",
     };
     const newStatus = nextStatus[filterStatus];

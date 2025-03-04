@@ -138,7 +138,7 @@ export function AddUserDialog({ dialogTrigger }) {
             className="p-2 bg-black text-white border rounded-sm"
           >
             <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
+            <option value="pending">pending</option>
           </select>
           <Button type="submit">Register</Button>
         </form>

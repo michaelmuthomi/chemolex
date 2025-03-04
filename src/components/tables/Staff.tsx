@@ -53,34 +53,25 @@ export type User = {
 
 export const columns: ColumnDef<User>[] = [
   {
-    accessorKey: "first_name",
-    header: "First Name",
-    cell: ({ row }) => <div>{row.getValue("first_name")}</div>,
+    accessorKey: "name",
+    header: "User Name",
+    cell: ({ row }) => <div>{row.getValue("name")}</div>,
   },
   {
-    accessorKey: "last_name",
-    header: "Last Name",
-    cell: ({ row }) => <div>{row.getValue("last_name")}</div>,
+    accessorKey: "role",
+    header: "Role",
+    cell: ({ row }) => <div className="capitalize">{row.original.role}</div>,
   },
   {
-    accessorKey: "email",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        Email
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    accessorKey: "address",
+    header: "Address",
+    cell: ({ row }) => <div>{row.getValue("address")}</div>,
   },
   {
-    accessorKey: "phone_number",
+    accessorKey: "phonenumber",
     header: "Phone Number",
-    cell: ({ row }) => <div>{row.getValue("phone_number")}</div>,
+    cell: ({ row }) => <div>{row.original.phonenumber}</div>,
   },
-
   {
     accessorKey: "status",
     header: "Status",
@@ -94,12 +85,12 @@ export const columns: ColumnDef<User>[] = [
             Active
           </Badge>
         )}
-        {row.getValue("status") === "inactive" && (
+        {row.getValue("status") === "pending" && (
           <Badge
             variant="destructive"
             className="rounded-full bg-yellow-500 text-white"
           >
-            Inactive
+            pending
           </Badge>
         )}
         {row.getValue("status") === "banned" && (
@@ -160,12 +151,12 @@ export const columns: ColumnDef<User>[] = [
       };
 
       const handleDeactivate = async () => {
-        // Update the user's status to 'inactive'
-        user.status = "inactive";
+        // Update the user's status to 'pending'
+        user.status = "pending";
         // Add any additional logic to update the user's status in your backend or state management
         const { data, error } = await supabase
           .from("guardian")
-          .update({ status: "inactive" })
+          .update({ status: "pending" })
           .eq("guardian_id", user.guardian_id);
         if (error) console.error(error);
         toast({
@@ -305,13 +296,13 @@ export function StaffTable(data) {
                 <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-              {["all", "active / inactive", "banned"].map((status) => (
+            <DropdownMenuContent align="end">
+              {["all", "active / pending", "banned"].map((status) => (
                 <DropdownMenuItem
                   key={status}
                   onClick={() => {
                     setFilterStatus(status);
-                    if (status === "active / inactive") {
+                    if (status === "active / pending") {
                       table.getColumn("status")?.setFilterValue("active");
                     } else {
                       table
@@ -319,7 +310,10 @@ export function StaffTable(data) {
                         ?.setFilterValue(status === "all" ? "" : status);
                     }
                     console.log("Current filter status:", status); // Debug log
-                    console.log("Table filter value:", table.getColumn("status")?.getFilterValue()); // Debug log
+                    console.log(
+                      "Table filter value:",
+                      table.getColumn("status")?.getFilterValue()
+                    ); // Debug log
                   }}
                 >
                   {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -449,8 +443,8 @@ export function TableComponent(data) {
   const toggleFilterStatus = () => {
     const nextStatus = {
       all: "active",
-      active: "inactive",
-      inactive: "banned",
+      active: "pending",
+      pending: "banned",
       banned: "all",
     };
     const newStatus = nextStatus[filterStatus];

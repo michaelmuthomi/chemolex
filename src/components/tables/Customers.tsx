@@ -88,8 +88,8 @@ export const columns: ColumnDef<User>[] = [
         ) : (
           ""
         )}
-        {row.getValue("status") === "inactive" ||
-        row.getValue("status") === "Inactive" ? (
+        {row.getValue("status") === "pending" ||
+        row.getValue("status") === "pending" ? (
           <Badge
             variant="destructive"
             className="rounded-full bg-yellow-500 text-white"
@@ -109,8 +109,8 @@ export const columns: ColumnDef<User>[] = [
         )}
         {row.getValue("status") !== "active" &&
         row.getValue("status") !== "Active" &&
-        row.getValue("status") !== "Inactive" &&
-        row.getValue("status") !== "inactive" ? (
+        row.getValue("status") !== "pending" &&
+        row.getValue("status") !== "pending" ? (
           <Badge
             variant="destructive"
             className="rounded-full bg-red-500 text-white"
@@ -170,12 +170,12 @@ export const columns: ColumnDef<User>[] = [
       };
 
       const handleDeactivate = async () => {
-        // Update the user's status to 'inactive'
-        user.status = "inactive";
+        // Update the user's status to 'pending'
+        user.status = "pending";
         // Add any additional logic to update the user's status in your backend or state management
         const { data, error } = await supabase
           .from("mentees")
-          .update({ status: "inactive" })
+          .update({ status: "pending" })
           .eq("mentee_id", user.mentee_id);
         if (error) console.error(error);
         toast({
@@ -300,7 +300,9 @@ export function CustomersTable(data) {
       <div className="flex items-center py-4 px-6 ">
         <Input
           placeholder="Filter first name..."
-          value={(table.getColumn("first_name")?.getFilterValue() as string) ?? ""}
+          value={
+            (table.getColumn("first_name")?.getFilterValue() as string) ?? ""
+          }
           onChange={(event) =>
             table.getColumn("first_name")?.setFilterValue(event.target.value)
           }
@@ -316,12 +318,12 @@ export function CustomersTable(data) {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              {["all", "active / inactive", "banned"].map((status) => (
+              {["all", "active / pending", "banned"].map((status) => (
                 <DropdownMenuItem
                   key={status}
                   onClick={() => {
                     setFilterStatus(status);
-                    if (status === "active / inactive") {
+                    if (status === "active / pending") {
                       table.getColumn("status")?.setFilterValue("active");
                     } else {
                       table
@@ -462,8 +464,8 @@ export function TableComponent(data) {
   const toggleFilterStatus = () => {
     const nextStatus = {
       all: "active",
-      active: "inactive",
-      inactive: "banned",
+      active: "pending",
+      pending: "banned",
       banned: "all",
     };
     const newStatus = nextStatus[filterStatus];

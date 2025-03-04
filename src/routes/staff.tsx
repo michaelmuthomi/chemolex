@@ -38,13 +38,17 @@ function ManageUsers() {
         {
           icon: <UserRoundCheck size={20} color="black" />,
           title: "Active Employees",
-          statistic: data.filter((user) => user.status === "active").length,
+          statistic: data.filter((user) => user.status === "active").length === 0
+              ? "N/A"
+              : data.filter((user) => user.status === "active").length,
           moreDetails: "The total number of completed orders.",
         },
         {
           icon: <UserRoundCog size={20} color="black" />,
           title: "Pending approvals",
-          statistic: data.filter((user) => user.status === "inactive").length,
+          statistic: data.filter((user) => user.status === "pending").length === 0
+              ? "N/A"
+              : data.filter((user) => user.status === "pending").length,
           moreDetails: "The total number of orders that have been delivered.",
         },
         {
