@@ -11,7 +11,7 @@ import { fetchEmployeeReports } from '@/api/fetchEmployeeReports'
 
 export const Route = createFileRoute("/employeeReports")({
   component: () => (
-    <SidebarProvider defaultOpen={false}>
+    <SidebarProvider defaultOpen={true}>
       <AppSidebar />
       <main className="w-full">
         <ManageReports />

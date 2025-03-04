@@ -67,17 +67,17 @@ async function handle_logout() {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
-      <SidebarHeader className="px-4 pt-4">
-        <SidebarMenu>
-          <img src={Logo} alt="Chemolex" className="w-20" />
+      <SidebarHeader className="px-4 pt-4 !bg-[#121212]">
+        <SidebarMenu className="h-max">
+          <img src={Logo} alt="Chemolex" className="w-3/4 h-min object-cover" />
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="pt-8">
+      <SidebarContent className="!bg-[#121212] text-white">
         <SidebarGroup>
           <SidebarMenu className="grid gap-2">
             {data.navMain.map((item) => (
               <SidebarGroup key={item.title}>
-                <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
+                <SidebarGroupLabel className="uppercase text-neutral-600">{item.title}</SidebarGroupLabel>
                 <SidebarGroupContent>
                   <SidebarMenu>
                     {item.items.map((item) => (
@@ -95,7 +95,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarGroup>
       </SidebarContent>
       <SidebarRail />
-      <button className="flex p-6 gap-2" onClick={handle_logout}>
+      <button className="flex p-6 gap-2 !bg-[#121212]" onClick={handle_logout}>
         <p className="text-sm">Log out</p>
       </button>
     </Sidebar>

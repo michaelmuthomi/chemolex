@@ -25,7 +25,7 @@ import {
 
 export const Route = createFileRoute("/orders")({
   component: () => (
-    <SidebarProvider defaultOpen={false}>
+    <SidebarProvider defaultOpen={true}>
       <AppSidebar />
       <main className="w-full">
         <ViewOrderRecords />

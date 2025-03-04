@@ -12,7 +12,7 @@ import { Frown, MessageCircle, Smile } from "lucide-react";
 
 export const Route = createFileRoute("/employeeFeedback")({
   component: () => (
-    <SidebarProvider defaultOpen={false}>
+    <SidebarProvider defaultOpen={true}>
       <AppSidebar />
       <main className="w-full">
         <ManageEmployeeFeedback />

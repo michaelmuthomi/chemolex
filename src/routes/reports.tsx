@@ -10,7 +10,7 @@ import { AppSidebar } from '@/components/app-sidebar'
 
 export const Route = createFileRoute("/reports")({
   component: () => (
-    <SidebarProvider defaultOpen={false}>
+    <SidebarProvider defaultOpen={true}>
       <AppSidebar />
       <main className="w-full">
         <ManageReports />

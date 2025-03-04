@@ -11,7 +11,7 @@ import { UserRoundCheck, UserRoundCog, Users, UserX } from 'lucide-react'
 
 export const Route = createFileRoute("/staff")({
   component: () => (
-    <SidebarProvider defaultOpen={false}>
+    <SidebarProvider defaultOpen={true}>
       <AppSidebar />
       <main className="w-full">
         <ManageUsers />

@@ -36,7 +36,7 @@ import { fetchCustomers, fetchEmployees } from "@/api/fetchUsers";
 
 export const Route = createFileRoute("/dashboard")({
   component: () => (
-    <SidebarProvider defaultOpen={false}>
+    <SidebarProvider defaultOpen={true}>
       <AppSidebar />
       <main className="w-full">
         <AdminDashboard />
@@ -153,7 +153,6 @@ function MainSection() {
   return (
     <div className="flex flex-col gap-4 w-full">
       <section className="flex gap-2 items-center px-6 sticky top-0 bg-background py-4 z-10 border-b-[1px]">
-        <SidebarTrigger />
         <Header />
       </section>
       <section className="px-6">

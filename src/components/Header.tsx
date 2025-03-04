@@ -124,7 +124,7 @@ export function Header({ location = "" }) {
   return (
     <div className="flex justify-between items-center w-full">
       <BreadcrumbComponent location={location} />
-      <div className="flex gap-2">
+      {/* <div className="flex gap-2">
         <div
           className="w-14 h-14 p-2 rounded-full bg-neutral-900 hover:bg-zinc-100 dark:bg-zinc-200 flex items-center justify-center"
           onClick={() => window.location.replace('dashboard')}
@@ -159,7 +159,7 @@ export function Header({ location = "" }) {
             </CommandList>
           </CommandDialog>
         </div>
-      </div>
+      </div> */}
       <section className="flex items-center gap-2">
         <NavigationMenuComponent />
         <AvatarDemo />

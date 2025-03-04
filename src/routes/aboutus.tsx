@@ -12,7 +12,7 @@ import { CogIcon, Dam, LoaderPinwheel } from "lucide-react";
 
 export const Route = createFileRoute("/aboutus")({
   component: () => (
-    <SidebarProvider defaultOpen={false}>
+    <SidebarProvider defaultOpen={true}>
       <AppSidebar />
       <main className="w-full">
         <AboutUs />
