@@ -5,7 +5,15 @@ export async function fetchUsers() {
     return data;
 }
 export async function fetchCustomers() {
-  const { data } = await supabase.from("users").select("*").eq("role", 'Customers');
+  const { data } = await supabase.from("users").select("*").eq('role', 'Customer');
+  console.log("Data: ", data);
+  return data;
+}
+export async function fetchEmployees() {
+  const { data } = await supabase
+    .from("users")
+    .select("*")
+    .neq("role", "Customer");
   console.log("Data: ", data);
   return data;
 }

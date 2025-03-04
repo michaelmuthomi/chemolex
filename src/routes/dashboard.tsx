@@ -32,7 +32,7 @@ import {
 } from "lucide-react";
 import { description } from "@/components/ChartComponent";
 import { fetchAllProducts } from "@/api/fetchProducts";
-import { fetchCustomers } from "@/api/fetchUsers";
+import { fetchCustomers, fetchEmployees } from "@/api/fetchUsers";
 
 export const Route = createFileRoute("/dashboard")({
   component: () => (
@@ -96,10 +96,14 @@ async function fetchUsersWithLimit() {
   return fetchCustomers().then((users) => users.slice(0, 4));
 }
 
+async function fetchEmployeesWithLimit() {
+  return fetchEmployees().then((users) => users.slice(0, 4));
+}
+
 const CardData = [
   {
     icon: <User2Icon size={20} color="black" />,
-    title: "Total Mentees",
+    title: "Total Customers",
     statistic: 0,
     moreDetails: "Detailed user statistics can be found here.",
   },
@@ -120,6 +124,7 @@ const CardData = [
 function MainSection() {
   const [cardData, setCardData] = React.useState([]);
   const [users, setUsers] = React.useState([]);
+  const [employees, setEmployees] = React.useState([]);
   React.useEffect(() => {
     setCardData(CardData);
     updateTotalUsers().then((totalUsers) => {
@@ -140,6 +145,9 @@ function MainSection() {
     // });
     fetchUsersWithLimit().then((limitedUsers) => {
       setUsers(limitedUsers);
+    });
+    fetchEmployeesWithLimit().then((limitedUsers) => {
+      setEmployees(limitedUsers);
     });
   }, []);
   return (
@@ -180,14 +188,14 @@ function MainSection() {
           ))}
         </section>
       </section>
-      <section className="px-4 grid gap-6">
+      <section className="px-4 grid gap-6 mt-14">
         <div className="flex justify-between">
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-gray-200">
-              Manage Users
+              Manage Customers
             </h2>
             <p className={"text-sm text-muted-foreground py-2"}>
-              To perform more functions, head to the users page
+              To perform more functions, head to the Customers page
             </p>
           </div>
           <Link to="/customers">
@@ -195,11 +203,32 @@ function MainSection() {
               className="text-slate-500 text-sm font-medium"
               variant="outline"
             >
-              Users Page &rarr;
+              Customers Page &rarr;
             </Button>
           </Link>
         </div>
         <TableComponent data={users} />
+      </section>
+      <section className="px-4 grid gap-6 mt-14">
+        <div className="flex justify-between">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-gray-200">
+              Manage Employees
+            </h2>
+            <p className={"text-sm text-muted-foreground py-2"}>
+              To perform more functions, head to the employees page
+            </p>
+          </div>
+          <Link to="/staff">
+            <Button
+              className="text-slate-500 text-sm font-medium"
+              variant="outline"
+            >
+              Employees Page &rarr;
+            </Button>
+          </Link>
+        </div>
+        <TableComponent data={employees} />
       </section>
       <div className="pt-4">
         <hr />
