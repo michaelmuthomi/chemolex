@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 import { description } from "@/components/ChartComponent";
 import { fetchAllProducts } from "@/api/fetchProducts";
+import { fetchCustomers } from "@/api/fetchUsers";
 
 export const Route = createFileRoute("/dashboard")({
   component: () => (
@@ -92,7 +93,7 @@ async function updateTotalProducts() {
 }
 
 async function fetchUsersWithLimit() {
-  return fetchUsers().then((users) => users.slice(0, 4));
+  return fetchCustomers().then((users) => users.slice(0, 4));
 }
 
 const CardData = [

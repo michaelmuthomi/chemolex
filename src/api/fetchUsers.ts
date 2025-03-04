@@ -4,6 +4,11 @@ export async function fetchUsers() {
     console.log("Data: ", data)
     return data;
 }
+export async function fetchCustomers() {
+  const { data } = await supabase.from("users").select("*").eq("role", 'Customers');
+  console.log("Data: ", data);
+  return data;
+}
 
 export async function fetchUser(id) {
     const {data} = await supabase.from('users').select('*').eq('user_id', id);

@@ -72,13 +72,13 @@ function ManageUsers() {
     <div className="flex flex-col w-full">
       <section className="flex gap-2 items-center sticky px-4 top-0 bg-background py-4 z-10 border-b-[1px]">
         <SidebarTrigger />
-        <Header location="Mentees" />
+        <Header location="Customers" />
       </section>
       <section className="px-6 pt-8 grid gap-10">
         <div>
-          <h1 className="text-3xl font-bold text-neutral-300">Mentees</h1>
+          <h1 className="text-3xl font-bold text-neutral-300">Customers</h1>
           <p className="font-medium text-zinc-600">
-            A list of all the Mentees in the database, view and manage their
+            A list of all the Customers in the database, view and manage their
             status.
           </p>
         </div>
