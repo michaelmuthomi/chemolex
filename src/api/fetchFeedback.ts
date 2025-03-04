@@ -2,7 +2,7 @@ import { supabase } from "@/backend/client";
 export async function fetchFeedback() {
   const { data, error } = await supabase
     .from("feedback")
-    .select("*")
+    .select("*, users:customerid(*)")
   if (error) {
     throw error;
   }

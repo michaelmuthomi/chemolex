@@ -33,19 +33,7 @@ function ManageFeedback() {
           title: "Total Feedback Submissions",
           statistic: data.length,
           moreDetails: "The total amount of all orders.",
-        },
-        {
-          icon: <Smile size={20} color="black" />,
-          title: "Good Ratings",
-          statistic: data.filter((user) => user.rating > 3).length,
-          moreDetails: "Ratings above 3",
-        },
-        {
-          icon: <Frown size={20} color="black" />,
-          title: "Bad Ratings",
-          statistic: data.filter((user) => user.rating < 3).length,
-          moreDetails: "Ratings below 3",
-        },
+        }
       ]);
     });
   }, []);

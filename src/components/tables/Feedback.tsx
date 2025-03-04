@@ -42,149 +42,56 @@ import {
 import { ToastAction } from "@radix-ui/react-toast";
 import { AddUserDialog } from "../AddUserDialog";
 
-export type User = {
-  report_type: string;
-  generate_by: string;
-  generate_at: string;
-  content: string;
+export type Feedback = {
+  feedbackid: number;
+  customerid: number;
+  feedbacktype: string;
+  feedbackdetails: string;
+  date: string;
 };
 
-export const columns: ColumnDef<User>[] = [
+export const columns: ColumnDef<Feedback>[] = [
   {
-    accessorKey: "rating",
-    header: "Rating",
-    cell: ({ row }) => {
-      const rating = row.getValue("rating");
-      const getEmoji = (rating: number) => {
-        switch (rating) {
-          case 5:
-            return "I love it 😁"; // Grinning face
-          case 4:
-            return "I like it 🙂"; // Slightly smiling face
-          case 3:
-            return "It's okay 😐"; // Neutral face
-          case 2:
-            return "I don't like it 😟"; // Worried face
-          case 1:
-            return "I hate it 😡"; // Angry face
-          default:
-            return "No rating 🤷‍♂️"; // For ratings not in 1-5
-        }
-      };
-
-      return (
-        <div className="flex items-center">
-          <span className="ml-1">{getEmoji(rating)}</span>
-        </div>
-      );
-    },
+    accessorKey: "feedbackid",
+    header: "ID",
+    cell: ({ row }) => <div>#{row.getValue("feedbackid")}</div>,
   },
   {
-    accessorKey: "comments",
-    header: "Comments",
+    accessorKey: "customerid",
+    header: "Customer ID",
+    cell: ({ row }) => <div>#{row.getValue("customerid")}</div>,
+  },
+  {
+    accessorKey: "feedbacktype",
+    header: "Type",
     cell: ({ row }) => (
-      <div className="max-w-md truncate">{row.getValue("comments")}</div>
+      <Badge variant="outline" className="capitalize">
+        {row.getValue("feedbacktype")}
+      </Badge>
     ),
   },
   {
-    accessorKey: "feedback_date",
-    header: "Feedback Date",
+    accessorKey: "feedbackdetails",
+    header: "Feedback",
+    cell: ({ row }) => (
+      <div className="max-w-[500px] truncate">
+        {row.getValue("feedbackdetails")}
+      </div>
+    ),
+  },
+  {
+    accessorKey: "date",
+    header: "Date",
     cell: ({ row }) => {
-      const date = new Date(row.getValue("feedback_date"));
-      const formattedDate = date.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-      return <div>{formattedDate}</div>;
+      const date = new Date(row.getValue("date"));
+      return <div>{date.toLocaleDateString()}</div>;
     },
   },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const user = row.original;
-
-      const handleActivate = async () => {
-        // Update the user's status to 'active'
-        user.status = "active";
-        // Add any additional logic to update the user's status in your backend or state management
-        const { data, error } = await supabase
-          .from("users")
-          .update({ status: "active" })
-          .eq("user_id", user.user_id);
-        if (error) console.error(error);
-        toast({
-          style: { backgroundColor: "#005a00", color: "#fff" },
-          title: "Success",
-          description: "User's status updated succesfully.",
-          action: (
-            <ToastAction altText="refresh">
-              <Button
-                variant="outline"
-                className="font-sm text-black bg-white"
-                onClick={() => window.location.reload()}
-              >
-                Refresh Page
-              </Button>
-            </ToastAction>
-          ),
-        });
-      };
-
-      const handleDeactivate = async () => {
-        // Update the user's status to 'pending'
-        user.status = "pending";
-        // Add any additional logic to update the user's status in your backend or state management
-        const { data, error } = await supabase
-          .from("users")
-          .update({ status: "pending" })
-          .eq("user_id", user.user_id);
-        if (error) console.error(error);
-        toast({
-          style: { backgroundColor: "#005a00", color: "#fff" },
-          title: "Success",
-          description: "User's status updated succesfully.",
-          action: (
-            <ToastAction altText="refresh">
-              <Button
-                variant="outline"
-                className="font-sm text-black bg-white"
-                onClick={() => window.location.reload()}
-              >
-                Refresh Page
-              </Button>
-            </ToastAction>
-          ),
-        });
-      };
-
-      const handleBan = async () => {
-        // Update the user's status to 'banned'
-        user.status = "banned";
-        // Add any additional logic to update the user's status in your backend or state management
-        const { data, error } = await supabase
-          .from("users")
-          .update({ status: "banned" })
-          .eq("user_id", user.user_id);
-        if (error) console.error(error);
-        toast({
-          style: { backgroundColor: "#005a00", color: "#fff" },
-          title: "Success",
-          description: "User's status updated succesfully.",
-          action: (
-            <ToastAction altText="refresh">
-              <Button
-                variant="outline"
-                className="font-sm text-black bg-white"
-                onClick={() => window.location.reload()}
-              >
-                Refresh Page
-              </Button>
-            </ToastAction>
-          ),
-        });
-      };
+      const feedback = row.original;
 
       return (
         <DropdownMenu>
@@ -196,28 +103,19 @@ export const columns: ColumnDef<User>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleActivate}>
-              <Badge
-                variant="default"
-                className="rounded-full bg-green-900 text-white"
-              >
-                Activate
-              </Badge>
+            <DropdownMenuItem
+              onClick={() =>
+                navigator.clipboard.writeText(feedback.feedbackdetails)
+              }
+            >
+              Copy Feedback
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={handleDeactivate}>
-              <Badge
-                variant="destructive"
-                className="rounded-full bg-yellow-500 text-white"
-              >
-                Deactivate
-              </Badge>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleBan}>
-              <Badge variant="destructive" className="rounded-full">
-                Ban User
-              </Badge>
+            <DropdownMenuItem
+              onClick={() =>
+                navigator.clipboard.writeText(feedback.feedbackid.toString())
+              }
+            >
+              Copy ID
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
