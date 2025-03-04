@@ -52,9 +52,14 @@ function ManageUsers() {
         {
           icon: <UserRoundCog size={20} color="black" />,
           title: "Pending approvals",
-          statistic: data.filter(
-            (user) => user.status === "pending" || user.status === "Pending"
-          ).length,
+          statistic:
+            data.filter(
+              (user) => user.status === "pending" || user.status === "Pending"
+            ).length === 0
+              ? "N/A"
+              : data.filter(
+                  (user) => user.status === "pending" || user.status === "Pending"
+                ).length,
           moreDetails: "The total number of orders that have been delivered.",
         },
         {
