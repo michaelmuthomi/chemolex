@@ -39,16 +39,21 @@ function ManageUsers() {
         {
           icon: <UserRoundCheck size={20} color="black" />,
           title: "Active users",
-          statistic: data.filter(
-            (user) => user.status === "active" || user.status === "Active"
-          ).length,
+          statistic:
+            data.filter(
+              (user) => user.status === "active" || user.status === "Active"
+            ).length === 0
+              ? "N/A"
+              : data.filter(
+                  (user) => user.status === "active" || user.status === "Active"
+                ).length,
           moreDetails: "The total number of completed orders.",
         },
         {
           icon: <UserRoundCog size={20} color="black" />,
           title: "Pending approvals",
           statistic: data.filter(
-            (user) => user.status === "inactive" || user.status === "Inactive"
+            (user) => user.status === "pending" || user.status === "Pending"
           ).length,
           moreDetails: "The total number of orders that have been delivered.",
         },
@@ -56,10 +61,7 @@ function ManageUsers() {
           icon: <UserX size={20} color="black" />,
           title: "Banned users",
           statistic:
-            data.filter(
-              (user) =>
-                user.status === "Deleted"
-            ).length === 0
+            data.filter((user) => user.status === "Deleted").length === 0
               ? "N/A"
               : data.filter((user) => user.status === "banned").length,
           moreDetails: "The total number of orders that are still pending.",

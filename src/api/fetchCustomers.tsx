@@ -9,7 +9,7 @@ export async function fetchCustomers() {
 
 export async function fetchMentees() {
   const { data } = await supabase
-    .from("mentees")
+    .from("users")
     .select("*");
   console.log("Mentees Data:", data);
   return data;

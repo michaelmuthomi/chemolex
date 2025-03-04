@@ -53,19 +53,24 @@ export type User = {
 
 export const columns: ColumnDef<User>[] = [
   {
-    accessorKey: "first_name",
-    header: "First Name",
-    cell: ({ row }) => <div>{row.getValue("first_name")}</div>,
+    accessorKey: "name",
+    header: "User Name",
+    cell: ({ row }) => <div>{row.getValue("name")}</div>,
   },
   {
-    accessorKey: "last_name",
-    header: "Last Name",
-    cell: ({ row }) => <div>{row.getValue("last_name")}</div>,
+    accessorKey: "role",
+    header: "Role",
+    cell: ({ row }) => <div className="capitalize">{row.original.role}</div>,
   },
   {
-    accessorKey: "gender",
-    header: "Gender",
-    cell: ({ row }) => <div>{row.getValue("gender")}</div>,
+    accessorKey: "address",
+    header: "Address",
+    cell: ({ row }) => <div>{row.getValue("address")}</div>,
+  },
+  {
+    accessorKey: "phonenumber",
+    header: "Phone Number",
+    cell: ({ row }) => <div>{row.original.phonenumber}</div>,
   },
   {
     accessorKey: "status",
