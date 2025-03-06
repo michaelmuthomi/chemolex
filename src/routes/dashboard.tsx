@@ -119,6 +119,12 @@ const CardData = [
     statistic: 0,
     moreDetails: "Detailed performance metrics are available here.",
   },
+  {
+    icon: <MessageCircleDashed size={20} color="black" />,
+    title: "Total Reports",
+    statistic: 0,
+    moreDetails: "Detailed performance metrics are available here.",
+  },
 ];
 
 function MainSection() {
@@ -139,10 +145,10 @@ function MainSection() {
       CardData[2].statistic = totalFeedback;
       setCardData([...CardData]);
     });
-    // updateTotalProducts().then((totalProducts) => {
-    //   CardData[3].statistic = totalProducts;
-    //   setCardData([...CardData]);
-    // });
+    updateTotalProducts().then((totalProducts) => {
+      CardData[3].statistic = totalProducts;
+      setCardData([...CardData]);
+    });
     fetchUsersWithLimit().then((limitedUsers) => {
       setUsers(limitedUsers);
     });

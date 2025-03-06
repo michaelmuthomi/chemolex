@@ -9,7 +9,7 @@ export async function fetchProducts(count: number) {
 
 export async function fetchAllProducts() {
   const { data, error } = await supabase
-    .from("products")
+    .from("reports")
     .select("*")
   if (error) {
     throw error;
