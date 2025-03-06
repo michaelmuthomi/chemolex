@@ -241,7 +241,7 @@ function MainSection() {
       </div>
       <section className="px-4 pb-4 flex justify-between">
         <div className="flex items-center gap-2">
-          <img src={Logo} alt="" className="w-14" />
+          <img src={Logo} alt="" className="w-44 h-10 object-cover" />
           <p className="text-muted">&copy; 2024</p>
         </div>
         <div className="flex gap-4">
