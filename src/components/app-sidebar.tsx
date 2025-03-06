@@ -79,7 +79,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar {...props}>
       <SidebarHeader className="px-4 pt-4 !bg-[#121212]">
         <SidebarMenu className="h-max">
-          <img src={Logo} alt="Chemolex" className="w-3/4 h-min object-cover" />
+          <img src={Logo} alt="Chemolex" className="w-96 h-16 object-cover" />
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="!bg-[#121212] text-white">
