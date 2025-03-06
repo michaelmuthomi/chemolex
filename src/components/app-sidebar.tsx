@@ -54,6 +54,16 @@ const data = {
         },
       ],
     },
+    {
+      title: "Reports",
+      url: "#",
+      items: [
+        {
+          title: "Reports",
+          url: "/reports",
+        },
+      ],
+    },
   ],
 };
 

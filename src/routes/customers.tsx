@@ -32,7 +32,7 @@ function ManageUsers() {
       setCardData([
         {
           icon: <Users size={20} color="black" />,
-          title: "Total Mentees",
+          title: "Total Customers",
           statistic: data.length,
           moreDetails: "The total amount of all orders.",
         },
@@ -66,7 +66,7 @@ function ManageUsers() {
           icon: <UserX size={20} color="black" />,
           title: "Banned users",
           statistic:
-            data.filter((user) => user.status === "Deleted").length === 0
+            data.filter((user) => user.status === "banned").length === 0
               ? "N/A"
               : data.filter((user) => user.status === "banned").length,
           moreDetails: "The total number of orders that are still pending.",
