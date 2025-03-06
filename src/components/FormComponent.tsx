@@ -45,7 +45,7 @@ export function FormComponent() {
   };
 
   return (
-    <div className="w-max h-full grid justify-center text-white">
+    <div className="w-max h-full grid justify-center">
       <Toaster />
       <Form {...form}>
         <form
