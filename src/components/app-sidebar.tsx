@@ -49,7 +49,7 @@ const data = {
       url: "#",
       items: [
         {
-          title: "Users",
+          title: "Feedback",
           url: "/feedback",
         },
       ],
