@@ -8,7 +8,7 @@ import {
   BestSeller,
 } from "@/components";
 import { CardComponent } from "@/components";
-import { Button } from "@/components/ui";
+import { Button, Toaster } from "@/components/ui";
 import {
   fetchUsers,
   fetchOrders,
@@ -158,6 +158,7 @@ function MainSection() {
   }, []);
   return (
     <div className="flex flex-col gap-4 w-full">
+      <Toaster />
       <section className="flex gap-2 items-center px-6 sticky top-0 bg-background py-4 z-10 border-b-[1px]">
         <Header />
       </section>

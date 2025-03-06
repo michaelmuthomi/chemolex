@@ -141,130 +141,130 @@ export const columns: ColumnDef<User>[] = [
     },
   },
   {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const user = row.original;
-
-      const handleActivate = async () => {
-        // Update the user's status to 'active'
-        user.status = "active";
-        // Add any additional logic to update the user's status in your backend or state management
-        const { data, error } = await supabase
-          .from("users")
-          .update({ status: "active" })
-          .eq("user_id", user.user_id);
-        if (error) console.error(error);
-        toast({
-          style: { backgroundColor: "#005a00", color: "#fff" },
-          title: "Success",
-          description: "User's status updated succesfully.",
-          action: (
-            <ToastAction altText="refresh">
-              <Button
-                variant="outline"
-                className="font-sm text-black bg-white"
-                onClick={() => window.location.reload()}
-              >
-                Refresh Page
+      id: "actions",
+      enableHiding: false,
+      cell: ({ row }) => {
+        const user = row.original;
+  
+        const handleActivate = async () => {
+          // Update the user's status to 'active'
+          user.status = "active";
+          // Add any additional logic to update the user's status in your backend or state management
+          const { data, error } = await supabase
+            .from("users")
+            .update({ status: "active" })
+            .eq("userid", user.userid);
+          if (error) console.error(error);
+          toast({
+            style: { backgroundColor: "#005a00", color: "#fff" },
+            title: "Success",
+            description: "User's status updated succesfully.",
+            action: (
+              <ToastAction altText="refresh">
+                <Button
+                  variant="outline"
+                  className="font-sm text-black bg-white"
+                  onClick={() => window.location.reload()}
+                >
+                  Refresh Page
+                </Button>
+              </ToastAction>
+            ),
+          });
+        };
+  
+        const handleDeactivate = async () => {
+          // Update the user's status to 'pending'
+          user.status = "pending";
+          // Add any additional logic to update the user's status in your backend or state management
+          const { data, error } = await supabase
+            .from("users")
+            .update({ status: "pending" })
+            .eq("userid", user.userid);
+          if (error) console.error(error);
+          toast({
+            style: { backgroundColor: "#005a00", color: "#fff" },
+            title: "Success",
+            description: "User's status updated succesfully.",
+            action: (
+              <ToastAction altText="refresh">
+                <Button
+                  variant="outline"
+                  className="font-sm text-black bg-white"
+                  onClick={() => window.location.reload()}
+                >
+                  Refresh Page
+                </Button>
+              </ToastAction>
+            ),
+          });
+        };
+  
+        const handleBan = async () => {
+          // Update the user's status to 'banned'
+          user.status = "banned";
+          // Add any additional logic to update the user's status in your backend or state management
+          const { data, error } = await supabase
+            .from("users")
+            .update({ status: "banned" })
+            .eq("userid", user.userid);
+          if (error) console.error(error);
+          toast({
+            style: { backgroundColor: "#005a00", color: "#fff" },
+            title: "Success",
+            description: "User's status updated succesfully.",
+            action: (
+              <ToastAction altText="refresh">
+                <Button
+                  variant="outline"
+                  className="font-sm text-black bg-white"
+                  onClick={() => window.location.reload()}
+                >
+                  Refresh Page
+                </Button>
+              </ToastAction>
+            ),
+          });
+        };
+  
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
               </Button>
-            </ToastAction>
-          ),
-        });
-      };
-
-      const handleDeactivate = async () => {
-        // Update the user's status to 'pending'
-        user.status = "pending";
-        // Add any additional logic to update the user's status in your backend or state management
-        const { data, error } = await supabase
-          .from("users")
-          .update({ status: "pending" })
-          .eq("user_id", user.user_id);
-        if (error) console.error(error);
-        toast({
-          style: { backgroundColor: "#005a00", color: "#fff" },
-          title: "Success",
-          description: "User's status updated succesfully.",
-          action: (
-            <ToastAction altText="refresh">
-              <Button
-                variant="outline"
-                className="font-sm text-black bg-white"
-                onClick={() => window.location.reload()}
-              >
-                Refresh Page
-              </Button>
-            </ToastAction>
-          ),
-        });
-      };
-
-      const handleBan = async () => {
-        // Update the user's status to 'banned'
-        user.status = "banned";
-        // Add any additional logic to update the user's status in your backend or state management
-        const { data, error } = await supabase
-          .from("users")
-          .update({ status: "banned" })
-          .eq("user_id", user.user_id);
-        if (error) console.error(error);
-        toast({
-          style: { backgroundColor: "#005a00", color: "#fff" },
-          title: "Success",
-          description: "User's status updated succesfully.",
-          action: (
-            <ToastAction altText="refresh">
-              <Button
-                variant="outline"
-                className="font-sm text-black bg-white"
-                onClick={() => window.location.reload()}
-              >
-                Refresh Page
-              </Button>
-            </ToastAction>
-          ),
-        });
-      };
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleActivate}>
-              <Badge
-                variant="default"
-                className="rounded-full bg-green-900 text-white"
-              >
-                Activate
-              </Badge>
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={handleDeactivate}>
-              <Badge
-                variant="destructive"
-                className="rounded-full bg-yellow-500 text-white"
-              >
-                Deactivate
-              </Badge>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleBan}>
-              <Badge variant="destructive" className="rounded-full">
-                Ban User
-              </Badge>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={handleActivate}>
+                <Badge
+                  variant="default"
+                  className="rounded-full bg-green-900 text-white"
+                >
+                  Activate
+                </Badge>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleDeactivate}>
+                <Badge
+                  variant="destructive"
+                  className="rounded-full bg-yellow-500 text-white"
+                >
+                  Deactivate
+                </Badge>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={handleBan}>
+                <Badge variant="destructive" className="rounded-full">
+                  Ban User
+                </Badge>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      },
     },
-  },
 ];
 
 export function UsersTable(data) {
