@@ -242,11 +242,11 @@ function MainSection() {
       <section className="px-4 pb-4 flex justify-between">
         <div className="flex items-center gap-2">
           <img src={Logo} alt="" className="w-44 h-10 object-cover" />
-          <p className="text-muted">&copy; 2024</p>
+          <p className="text-gray-400">&copy; 2025</p>
         </div>
         <div className="flex gap-4">
-          <p className="text-sm text-muted py-2">
-            Chemolex - More than promises delivering proven excellence
+          <p className="text-sm text-gray-400 py-2">
+            Chemolex - The Home Of Green, Clean and Sustainable.
           </p>
         </div>
       </section>
